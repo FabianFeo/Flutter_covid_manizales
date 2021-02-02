@@ -1,3 +1,4 @@
+import 'package:aprendiendo/src/view/inicio.dart';
 import 'package:aprendiendo/src/view/login.dart';
 import 'package:aprendiendo/src/widget/navbar.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +16,7 @@ class _IndexState extends State<Index> {
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   List<Widget> _widgetOptions = <Widget>[
-    Login(),
+    Inicio(),
     Text(
       'Index 1: Business',
       style: optionStyle,
@@ -43,19 +44,19 @@ class _IndexState extends State<Index> {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            label: 'Home',
+            label: 'Inicio',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.business),
-            label: 'Business',
+            icon: Icon(Icons.place_rounded),
+            label: 'Contagios por comunas y días',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.school),
-            label: 'School',
+            label: 'Mi red de contactos',
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.amber[800],
+        selectedItemColor: Colors.blue,
         onTap: _onItemTapped,
       ),
     );
