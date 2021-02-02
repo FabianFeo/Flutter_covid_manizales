@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:aprendiendo/src/view/Registro.dart';
+import 'package:aprendiendo/src/view/index.dart';
 import 'package:aprendiendo/src/view/inicio.dart';
 import 'package:beauty_textfield/beauty_textfield.dart';
 import 'package:bouncing_widget/bouncing_widget.dart';
@@ -113,7 +114,7 @@ class _LoginState extends State<Login> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => Inicio(),
+                          builder: (context) => Index(),
                         ));
                   },
                   child: Card(
