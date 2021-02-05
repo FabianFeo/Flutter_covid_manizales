@@ -35,6 +35,7 @@ dependencies:
   gender_picker: ^1.0.4
   extended_tabs: ^1.0.1
   custom_switch: ^0.0.1
+  http: ^0.12.2
   
 
 dev_dependencies:

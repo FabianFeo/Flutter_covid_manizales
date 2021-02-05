@@ -1,3 +1,5 @@
+import 'package:aprendiendo/src/model/registration.model.dart';
+import 'package:aprendiendo/src/service/comuna.service.dart';
 import 'package:aprendiendo/src/view/login.dart';
 import 'package:aprendiendo/src/widget/navbar.dart';
 import 'package:beauty_textfield/beauty_textfield.dart';
@@ -15,16 +17,19 @@ class Registro extends StatefulWidget {
 
 class _RegistroState extends State<Registro> {
   String _myActivity;
-  String _myActivityResult;
+  ComunaService comunaService = ComunaService();
   int group = 1;
   String _myActivity2;
-  String _myActivityResult2;
+
   String _myActivity3;
-  String _myActivityResult3;
+  List<dynamic> cumunaDataSource = List();
+
   @override
   Widget build(BuildContext context) {
+    loadComunaData();
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
+    Registration registration = new Registration();
     return Scaffold(
       appBar: NavBar(),
       body: SingleChildScrollView(
@@ -51,29 +56,81 @@ class _RegistroState extends State<Registro> {
                 focusNode: FocusNode(),
                 fontFamily: 'Laca Regular', //Text Fontfamily
                 fontWeight: FontWeight.w500,
-
                 margin: EdgeInsets.all(30),
                 cornerRadius: BorderRadius.all(Radius.circular(0)),
                 duration: Duration(milliseconds: 300),
                 inputType: TextInputType.text, //REQUIRED
-                placeholder: "Nombre y apellidos",
+                placeholder: "Nombre de usuario",
                 isShadow: true,
                 obscureText: false,
                 prefixIcon: Icon(
                   Icons.person,
                   color: Colors.grey,
                 ), //REQUIRED
-                onClickSuffix: () {
-                  print('Suffix Clicked');
-                },
-                onTap: () {
-                  print('Click');
-                },
+
                 onChanged: (text) {
-                  print(text);
+                  registration.username = text;
                 },
-                onSubmitted: (data) {
-                  print(data.length);
+              ),
+              BeautyTextfield(
+                width: double.maxFinite, //REQUIRED
+                height: 60, //REQUIRED
+                accentColor: Colors.white, // On Focus Color
+                textColor: Colors.grey, //Text Color
+                backgroundColor: Colors.white, //Not Focused Color
+                textBaseline: TextBaseline.alphabetic,
+                autocorrect: false,
+                autofocus: false,
+
+                enabled: true, // Textfield enabled
+                focusNode: FocusNode(),
+                fontFamily: 'Laca Regular', //Text Fontfamily
+                fontWeight: FontWeight.w500,
+
+                margin: EdgeInsets.all(30),
+                cornerRadius: BorderRadius.all(Radius.circular(0)),
+                duration: Duration(milliseconds: 300),
+                inputType: TextInputType.text, //REQUIRED
+                placeholder: "Nombres",
+                isShadow: true,
+                obscureText: false,
+                prefixIcon: Icon(
+                  Icons.person,
+                  color: Colors.grey,
+                ), //REQUIRED
+
+                onChanged: (text) {
+                  registration.first_name = text;
+                },
+              ),
+              BeautyTextfield(
+                width: double.maxFinite, //REQUIRED
+                height: 60, //REQUIRED
+                accentColor: Colors.white, // On Focus Color
+                textColor: Colors.grey, //Text Color
+                backgroundColor: Colors.white, //Not Focused Color
+                textBaseline: TextBaseline.alphabetic,
+                autocorrect: false,
+                autofocus: false,
+                enabled: true, // Textfield enabled
+                focusNode: FocusNode(),
+                fontFamily: 'Laca Regular', //Text Fontfamily
+                fontWeight: FontWeight.w500,
+
+                margin: EdgeInsets.all(30),
+                cornerRadius: BorderRadius.all(Radius.circular(0)),
+                duration: Duration(milliseconds: 300),
+                inputType: TextInputType.text, //REQUIRED
+                placeholder: "Apellidos",
+                isShadow: true,
+                obscureText: false,
+                prefixIcon: Icon(
+                  Icons.person,
+                  color: Colors.grey,
+                ), //REQUIRED
+
+                onChanged: (text) {
+                  registration.last_name = text;
                 },
               ),
               Container(
@@ -91,6 +148,7 @@ class _RegistroState extends State<Registro> {
                     setState(() {
                       _myActivity = value;
                     });
+                    registration.document_type = value;
                   },
                   dataSource: [
                     {
@@ -127,25 +185,17 @@ class _RegistroState extends State<Registro> {
                 margin: EdgeInsets.all(30),
                 cornerRadius: BorderRadius.all(Radius.circular(0)),
                 duration: Duration(milliseconds: 300),
-                inputType: TextInputType.text, //REQUIRED
+                inputType: TextInputType.number, //REQUIRED
                 placeholder: "Número de documento",
                 isShadow: true,
                 obscureText: false,
                 prefixIcon: Icon(
                   Icons.person,
                   color: Colors.grey,
-                ), //REQUIRED
-                onClickSuffix: () {
-                  print('Suffix Clicked');
-                },
-                onTap: () {
-                  print('Click');
-                },
+                ), //REQUIRE
+
                 onChanged: (text) {
-                  print(text);
-                },
-                onSubmitted: (data) {
-                  print(data.length);
+                  registration.document_number = text;
                 },
               ),
               Container(
@@ -160,7 +210,7 @@ class _RegistroState extends State<Registro> {
                     print(val);
                     return null;
                   },
-                  onSaved: (val) => print(val),
+                  onSaved: (val) => registration.birth_date = val,
                 ),
               ),
               Row(
@@ -175,6 +225,7 @@ class _RegistroState extends State<Registro> {
                         print(T);
                         setState(() {
                           group = T;
+                          registration.gender = 'F';
                         });
                       }),
                   Text('Femenino'),
@@ -186,6 +237,7 @@ class _RegistroState extends State<Registro> {
                         print(T);
                         setState(() {
                           group = T;
+                          registration.gender = 'M';
                         });
                       }),
                   Text('Masculino'),
@@ -208,7 +260,7 @@ class _RegistroState extends State<Registro> {
                 margin: EdgeInsets.all(30),
                 cornerRadius: BorderRadius.all(Radius.circular(0)),
                 duration: Duration(milliseconds: 300),
-                inputType: TextInputType.text, //REQUIRED
+                inputType: TextInputType.phone, //REQUIRED
                 placeholder: "Celular",
                 isShadow: true,
                 obscureText: false,
@@ -216,17 +268,9 @@ class _RegistroState extends State<Registro> {
                   Icons.person,
                   color: Colors.grey,
                 ), //REQUIRED
-                onClickSuffix: () {
-                  print('Suffix Clicked');
-                },
-                onTap: () {
-                  print('Click');
-                },
+
                 onChanged: (text) {
-                  print(text);
-                },
-                onSubmitted: (data) {
-                  print(data.length);
+                  registration.cellphone = text;
                 },
               ),
               BeautyTextfield(
@@ -246,7 +290,7 @@ class _RegistroState extends State<Registro> {
                 margin: EdgeInsets.all(30),
                 cornerRadius: BorderRadius.all(Radius.circular(0)),
                 duration: Duration(milliseconds: 300),
-                inputType: TextInputType.text, //REQUIRED
+                inputType: TextInputType.emailAddress, //REQUIRED
                 placeholder: "Correo",
                 isShadow: true,
                 obscureText: false,
@@ -254,85 +298,34 @@ class _RegistroState extends State<Registro> {
                   Icons.person,
                   color: Colors.grey,
                 ), //REQUIRED
-                onClickSuffix: () {
-                  print('Suffix Clicked');
-                },
-                onTap: () {
-                  print('Click');
-                },
+
                 onChanged: (text) {
-                  print(text);
-                },
-                onSubmitted: (data) {
-                  print(data.length);
+                  registration.email = text;
                 },
               ),
-              Container(
-                margin: EdgeInsets.all(25),
-                child: DropDownFormField(
-                  titleText: 'Comuna',
-                  hintText: '',
-                  value: _myActivity2,
-                  onSaved: (value) {
-                    setState(() {
-                      _myActivity2 = value;
-                    });
-                  },
-                  onChanged: (value) {
-                    setState(() {
-                      _myActivity2 = value;
-                    });
-                  },
-                  dataSource: [
-                    {
-                      "display": "La Macarena",
-                      "value": "La Macarena",
-                    },
-                    {
-                      "display": "La Fuente",
-                      "value": "La Fuente",
-                    },
-                    {
-                      "display": "Atardeceres",
-                      "value": "Atardeceres",
-                    },
-                    {
-                      "display": "Ciudadela del Norte",
-                      "value": "Ciudadela del Norte",
-                    },
-                    {
-                      "display": "Cumanday",
-                      "value": "Cumanday",
-                    },
-                    {
-                      "display": "Ecoturistico Cerro de Oro",
-                      "value": "Ecoturistico Cerro de Oro",
-                    },
-                    {
-                      "display": "Estación",
-                      "value": "Estación",
-                    },
-                    {
-                      "display": "Palogrande",
-                      "value": "Palogrande",
-                    },
-                    {
-                      "display": "San José",
-                      "value": "San José",
-                    },
-                    {
-                      "display": "Tesorito",
-                      "value": "Tesorito",
-                    },
-                    {
-                      "display": "Universitaria",
-                      "value": "Universitaria",
-                    },
-                  ],
-                  textField: 'display',
-                  valueField: 'value',
-                ),
-              ),
+              this.cumunaDataSource.isEmpty
+                  ? Container(
+                      margin: EdgeInsets.all(25),
+                      child: DropDownFormField(
+                        titleText: 'Comuna',
+                        hintText: '',
+                        value: _myActivity2,
+                        onSaved: (value) {
+                          setState(() {
+                            _myActivity2 = value;
+                          });
+                        },
+                        onChanged: (value) {
+                          setState(() {
+                            _myActivity2 = value;
+                          });
+                        },
+                        dataSource: this.cumunaDataSource,
+                        textField: 'display',
+                        valueField: 'value',
+                      ),
+                    )
+                  : CircularProgressIndicator(),
               Container(
                 margin: EdgeInsets.all(25),
                 child: DropDownFormField(
@@ -515,5 +508,22 @@ class _RegistroState extends State<Registro> {
         ),
       ),
     );
+  }
+
+  void loadComunaData() async {
+    List<dynamic> data = List();
+    await comunaService
+        .getComuna()
+        .then((List<Map<String, dynamic>> dataService) {
+      dataService.forEach((element) => {
+            data.add({
+              "display": element['name'],
+              "value": element['id'],
+            })
+          });
+      setState(() {
+        this.cumunaDataSource = data;
+      });
+    });
   }
 }
