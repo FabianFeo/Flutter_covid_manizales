@@ -15,29 +15,31 @@ class _ButtonPermisionState extends State<ButtonPermision> {
   bool status = false;
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
     return Row(
       children: [
         Container(
-          margin: EdgeInsets.only(left: MediaQuery.of(context).size.width / 10 ),
-          width: MediaQuery.of(context).size.width / 2,
-          child: Text('Activar Permisos', style: TextStyle(color: Colors.grey[600]),),
+          margin: EdgeInsets.only(left: width / 13),
+          width: width / 2,
+          child: Text(
+            'Activar Permisos',
+            style: TextStyle(color: Colors.grey[600]),
+          ),
         ),
         Container(
-          margin: EdgeInsets.only(left: MediaQuery.of(context).size.width / 10 ),
-          width: MediaQuery.of(context).size.width / 6,
-          child: Container(
-              width: MediaQuery.of(context).size.width / 6,
-              child: CustomSwitch(
-            activeColor: Colors.blueAccent,
-            value: status,
-            onChanged: (value) {
-              print("VALUE : $value");
-              setState(() {
-                status = value;
-              });
-            },
-          )),
-        ),
+            margin: EdgeInsets.only(left: width / 15),
+            width: width /5,
+            child: CustomSwitch(
+              activeColor: Colors.blueAccent,
+              value: status,
+              onChanged: (value) {
+                print("VALUE : $value");
+                setState(() {
+                  status = value;
+                });
+              },
+            )),
       ],
     );
   }

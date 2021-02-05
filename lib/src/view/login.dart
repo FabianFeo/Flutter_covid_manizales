@@ -149,7 +149,7 @@ class _LoginState extends State<Login> {
               Container(
                 margin: EdgeInsets.symmetric(
                   vertical: 35,
-                  horizontal: 100,
+                  horizontal: height/8,
                 ),
                 child: Row(
                   children: [
@@ -176,6 +176,13 @@ class _LoginState extends State<Login> {
               Container(
                 margin: EdgeInsets.symmetric(vertical: 20),
                 child: GestureDetector(
+                  onTap: (){
+                     Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Index(),
+                        ));
+                  },
                   child: Text(
                     'continuar sin registrarme',
                     style: TextStyle(

@@ -5,6 +5,8 @@ class NavBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+    double height=MediaQuery.of(context).size.height;
+    double width= MediaQuery.of(context).size.width;
     return AppBar(
       backgroundColor: Colors.white,
       automaticallyImplyLeading: false,
@@ -20,8 +22,8 @@ class NavBar extends StatelessWidget implements PreferredSizeWidget {
           ),
           Image(
             image: AssetImage('assets/Marca_png/Logo_CoVIDAlert_positivo.png'),
-            height: 50,
-            width: 200,
+            height: height/20,
+            width: width/2.3,
           ),
           Icon(
             Icons.lock,
