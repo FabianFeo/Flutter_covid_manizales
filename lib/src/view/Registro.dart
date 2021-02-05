@@ -20,13 +20,17 @@ class _RegistroState extends State<Registro> {
   ComunaService comunaService = ComunaService();
   int group = 1;
   String _myActivity2;
-
+Widget dropdawn=CircularProgressIndicator();
   String _myActivity3;
   List<dynamic> cumunaDataSource = List();
-
+  @override
+  void initState() { 
+    super.initState();
+    loadComunaData();
+  }
   @override
   Widget build(BuildContext context) {
-    loadComunaData();
+    
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     Registration registration = new Registration();
@@ -303,7 +307,7 @@ class _RegistroState extends State<Registro> {
                   registration.email = text;
                 },
               ),
-              this.cumunaDataSource.isEmpty
+              this.cumunaDataSource.isNotEmpty
                   ? Container(
                       margin: EdgeInsets.all(25),
                       child: DropDownFormField(
@@ -514,11 +518,11 @@ class _RegistroState extends State<Registro> {
     List<dynamic> data = List();
     await comunaService
         .getComuna()
-        .then((List<Map<String, dynamic>> dataService) {
+        .then((List<dynamic> dataService) {
       dataService.forEach((element) => {
             data.add({
               "display": element['name'],
-              "value": element['id'],
+              "value": element['id'].toString(),
             })
           });
       setState(() {
