@@ -1,4 +1,6 @@
+import 'package:aprendiendo/src/widget/BottomPermisos.dart';
 import 'package:aprendiendo/src/widget/navbar.dart';
+import 'package:extended_tabs/extended_tabs.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -9,18 +11,40 @@ class Inicio extends StatefulWidget {
   _InicioState createState() => _InicioState();
 }
 
-class _InicioState extends State<Inicio> {
+class _InicioState extends State<Inicio> with TickerProviderStateMixin {
+  bool _sesion = false;
+  TabController _tabController;
+  @override
+  void initState() {
+    _tabController = new TabController(length: 3, vsync: this);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
+      floatingActionButton: Container(
+        child: FloatingActionButton(
+          onPressed: () => setState(() {
+            _sesion = !_sesion;
+          }),
+          child: Icon(
+            Icons.qr_code_rounded,
+            color: Colors.grey,
+          ),
+          backgroundColor: Colors.white,
+        ),
+      ),
       body: SingleChildScrollView(
         child: Container(
           margin: EdgeInsets.only(top: height / 10),
           alignment: Alignment.centerLeft,
           child: Column(
             children: [
+              ButtonPermision(),
+             
               Container(
                 alignment: Alignment.centerLeft,
                 margin: EdgeInsets.only(left: width / 11),
@@ -30,6 +54,7 @@ class _InicioState extends State<Inicio> {
                         fontFamily: 'Laca Light',
                         fontSize: 20)),
               ),
+              
               Container(
                 alignment: Alignment.centerLeft,
                 margin: EdgeInsets.all(30),
@@ -80,7 +105,7 @@ class _InicioState extends State<Inicio> {
                   'O explora la probabilidad de contagio con tu red de contactos en el menú " mi red de contactos", para esta opción debes ingresar tus datos personales.',
                   style: TextStyle(color: Colors.grey),
                 ),
-              )
+              ),
             ],
           ),
         ),

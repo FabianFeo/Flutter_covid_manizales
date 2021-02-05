@@ -1,3 +1,5 @@
+import 'package:aprendiendo/src/view/Contagios.dart';
+import 'package:aprendiendo/src/view/MiRed.dart';
 import 'package:aprendiendo/src/view/inicio.dart';
 import 'package:aprendiendo/src/view/login.dart';
 import 'package:aprendiendo/src/widget/navbar.dart';
@@ -17,14 +19,8 @@ class _IndexState extends State<Index> {
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   List<Widget> _widgetOptions = <Widget>[
     Inicio(),
-    Text(
-      'Index 1: Business',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 2: School',
-      style: optionStyle,
-    ),
+    Contagios(),
+    MiRed()
   ];
 
   void _onItemTapped(int index) {
@@ -41,7 +37,7 @@ class _IndexState extends State<Index> {
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
+        items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Inicio',
