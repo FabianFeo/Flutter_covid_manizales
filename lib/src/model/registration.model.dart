@@ -20,6 +20,39 @@ class Registration {
     if (username==null) {
       return 'Nombre de usuario';
     }
+    if (password1== null) {
+      return 'Contraseña';
+    }
+    if (password2==null) {
+      return 'Confirmacion de contraseña';
+    }
+    if (first_name==null){
+      return 'Nombre';
+    }
+    if (last_name==null){
+      return 'Apellido';
+    }
+    if (document_type==null){
+      return 'Tipo de documento';
+    }
+    if (document_number==null){
+      return 'Numero de documento';
+    }
+    if (birth_date==null){
+      return 'Fecha de nacimiento';
+    }
+    if (gender==null){
+      return 'Genero';
+    }
+    if (cellphone==null){
+      return 'Numero de celular';
+    }
+    if (comuna==null){
+      return 'Comuna';
+    }
+    if (neighborhood==null){
+      return 'Barrio';
+    }
   }
 
   /*"email": "sw233@mailcatch.com",

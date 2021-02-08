@@ -321,6 +321,7 @@ Widget dropdawn=CircularProgressIndicator();
                         },
                         onChanged: (value) {
                           setState(() {
+                            registration.comuna=int.parse(value);
                             _myActivity2 = value;
                           });
                         },
