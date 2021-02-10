@@ -1,3 +1,4 @@
+import 'package:aprendiendo/src/view/ControlPermisos.dart';
 import 'package:flutter/material.dart';
 
 class NavBar extends StatelessWidget implements PreferredSizeWidget {
@@ -5,34 +6,35 @@ class NavBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    double height=MediaQuery.of(context).size.height;
-    double width= MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
     return AppBar(
       backgroundColor: Colors.white,
       automaticallyImplyLeading: false,
       title: Row(
         children: [
-          Icon(
-            Icons.not_listed_location_rounded,
-            color: Colors.grey,
-          ),
           Text(
-            'Preguntas',
+            '20 Dic 2020',
             style: TextStyle(color: Colors.grey, fontSize: 14),
           ),
           Image(
             image: AssetImage('assets/Marca_png/Logo_CoVIDAlert_positivo.png'),
-            height: height/20,
-            width: width/2.3,
+            height: height / 20,
+            width: width / 2.3,
           ),
-          Icon(
-            Icons.lock,
-            color: Colors.grey,
-          ),
-          Text(
-            'Permisos',
-            style: TextStyle(color: Colors.grey, fontSize: 14),
-          ),
+          Container(
+            margin: EdgeInsets.only(left: width / 5),
+            child: GestureDetector(
+                onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ControlPermisos()),
+                    ),
+                child: Icon(
+                  Icons.reorder_rounded,
+                  color: Colors.grey,
+                )),
+          )
         ],
       ),
     );

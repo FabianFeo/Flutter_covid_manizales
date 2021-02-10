@@ -1,17 +1,19 @@
 import 'package:aprendiendo/src/widget/BottomPermisos.dart';
 import 'package:aprendiendo/src/widget/navbar.dart';
+import 'package:bouncing_widget/bouncing_widget.dart';
 import 'package:extended_tabs/extended_tabs.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class Inicio extends StatefulWidget {
-  Inicio({Key key}) : super(key: key);
+class InicioSinRegistro extends StatefulWidget {
+  InicioSinRegistro({Key key}) : super(key: key);
 
   @override
-  _InicioState createState() => _InicioState();
+  _InicioSinRegistroState createState() => _InicioSinRegistroState();
 }
 
-class _InicioState extends State<Inicio> with TickerProviderStateMixin {
+class _InicioSinRegistroState extends State<InicioSinRegistro>
+    with TickerProviderStateMixin {
   bool _sesion = false;
   TabController _tabController;
   @override
@@ -21,8 +23,6 @@ class _InicioState extends State<Inicio> with TickerProviderStateMixin {
   }
 
   @override
-
-  
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
@@ -44,7 +44,7 @@ class _InicioState extends State<Inicio> with TickerProviderStateMixin {
           margin: EdgeInsets.only(top: height / 10),
           alignment: Alignment.centerLeft,
           child: Column(
-            children: [             
+            children: [
               Container(
                 alignment: Alignment.centerLeft,
                 margin: EdgeInsets.only(left: width / 11),
@@ -54,7 +54,6 @@ class _InicioState extends State<Inicio> with TickerProviderStateMixin {
                         fontFamily: 'Laca Light',
                         fontSize: 20)),
               ),
-              
               Container(
                 alignment: Alignment.centerLeft,
                 margin: EdgeInsets.all(30),
@@ -75,19 +74,8 @@ class _InicioState extends State<Inicio> with TickerProviderStateMixin {
                 alignment: Alignment.centerLeft,
                 margin: EdgeInsets.all(30),
                 child: Text(
-                  'Tendencia del comportamiento de contagio por comunas',
+                  '¿Qué puedes hacer?',
                   style: TextStyle(color: Colors.grey, fontSize: 20),
-                ),
-              ),
-              Image(
-                image: AssetImage('assets/Marca_png/mapa_manizales_barraHori.png'),
-              ),
-              Container(
-                alignment: Alignment.topCenter,
-                margin: EdgeInsets.symmetric(vertical: 1, horizontal: 30),
-                child: Text(
-                  '______________________________________________',
-                  style: TextStyle(color: Colors.grey),
                 ),
               ),
               Container(
@@ -100,12 +88,42 @@ class _InicioState extends State<Inicio> with TickerProviderStateMixin {
               ),
               Container(
                 alignment: Alignment.topCenter,
-                margin: EdgeInsets.symmetric(vertical: 50, horizontal: 30),
+                margin: EdgeInsets.symmetric(vertical: 25, horizontal: 30),
                 child: Text(
                   'O explora la probabilidad de contagio con tu red de contactos en el menú " mi red de contactos", para esta opción debes ingresar tus datos personales.',
                   style: TextStyle(color: Colors.grey),
                 ),
               ),
+              Container(
+                alignment: Alignment.topCenter,
+                margin: EdgeInsets.symmetric(vertical: 20, horizontal: 30),
+                child: Text(
+                  'Ayúdanos a fortalecer nuestro sistema para proveer información cada vez más precisa',
+                  textAlign: TextAlign.center,
+                ),),
+                BouncingWidget(
+                  duration: Duration(milliseconds: 100),
+                  scaleFactor: 1.5,
+                  onPressed: () {
+                    
+                  },
+                  child: Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15.0),
+                      ),
+                      color: Colors.grey,
+                      child: Container(
+                        width: width / 1.5,
+                        child: Text(
+                          "Invita a tus contactos",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                          ),
+                        ),
+                      ))),
             ],
           ),
         ),

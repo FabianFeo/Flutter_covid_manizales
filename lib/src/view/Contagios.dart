@@ -11,17 +11,36 @@ class Contagios extends StatefulWidget {
   _ContagiosState createState() => _ContagiosState();
 }
 
-class _ContagiosState extends State<Contagios> {
+class _ContagiosState extends State<Contagios> with TickerProviderStateMixin {
+  bool _sesion = false;
+  TabController _tabController;
+  @override
+  void initState() {
+    _tabController = new TabController(length: 3, vsync: this);
+    super.initState();
+  }
+  
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    return Scaffold(body: SingleChildScrollView(child: Container(
+    return Scaffold(
+      floatingActionButton: Container(
+        child: FloatingActionButton(
+          onPressed: () => setState(() {
+            _sesion = !_sesion;
+          }),
+          child: Icon(
+            Icons.qr_code_rounded,
+            color: Colors.grey,
+          ),
+          backgroundColor: Colors.white,
+        ),),
+      body: SingleChildScrollView(child: Container(
       margin: EdgeInsets.only(top: height / 10),
       alignment: Alignment.centerLeft,
       child: Column(
         children: [
-          ButtonPermision(),
            Container(
                 alignment: Alignment.centerLeft,
                 margin: EdgeInsets.only(left: width / 11),
@@ -34,7 +53,7 @@ class _ContagiosState extends State<Contagios> {
                             Container(
                 alignment: Alignment.centerLeft,
                 margin: EdgeInsets.only(left: width / 11),
-                child: Text('C O M U N A S  Y  D Í A S',
+                child: Text('B A R R R I O S  Y  D Í A S',
                     style: TextStyle(
                         color: Colors.grey,
                         fontFamily: 'Laca Light',

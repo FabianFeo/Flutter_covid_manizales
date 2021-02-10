@@ -12,19 +12,40 @@ class MiRed extends StatefulWidget {
   _MiRedState createState() => _MiRedState();
 }
 
-class _MiRedState extends State<MiRed> {
+class _MiRedState extends State<MiRed> with TickerProviderStateMixin {
+  bool _sesion = false;
+  TabController _tabController;
   @override
+  void initState() {
+    _tabController = new TabController(length: 3, vsync: this);
+    super.initState();
+  }
+ 
+ 
+  @override
+ 
+ 
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
+      floatingActionButton: Container(
+        child: FloatingActionButton(
+          onPressed: () => setState(() {
+            _sesion = !_sesion;
+          }),
+          child: Icon(
+            Icons.qr_code_rounded,
+            color: Colors.grey,
+          ),
+          backgroundColor: Colors.white,
+        ),),
         body: SingleChildScrollView(
       child: Container(
         margin: EdgeInsets.only(top: height / 10),
         alignment: Alignment.centerLeft,
         child: Column(
           children: [
-            ButtonPermision(),
             Container(
                 alignment: Alignment.centerLeft,
                 margin: EdgeInsets.only(left: width / 11),

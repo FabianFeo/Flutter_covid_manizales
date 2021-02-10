@@ -36,6 +36,7 @@ dependencies:
   extended_tabs: ^1.0.1
   custom_switch: ^0.0.1
   http: ^0.12.2
+  shared_preferences: ^0.5.12+4
   
 
 dev_dependencies:
@@ -64,6 +65,7 @@ flutter:
   - assets/Marca_png/mapa_manizales.png
   - assets/Marca_png/mapa_manizales_barra.png
   - assets/Marca_png/grafo.png
+  - assets/Marca_png/mapa_manizales_barraHori.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

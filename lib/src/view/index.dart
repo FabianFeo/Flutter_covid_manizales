@@ -1,6 +1,8 @@
+import 'package:aprendiendo/src/functions/preferenceslogin.dart';
 import 'package:aprendiendo/src/view/Contagios.dart';
 import 'package:aprendiendo/src/view/MiRed.dart';
 import 'package:aprendiendo/src/view/inicio.dart';
+import 'package:aprendiendo/src/view/inicio_sinregistro.dart';
 import 'package:aprendiendo/src/view/login.dart';
 import 'package:aprendiendo/src/widget/navbar.dart';
 import 'package:flutter/material.dart';
@@ -14,14 +16,11 @@ class Index extends StatefulWidget {
 
 /// This is the private State class that goes with NavBar.
 class _IndexState extends State<Index> {
+  PreferenceLogin _preferenceLogin = PreferenceLogin();
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  List<Widget> _widgetOptions = <Widget>[
-    Inicio(),
-    Contagios(),
-    MiRed()
-  ];
+  List<Widget> _widgetOptions;
 
   void _onItemTapped(int index) {
     setState(() {
@@ -31,30 +30,41 @@ class _IndexState extends State<Index> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: NavBar(),
-      body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Inicio',
+    return FutureBuilder(
+      future: _preferenceLogin.getTypeLogin(),
+      builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+        _widgetOptions = <Widget>[
+          snapshot.data ? Inicio() : InicioSinRegistro(),
+          Contagios(),
+          MiRed(),
+        ];
+        return Scaffold(
+          appBar: NavBar(),
+          body: Center(
+            child: _widgetOptions.elementAt(_selectedIndex),
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.place_rounded),
-            label: 'Contagios por comunas y días',
+          bottomNavigationBar: BottomNavigationBar(
+            items: <BottomNavigationBarItem>[
+              BottomNavigationBarItem(
+                icon: Icon(Icons.home),
+                label: 'Inicio',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.place_rounded),
+                label: 'Contagios por comunas y días',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.school),
+                label: 'Mi red de contactos',
+              ),
+              
+            ],
+            currentIndex: _selectedIndex,
+            selectedItemColor: Colors.blue,
+            onTap: _onItemTapped,
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.school),
-            label: 'Mi red de contactos',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.blue,
-        onTap: _onItemTapped,
-      ),
+        );
+      },
     );
   }
 }

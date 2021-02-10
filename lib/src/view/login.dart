@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:aprendiendo/src/functions/preferenceslogin.dart';
 import 'package:aprendiendo/src/view/Registro.dart';
 import 'package:aprendiendo/src/view/index.dart';
 import 'package:aprendiendo/src/view/inicio.dart';
@@ -15,6 +16,7 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  PreferenceLogin _preferenceLogin = new PreferenceLogin();
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -111,11 +113,13 @@ class _LoginState extends State<Login> {
                   duration: Duration(milliseconds: 100),
                   scaleFactor: 1.5,
                   onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => Index(),
-                        ));
+                    _preferenceLogin
+                        .typeLogin(true)
+                        .then((value) => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => Index(),
+                            )));
                   },
                   child: Card(
                       shape: RoundedRectangleBorder(
@@ -149,7 +153,7 @@ class _LoginState extends State<Login> {
               Container(
                 margin: EdgeInsets.symmetric(
                   vertical: 35,
-                  horizontal: height/8,
+                  horizontal: height / 8,
                 ),
                 child: Row(
                   children: [
@@ -176,12 +180,14 @@ class _LoginState extends State<Login> {
               Container(
                 margin: EdgeInsets.symmetric(vertical: 20),
                 child: GestureDetector(
-                  onTap: (){
-                     Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => Index(),
-                        ));
+                  onTap: () {
+                    _preferenceLogin
+                        .typeLogin(false)
+                        .then((value) => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => Index(),
+                            )));
                   },
                   child: Text(
                     'continuar sin registrarme',

@@ -23,7 +23,7 @@ class _ButtonPermisionState extends State<ButtonPermision> {
           margin: EdgeInsets.only(left: width / 13),
           width: width / 2,
           child: Text(
-            'Activar Permisos',
+            'GPS',
             style: TextStyle(color: Colors.grey[600]),
           ),
         ),
@@ -40,7 +40,7 @@ class _ButtonPermisionState extends State<ButtonPermision> {
                 });
               },
             )),
-      ],
+            ],
     );
   }
 }
