@@ -153,7 +153,7 @@ class _LoginState extends State<Login> {
               Container(
                 margin: EdgeInsets.symmetric(
                   vertical: 35,
-                  horizontal: height / 8,
+                  horizontal: height /8.5,
                 ),
                 child: Row(
                   children: [

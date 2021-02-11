@@ -1,6 +1,7 @@
 import 'package:aprendiendo/src/functions/preferenceslogin.dart';
 import 'package:aprendiendo/src/view/Contagios.dart';
 import 'package:aprendiendo/src/view/MiRed.dart';
+import 'package:aprendiendo/src/view/ReportarContagio.dart';
 import 'package:aprendiendo/src/view/inicio.dart';
 import 'package:aprendiendo/src/view/inicio_sinregistro.dart';
 import 'package:aprendiendo/src/view/login.dart';
@@ -37,6 +38,7 @@ class _IndexState extends State<Index> {
           snapshot.data ? Inicio() : InicioSinRegistro(),
           Contagios(),
           MiRed(),
+          ReportarContagio(),
         ];
         return Scaffold(
           appBar: NavBar(),
@@ -46,18 +48,25 @@ class _IndexState extends State<Index> {
           bottomNavigationBar: BottomNavigationBar(
             items: <BottomNavigationBarItem>[
               BottomNavigationBarItem(
-                icon: Icon(Icons.home),
+                icon: Icon(Icons.home,
+                color: Colors.blue,),
                 label: 'Inicio',
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.place_rounded),
+                icon: Icon(Icons.place_rounded,
+                color: Colors.blue,),
                 label: 'Contagios por comunas y días',
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.school),
+                icon: Icon(Icons.school,
+                color: Colors.blue,),
                 label: 'Mi red de contactos',
               ),
-              
+              BottomNavigationBarItem(
+                icon: Icon(Icons.notifications_active_rounded,
+                color: Colors.blue,),
+                label: 'reportar contagio Covid',
+              ),
             ],
             currentIndex: _selectedIndex,
             selectedItemColor: Colors.blue,
