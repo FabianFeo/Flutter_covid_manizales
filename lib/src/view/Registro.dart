@@ -47,96 +47,6 @@ Widget dropdawn=CircularProgressIndicator();
                   child: Text('R E G I S T R O',
                       style: TextStyle(
                           color: Colors.grey, fontFamily: 'Laca light'))),
-              BeautyTextfield(
-                width: double.maxFinite, //REQUIRED
-                height: 60, //REQUIRED
-                accentColor: Colors.white, // On Focus Color
-                textColor: Colors.grey, //Text Color
-                backgroundColor: Colors.white, //Not Focused Color
-                textBaseline: TextBaseline.alphabetic,
-                autocorrect: false,
-                autofocus: false,
-                enabled: true, // Textfield enabled
-                focusNode: FocusNode(),
-                fontFamily: 'Laca Regular', //Text Fontfamily
-                fontWeight: FontWeight.w500,
-                margin: EdgeInsets.all(30),
-                cornerRadius: BorderRadius.all(Radius.circular(0)),
-                duration: Duration(milliseconds: 300),
-                inputType: TextInputType.text, //REQUIRED
-                placeholder: "Nombre de usuario",
-                isShadow: true,
-                obscureText: false,
-                prefixIcon: Icon(
-                  Icons.person,
-                  color: Colors.grey,
-                ), //REQUIRED
-
-                onChanged: (text) {
-                  registration.username = text;
-                },
-              ),
-              BeautyTextfield(
-                width: double.maxFinite, //REQUIRED
-                height: 60, //REQUIRED
-                accentColor: Colors.white, // On Focus Color
-                textColor: Colors.grey, //Text Color
-                backgroundColor: Colors.white, //Not Focused Color
-                textBaseline: TextBaseline.alphabetic,
-                autocorrect: false,
-                autofocus: false,
-
-                enabled: true, // Textfield enabled
-                focusNode: FocusNode(),
-                fontFamily: 'Laca Regular', //Text Fontfamily
-                fontWeight: FontWeight.w500,
-
-                margin: EdgeInsets.all(30),
-                cornerRadius: BorderRadius.all(Radius.circular(0)),
-                duration: Duration(milliseconds: 300),
-                inputType: TextInputType.text, //REQUIRED
-                placeholder: "Nombres",
-                isShadow: true,
-                obscureText: false,
-                prefixIcon: Icon(
-                  Icons.person,
-                  color: Colors.grey,
-                ), //REQUIRED
-
-                onChanged: (text) {
-                  registration.first_name = text;
-                },
-              ),
-              BeautyTextfield(
-                width: double.maxFinite, //REQUIRED
-                height: 60, //REQUIRED
-                accentColor: Colors.white, // On Focus Color
-                textColor: Colors.grey, //Text Color
-                backgroundColor: Colors.white, //Not Focused Color
-                textBaseline: TextBaseline.alphabetic,
-                autocorrect: false,
-                autofocus: false,
-                enabled: true, // Textfield enabled
-                focusNode: FocusNode(),
-                fontFamily: 'Laca Regular', //Text Fontfamily
-                fontWeight: FontWeight.w500,
-
-                margin: EdgeInsets.all(30),
-                cornerRadius: BorderRadius.all(Radius.circular(0)),
-                duration: Duration(milliseconds: 300),
-                inputType: TextInputType.text, //REQUIRED
-                placeholder: "Apellidos",
-                isShadow: true,
-                obscureText: false,
-                prefixIcon: Icon(
-                  Icons.person,
-                  color: Colors.grey,
-                ), //REQUIRED
-
-                onChanged: (text) {
-                  registration.last_name = text;
-                },
-              ),
               Container(
                 margin: EdgeInsets.all(25),
                 child: DropDownFormField(
@@ -216,37 +126,7 @@ Widget dropdawn=CircularProgressIndicator();
                   },
                   onSaved: (val) => registration.birth_date = val,
                 ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text('Género'),
-                  Radio(
-                      value: 1,
-                      groupValue: group,
-                      activeColor: Colors.grey,
-                      onChanged: (T) {
-                        print(T);
-                        setState(() {
-                          group = T;
-                          registration.gender = 'F';
-                        });
-                      }),
-                  Text('Femenino'),
-                  Radio(
-                      value: 2,
-                      groupValue: group,
-                      activeColor: Colors.grey,
-                      onChanged: (T) {
-                        print(T);
-                        setState(() {
-                          group = T;
-                          registration.gender = 'M';
-                        });
-                      }),
-                  Text('Masculino'),
-                ],
-              ),
+              ),              
               BeautyTextfield(
                 width: double.maxFinite, //REQUIRED
                 height: 60, //REQUIRED
@@ -275,36 +155,6 @@ Widget dropdawn=CircularProgressIndicator();
 
                 onChanged: (text) {
                   registration.cellphone = text;
-                },
-              ),
-              BeautyTextfield(
-                width: double.maxFinite, //REQUIRED
-                height: 60, //REQUIRED
-                accentColor: Colors.white, // On Focus Color
-                textColor: Colors.grey, //Text Color
-                backgroundColor: Colors.white, //Not Focused Color
-                textBaseline: TextBaseline.alphabetic,
-                autocorrect: false,
-                autofocus: true,
-                enabled: true, // Textfield enabled
-                focusNode: FocusNode(),
-                fontFamily: 'Laca Regular', //Text Fontfamily
-                fontWeight: FontWeight.w500,
-
-                margin: EdgeInsets.all(30),
-                cornerRadius: BorderRadius.all(Radius.circular(0)),
-                duration: Duration(milliseconds: 300),
-                inputType: TextInputType.emailAddress, //REQUIRED
-                placeholder: "Correo",
-                isShadow: true,
-                obscureText: false,
-                prefixIcon: Icon(
-                  Icons.person,
-                  color: Colors.grey,
-                ), //REQUIRED
-
-                onChanged: (text) {
-                  registration.email = text;
                 },
               ),
               this.cumunaDataSource.isNotEmpty
@@ -397,51 +247,7 @@ Widget dropdawn=CircularProgressIndicator();
                   valueField: 'value',
                 ),
               ),
-              Container(
-                child: Text('¿Has sido diagnosticado con Covid - 19?'),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Radio(
-                      value: 1,
-                      groupValue: group,
-                      activeColor: Colors.grey,
-                      onChanged: (T) {
-                        print(T);
-                        setState(() {
-                          group = T;
-                        });
-                      }),
-                  Text('Si'),
-                  Radio(
-                      value: 2,
-                      groupValue: group,
-                      activeColor: Colors.grey,
-                      onChanged: (T) {
-                        print(T);
-                        setState(() {
-                          group = T;
-                        });
-                      }),
-                  Text('No'),
-                ],
-              ),
-              Container(
-                margin: EdgeInsets.all(25),
-                child: DateTimePicker(
-                  initialValue: '',
-                  firstDate: DateTime(2019),
-                  lastDate: DateTime(2100),
-                  dateLabelText: 'Fecha de diagnóstico',
-                  onChanged: (val) => print(val),
-                  validator: (val) {
-                    print(val);
-                    return null;
-                  },
-                  onSaved: (val) => print(val),
-                ),
-              ),
+             
               Container(
                   margin: EdgeInsets.only(right: width / 4),
                   child: BouncingWidget(
