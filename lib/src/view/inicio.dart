@@ -3,6 +3,9 @@ import 'package:aprendiendo/src/widget/navbar.dart';
 import 'package:extended_tabs/extended_tabs.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_map/flutter_map.dart';
+
+import 'package:latlong/latlong.dart';
 
 class Inicio extends StatefulWidget {
   Inicio({Key key}) : super(key: key);
@@ -21,8 +24,6 @@ class _InicioState extends State<Inicio> with TickerProviderStateMixin {
   }
 
   @override
-
-  
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
@@ -44,7 +45,7 @@ class _InicioState extends State<Inicio> with TickerProviderStateMixin {
           margin: EdgeInsets.only(top: height / 10),
           alignment: Alignment.centerLeft,
           child: Column(
-            children: [             
+            children: [
               Container(
                 alignment: Alignment.centerLeft,
                 margin: EdgeInsets.only(left: width / 11),
@@ -54,7 +55,6 @@ class _InicioState extends State<Inicio> with TickerProviderStateMixin {
                         fontFamily: 'Laca Light',
                         fontSize: 20)),
               ),
-              
               Container(
                 alignment: Alignment.centerLeft,
                 margin: EdgeInsets.all(30),
@@ -79,8 +79,29 @@ class _InicioState extends State<Inicio> with TickerProviderStateMixin {
                   style: TextStyle(color: Colors.grey, fontSize: 20),
                 ),
               ),
-              Image(
-                image: AssetImage('assets/Marca_png/mapa_manizales_barraHori.png'),
+              FlutterMap(
+                options: new MapOptions(
+                  center: new LatLng(51.5, -0.09),
+                  zoom: 13.0,
+                ),
+                layers: [
+                  new TileLayerOptions(
+                      urlTemplate:
+                          "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                      subdomains: ['a', 'b', 'c']),
+                  new MarkerLayerOptions(
+                    markers: [
+                      new Marker(
+                        width: 80.0,
+                        height: 80.0,
+                        point: new LatLng(51.5, -0.09),
+                        builder: (ctx) => new Container(
+                          child: new FlutterLogo(),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
               ),
               Container(
                 alignment: Alignment.topCenter,

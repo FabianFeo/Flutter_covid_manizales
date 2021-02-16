@@ -1,6 +1,7 @@
 import 'package:aprendiendo/src/model/registration.model.dart';
 import 'package:aprendiendo/src/service/barrio.service.dart';
 import 'package:aprendiendo/src/service/comuna.service.dart';
+import 'package:aprendiendo/src/service/register.service.dart';
 import 'package:aprendiendo/src/view/login.dart';
 import 'package:aprendiendo/src/widget/navbar.dart';
 import 'package:beauty_textfield/beauty_textfield.dart';
@@ -8,6 +9,7 @@ import 'package:bouncing_widget/bouncing_widget.dart';
 import 'package:date_time_picker/date_time_picker.dart';
 import 'package:dropdown_formfield/dropdown_formfield.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class Registro extends StatefulWidget {
   Registro({Key key}) : super(key: key);
@@ -22,11 +24,13 @@ class _RegistroState extends State<Registro> {
   int group = 1;
   String _myActivity2;
   Widget dropdawn = CircularProgressIndicator();
+  RegistroService registroService = RegistroService();
   String _myActivity3;
   List<dynamic> cumunaDataSource = List();
   List<dynamic> _barrioDataSource = List();
-  bool diagnosticadoCovid=false;
+  bool diagnosticadoCovid = false;
   bool loadingBarrios = false;
+  Registration registration = new Registration();
   @override
   void initState() {
     super.initState();
@@ -37,7 +41,7 @@ class _RegistroState extends State<Registro> {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    Registration registration = new Registration();
+
     return Scaffold(
       appBar: NavBar(),
       body: SingleChildScrollView(
@@ -123,14 +127,20 @@ class _RegistroState extends State<Registro> {
                   firstDate: DateTime(1920),
                   lastDate: DateTime(2100),
                   dateLabelText: 'Fecha de Nacimiento',
-                  onChanged: (val) => print(val),
+                  onChanged: (val) {
+                    print(val);
+                    registration.birth_date = val;
+                  },
                   validator: (val) {
                     print(val);
                     return null;
                   },
-                  onSaved: (val) => registration.birth_date = val,
+                  onSaved: (val) {
+                    print(val);
+                    registration.birth_date = val;
+                  },
                 ),
-              ),              
+              ),
               BeautyTextfield(
                 width: double.maxFinite, //REQUIRED
                 height: 60, //REQUIRED
@@ -175,7 +185,6 @@ class _RegistroState extends State<Registro> {
                         },
                         onChanged: (value) {
                           setState(() {
-                            registration.comuna = int.parse(value);
                             setBarrio(value.toString());
                             _myActivity2 = value;
                           });
@@ -200,6 +209,7 @@ class _RegistroState extends State<Registro> {
                           });
                         },
                         onChanged: (value) {
+                          registration.neighborhood = int.parse(value);
                           setState(() {
                             _myActivity3 = value;
                           });
@@ -210,78 +220,43 @@ class _RegistroState extends State<Registro> {
                       ),
                     ),
               Container(
-                child: Text('¿Has sido diagnosticado con Covid - 19?'),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Radio(
-                      value: 1,
-                      groupValue: group,
-                      activeColor: Colors.grey,
-                      onChanged: (T) {
-                        print(T);
-                        setState(() {
-                          group = T;
-                          diagnosticadoCovid=true;
-                        });
-                      }),
-                  Text('Si'),
-                  Radio(
-                      value: 2,
-                      groupValue: group,
-                      activeColor: Colors.grey,
-                      onChanged: (T) {
-                        print(T);
-                        setState(() {
-                          group = T;
-                          diagnosticadoCovid=false;
-                        });
-                      }),
-                  Text('No'),
-                ],
-              ),
-             diagnosticadoCovid? Container(
-
-                margin: EdgeInsets.all(25),
-                child: DateTimePicker(
-                  initialValue: '',
-                  firstDate: DateTime(2019),
-                  lastDate: DateTime(2100),
-                  dateLabelText: 'Fecha de diagnóstico',
-                  onChanged: (val) => print(val),
-                  validator: (val) {
-                    print(val);
-                    return null;
-                  },
-                  onSaved: (val) => print(val),
-                ),
-              ):Container(),
-              Container(
-                  margin: EdgeInsets.only(right: width / 4),
+                  alignment: Alignment.center,
                   child: BouncingWidget(
                       duration: Duration(milliseconds: 100),
                       scaleFactor: 1.5,
                       onPressed: () {
-                        print("onPressed");
+                        String faltante = registration.anyNull();
+                        if (faltante != null) {
+                          Fluttertoast.showToast(
+                              msg:
+                                  "Porfavor complete la siguiente informacion: " +
+                                      faltante,
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.CENTER,
+                              timeInSecForIosWeb: 1);
+                        } else {
+                          registroService.register(registration);
+                        }
                       },
-                      child: Card(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(15.0),
-                          ),
-                          color: Colors.grey,
-                          child: Container(
-                            width: width / 1.5,
-                            child: Text(
-                              "Registrarme",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 30,
+                      child: Container(
+                          alignment: Alignment.center,
+                          child: Card(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(15.0),
                               ),
-                            ),
-                          )))),
+                              color: Colors.grey,
+                              child: Container(
+                                width: width / 1.5,
+                                child: Text(
+                                  "Registrarme",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 30,
+                                  ),
+                                ),
+                              ))))),
               Container(
                 margin: EdgeInsets.symmetric(
                   vertical: 35,

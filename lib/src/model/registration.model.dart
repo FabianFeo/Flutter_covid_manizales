@@ -1,58 +1,30 @@
-
 class Registration {
-  String email;
-  String username;
-  String password1;
-  String password2;
-  String first_name;
-  String last_name;
   String document_type;
   String document_number;
   String birth_date;
-  String gender;
+
   String cellphone;
-  int comuna;
-  String neighborhood;
-  String anyNull(){
-    if (email==null) {
-      return 'Correo';
-    }
-    if (username==null) {
-      return 'Nombre de usuario';
-    }
-    if (password1== null) {
-      return 'Contraseña';
-    }
-    if (password2==null) {
-      return 'Confirmacion de contraseña';
-    }
-    if (first_name==null){
-      return 'Nombre';
-    }
-    if (last_name==null){
-      return 'Apellido';
-    }
-    if (document_type==null){
+
+  int neighborhood;
+  String anyNull() {
+    if (document_type == null) {
       return 'Tipo de documento';
     }
-    if (document_number==null){
+    if (document_number == null) {
       return 'Numero de documento';
     }
-    if (birth_date==null){
+    if (birth_date == null) {
       return 'Fecha de nacimiento';
     }
-    if (gender==null){
-      return 'Genero';
-    }
-    if (cellphone==null){
+
+    if (cellphone == null) {
       return 'Numero de celular';
     }
-    if (comuna==null){
-      return 'Comuna';
-    }
-    if (neighborhood==null){
+
+    if (neighborhood == null) {
       return 'Barrio';
     }
+    return null;
   }
 
   /*"email": "sw233@mailcatch.com",
