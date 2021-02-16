@@ -51,96 +51,6 @@ class _RegistroState extends State<Registro> {
                   child: Text('R E G I S T R O',
                       style: TextStyle(
                           color: Colors.grey, fontFamily: 'Laca light'))),
-              BeautyTextfield(
-                width: double.maxFinite, //REQUIRED
-                height: 60, //REQUIRED
-                accentColor: Colors.white, // On Focus Color
-                textColor: Colors.grey, //Text Color
-                backgroundColor: Colors.white, //Not Focused Color
-                textBaseline: TextBaseline.alphabetic,
-                autocorrect: false,
-                autofocus: false,
-                enabled: true, // Textfield enabled
-                focusNode: FocusNode(),
-                fontFamily: 'Laca Regular', //Text Fontfamily
-                fontWeight: FontWeight.w500,
-                margin: EdgeInsets.all(30),
-                cornerRadius: BorderRadius.all(Radius.circular(0)),
-                duration: Duration(milliseconds: 300),
-                inputType: TextInputType.text, //REQUIRED
-                placeholder: "Nombre de usuario",
-                isShadow: true,
-                obscureText: false,
-                prefixIcon: Icon(
-                  Icons.person,
-                  color: Colors.grey,
-                ), //REQUIRED
-
-                onChanged: (text) {
-                  registration.username = text;
-                },
-              ),
-              BeautyTextfield(
-                width: double.maxFinite, //REQUIRED
-                height: 60, //REQUIRED
-                accentColor: Colors.white, // On Focus Color
-                textColor: Colors.grey, //Text Color
-                backgroundColor: Colors.white, //Not Focused Color
-                textBaseline: TextBaseline.alphabetic,
-                autocorrect: false,
-                autofocus: false,
-
-                enabled: true, // Textfield enabled
-                focusNode: FocusNode(),
-                fontFamily: 'Laca Regular', //Text Fontfamily
-                fontWeight: FontWeight.w500,
-
-                margin: EdgeInsets.all(30),
-                cornerRadius: BorderRadius.all(Radius.circular(0)),
-                duration: Duration(milliseconds: 300),
-                inputType: TextInputType.text, //REQUIRED
-                placeholder: "Nombres",
-                isShadow: true,
-                obscureText: false,
-                prefixIcon: Icon(
-                  Icons.person,
-                  color: Colors.grey,
-                ), //REQUIRED
-
-                onChanged: (text) {
-                  registration.first_name = text;
-                },
-              ),
-              BeautyTextfield(
-                width: double.maxFinite, //REQUIRED
-                height: 60, //REQUIRED
-                accentColor: Colors.white, // On Focus Color
-                textColor: Colors.grey, //Text Color
-                backgroundColor: Colors.white, //Not Focused Color
-                textBaseline: TextBaseline.alphabetic,
-                autocorrect: false,
-                autofocus: false,
-                enabled: true, // Textfield enabled
-                focusNode: FocusNode(),
-                fontFamily: 'Laca Regular', //Text Fontfamily
-                fontWeight: FontWeight.w500,
-
-                margin: EdgeInsets.all(30),
-                cornerRadius: BorderRadius.all(Radius.circular(0)),
-                duration: Duration(milliseconds: 300),
-                inputType: TextInputType.text, //REQUIRED
-                placeholder: "Apellidos",
-                isShadow: true,
-                obscureText: false,
-                prefixIcon: Icon(
-                  Icons.person,
-                  color: Colors.grey,
-                ), //REQUIRED
-
-                onChanged: (text) {
-                  registration.last_name = text;
-                },
-              ),
               Container(
                 margin: EdgeInsets.all(25),
                 child: DropDownFormField(
@@ -220,37 +130,7 @@ class _RegistroState extends State<Registro> {
                   },
                   onSaved: (val) => registration.birth_date = val,
                 ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text('Género'),
-                  Radio(
-                      value: 1,
-                      groupValue: group,
-                      activeColor: Colors.grey,
-                      onChanged: (T) {
-                        print(T);
-                        setState(() {
-                          group = T;
-                          registration.gender = 'F';
-                        });
-                      }),
-                  Text('Femenino'),
-                  Radio(
-                      value: 2,
-                      groupValue: group,
-                      activeColor: Colors.grey,
-                      onChanged: (T) {
-                        print(T);
-                        setState(() {
-                          group = T;
-                          registration.gender = 'M';
-                        });
-                      }),
-                  Text('Masculino'),
-                ],
-              ),
+              ),              
               BeautyTextfield(
                 width: double.maxFinite, //REQUIRED
                 height: 60, //REQUIRED
@@ -279,36 +159,6 @@ class _RegistroState extends State<Registro> {
 
                 onChanged: (text) {
                   registration.cellphone = text;
-                },
-              ),
-              BeautyTextfield(
-                width: double.maxFinite, //REQUIRED
-                height: 60, //REQUIRED
-                accentColor: Colors.white, // On Focus Color
-                textColor: Colors.grey, //Text Color
-                backgroundColor: Colors.white, //Not Focused Color
-                textBaseline: TextBaseline.alphabetic,
-                autocorrect: false,
-                autofocus: true,
-                enabled: true, // Textfield enabled
-                focusNode: FocusNode(),
-                fontFamily: 'Laca Regular', //Text Fontfamily
-                fontWeight: FontWeight.w500,
-
-                margin: EdgeInsets.all(30),
-                cornerRadius: BorderRadius.all(Radius.circular(0)),
-                duration: Duration(milliseconds: 300),
-                inputType: TextInputType.emailAddress, //REQUIRED
-                placeholder: "Correo",
-                isShadow: true,
-                obscureText: false,
-                prefixIcon: Icon(
-                  Icons.person,
-                  color: Colors.grey,
-                ), //REQUIRED
-
-                onChanged: (text) {
-                  registration.email = text;
                 },
               ),
               this.cumunaDataSource.isNotEmpty
