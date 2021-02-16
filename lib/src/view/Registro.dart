@@ -1,4 +1,5 @@
 import 'package:aprendiendo/src/model/registration.model.dart';
+import 'package:aprendiendo/src/service/barrio.service.dart';
 import 'package:aprendiendo/src/service/comuna.service.dart';
 import 'package:aprendiendo/src/view/login.dart';
 import 'package:aprendiendo/src/widget/navbar.dart';
@@ -20,17 +21,20 @@ class _RegistroState extends State<Registro> {
   ComunaService comunaService = ComunaService();
   int group = 1;
   String _myActivity2;
-Widget dropdawn=CircularProgressIndicator();
+  Widget dropdawn = CircularProgressIndicator();
   String _myActivity3;
   List<dynamic> cumunaDataSource = List();
+  List<dynamic> _barrioDataSource = List();
+  bool diagnosticadoCovid=false;
+  bool loadingBarrios = false;
   @override
-  void initState() { 
+  void initState() {
     super.initState();
     loadComunaData();
   }
+
   @override
   Widget build(BuildContext context) {
-    
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     Registration registration = new Registration();
@@ -321,7 +325,8 @@ Widget dropdawn=CircularProgressIndicator();
                         },
                         onChanged: (value) {
                           setState(() {
-                            registration.comuna=int.parse(value);
+                            registration.comuna = int.parse(value);
+                            setBarrio(value.toString());
                             _myActivity2 = value;
                           });
                         },
@@ -331,72 +336,29 @@ Widget dropdawn=CircularProgressIndicator();
                       ),
                     )
                   : CircularProgressIndicator(),
-              Container(
-                margin: EdgeInsets.all(25),
-                child: DropDownFormField(
-                  titleText: 'Barrio',
-                  hintText: '',
-                  value: _myActivity3,
-                  onSaved: (value) {
-                    setState(() {
-                      _myActivity3 = value;
-                    });
-                  },
-                  onChanged: (value) {
-                    setState(() {
-                      _myActivity3 = value;
-                    });
-                  },
-                  dataSource: [
-                    {
-                      "display": "Hospital Geriátrico San Isidro",
-                      "value": "Hospital Geriátrico San Isidro",
-                    },
-                    {
-                      "display": "Escuela de Trabajo la Linda",
-                      "value": "Escuela de Trabajo la Linda",
-                    },
-                    {
-                      "display": "Villa Pilar II",
-                      "value": "Villa Pilar II",
-                    },
-                    {
-                      "display": " Venecia",
-                      "value": " Venecia",
-                    },
-                    {
-                      "display": "Torres de Ávila",
-                      "value": "Torres de Ávila",
-                    },
-                    {
-                      "display": "San Luis",
-                      "value": "San Luis",
-                    },
-                    {
-                      "display": "Aquilino Villegas",
-                      "value": "Aquilino Villegas",
-                    },
-                    {
-                      "display": "La Livonia",
-                      "value": "La Livonia",
-                    },
-                    {
-                      "display": "Urb. Atalaya",
-                      "value": "Urb. Atalaya",
-                    },
-                    {
-                      "display": " Bello Horizonte",
-                      "value": " Bello Horizonte",
-                    },
-                    {
-                      "display": "Santa Mónica",
-                      "value": "Santa Mónica",
-                    },
-                  ],
-                  textField: 'display',
-                  valueField: 'value',
-                ),
-              ),
+              loadingBarrios
+                  ? CircularProgressIndicator()
+                  : Container(
+                      margin: EdgeInsets.all(25),
+                      child: DropDownFormField(
+                        titleText: 'Barrio',
+                        hintText: '',
+                        value: _myActivity3,
+                        onSaved: (value) {
+                          setState(() {
+                            _myActivity3 = value;
+                          });
+                        },
+                        onChanged: (value) {
+                          setState(() {
+                            _myActivity3 = value;
+                          });
+                        },
+                        dataSource: _barrioDataSource,
+                        textField: 'display',
+                        valueField: 'value',
+                      ),
+                    ),
               Container(
                 child: Text('¿Has sido diagnosticado con Covid - 19?'),
               ),
@@ -411,6 +373,7 @@ Widget dropdawn=CircularProgressIndicator();
                         print(T);
                         setState(() {
                           group = T;
+                          diagnosticadoCovid=true;
                         });
                       }),
                   Text('Si'),
@@ -422,12 +385,14 @@ Widget dropdawn=CircularProgressIndicator();
                         print(T);
                         setState(() {
                           group = T;
+                          diagnosticadoCovid=false;
                         });
                       }),
                   Text('No'),
                 ],
               ),
-              Container(
+             diagnosticadoCovid? Container(
+
                 margin: EdgeInsets.all(25),
                 child: DateTimePicker(
                   initialValue: '',
@@ -441,7 +406,7 @@ Widget dropdawn=CircularProgressIndicator();
                   },
                   onSaved: (val) => print(val),
                 ),
-              ),
+              ):Container(),
               Container(
                   margin: EdgeInsets.only(right: width / 4),
                   child: BouncingWidget(
@@ -515,11 +480,31 @@ Widget dropdawn=CircularProgressIndicator();
     );
   }
 
+  setBarrio(String codigoComuna) async {
+    List<dynamic> data = List();
+    BarrioService barrioService = new BarrioService();
+    setState(() {
+      loadingBarrios = true;
+    });
+    await barrioService
+        .getBarrio(codigoComuna)
+        .then((List<dynamic> dataService) => {
+              dataService.forEach((element) => {
+                    data.add({
+                      "display": element['name'],
+                      "value": element['id'].toString(),
+                    })
+                  })
+            });
+    setState(() {
+      loadingBarrios = false;
+      this._barrioDataSource = data;
+    });
+  }
+
   void loadComunaData() async {
     List<dynamic> data = List();
-    await comunaService
-        .getComuna()
-        .then((List<dynamic> dataService) {
+    await comunaService.getComuna().then((List<dynamic> dataService) {
       dataService.forEach((element) => {
             data.add({
               "display": element['name'],
