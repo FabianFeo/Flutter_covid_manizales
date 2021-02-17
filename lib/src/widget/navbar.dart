@@ -11,7 +11,7 @@ class NavBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       backgroundColor: Colors.white,
       automaticallyImplyLeading: false,
-      title: Row(
+      title:Row( mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Text(
             '20 Dic 2020',
@@ -23,7 +23,7 @@ class NavBar extends StatelessWidget implements PreferredSizeWidget {
             width: width / 2.3,
           ),
           Container(
-            margin: EdgeInsets.only(left: width / 5),
+            margin: EdgeInsets.only(left: width/ 8),
             child: GestureDetector(
                 onTap: () => Navigator.push(
                       context,
@@ -37,7 +37,8 @@ class NavBar extends StatelessWidget implements PreferredSizeWidget {
           )
         ],
       ),
-    );
+
+      );
   }
 
   @override
