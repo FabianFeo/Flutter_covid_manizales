@@ -73,6 +73,7 @@ flutter:
   - assets/Marca_png/mapa_manizales_barra.png
   - assets/Marca_png/grafo.png
   - assets/Marca_png/mapa_manizales_barraHori.png
+  - assets/jsons/geomapManizales.json
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

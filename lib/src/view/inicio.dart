@@ -1,9 +1,13 @@
+import 'dart:convert';
+
+import 'package:aprendiendo/src/functions/generatePolygons.dart';
 import 'package:aprendiendo/src/widget/BottomPermisos.dart';
 import 'package:aprendiendo/src/widget/navbar.dart';
 import 'package:extended_tabs/extended_tabs.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:flutter_map_tappable_polyline/flutter_map_tappable_polyline.dart';
 
 import 'package:latlong/latlong.dart';
 
@@ -17,9 +21,12 @@ class Inicio extends StatefulWidget {
 class _InicioState extends State<Inicio> with TickerProviderStateMixin {
   bool _sesion = false;
   TabController _tabController;
+  List<TaggedPolyline> _polygons = List();
+  bool chargeMap = true;
   @override
   void initState() {
     _tabController = new TabController(length: 3, vsync: this);
+    genPolygon(context);
     super.initState();
   }
 
@@ -63,14 +70,7 @@ class _InicioState extends State<Inicio> with TickerProviderStateMixin {
                   style: TextStyle(color: Colors.grey),
                 ),
               ),
-              Container(
-                alignment: Alignment.topCenter,
-                margin: EdgeInsets.symmetric(vertical: 1, horizontal: 30),
-                child: Text(
-                  '______________________________________________',
-                  style: TextStyle(color: Colors.grey),
-                ),
-              ),
+              Divider(),
               Container(
                 alignment: Alignment.centerLeft,
                 margin: EdgeInsets.all(30),
@@ -79,38 +79,34 @@ class _InicioState extends State<Inicio> with TickerProviderStateMixin {
                   style: TextStyle(color: Colors.grey, fontSize: 20),
                 ),
               ),
-              FlutterMap(
-                options: new MapOptions(
-                  center: new LatLng(51.5, -0.09),
-                  zoom: 13.0,
-                ),
-                layers: [
-                  new TileLayerOptions(
-                      urlTemplate:
-                          "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-                      subdomains: ['a', 'b', 'c']),
-                  new MarkerLayerOptions(
-                    markers: [
-                      new Marker(
-                        width: 80.0,
-                        height: 80.0,
-                        point: new LatLng(51.5, -0.09),
-                        builder: (ctx) => new Container(
-                          child: new FlutterLogo(),
+              chargeMap
+                  ? CircularProgressIndicator()
+                  : Container(
+                      height: height / 2,
+                      width: width,
+                      child: FlutterMap(
+                        options: new MapOptions(
+                          center: new LatLng(5.067, -75.517),
+                          zoom: 13.0,
+                          plugins: [
+                            TappablePolylineMapPlugin(),
+                          ],
                         ),
+                        layers: [
+                          new TileLayerOptions(
+                              urlTemplate:
+                                  "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                              subdomains: ['a', 'b', 'c']),
+                          new TappablePolylineLayerOptions(
+                              polylineCulling: true,
+                              polylines: _polygons,
+                              onTap: (TaggedPolyline polyline) =>
+                                  print(polyline.tag),
+                              onMiss: () => print("No polyline tapped"))
+                        ],
                       ),
-                    ],
-                  ),
-                ],
-              ),
-              Container(
-                alignment: Alignment.topCenter,
-                margin: EdgeInsets.symmetric(vertical: 1, horizontal: 30),
-                child: Text(
-                  '______________________________________________',
-                  style: TextStyle(color: Colors.grey),
-                ),
-              ),
+                    ),
+              Divider(),
               Container(
                 alignment: Alignment.topCenter,
                 margin: EdgeInsets.symmetric(vertical: 1, horizontal: 30),
@@ -132,5 +128,15 @@ class _InicioState extends State<Inicio> with TickerProviderStateMixin {
         ),
       ),
     );
+  }
+
+  genPolygon(BuildContext context) {
+    GeneratePolygons generatePolygons = GeneratePolygons();
+    generatePolygons.createPolygon(context).then((lista) {
+      setState(() {
+        this._polygons = lista;
+        chargeMap = false;
+      });
+    });
   }
 }
