@@ -63,14 +63,7 @@ class _InicioState extends State<Inicio> with TickerProviderStateMixin {
                   style: TextStyle(color: Colors.grey),
                 ),
               ),
-              Container(
-                alignment: Alignment.topCenter,
-                margin: EdgeInsets.symmetric(vertical: 1, horizontal: 30),
-                child: Text(
-                  '______________________________________________',
-                  style: TextStyle(color: Colors.grey),
-                ),
-              ),
+              Divider(),              
               Container(
                 alignment: Alignment.centerLeft,
                 margin: EdgeInsets.all(30),
@@ -103,14 +96,7 @@ class _InicioState extends State<Inicio> with TickerProviderStateMixin {
                   ),
                 ],
               ),
-              Container(
-                alignment: Alignment.topCenter,
-                margin: EdgeInsets.symmetric(vertical: 1, horizontal: 30),
-                child: Text(
-                  '______________________________________________',
-                  style: TextStyle(color: Colors.grey),
-                ),
-              ),
+              Divider(),
               Container(
                 alignment: Alignment.topCenter,
                 margin: EdgeInsets.symmetric(vertical: 1, horizontal: 30),

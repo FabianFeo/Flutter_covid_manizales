@@ -35,45 +35,7 @@ class _LoginState extends State<Login> {
                   style:
                       TextStyle(color: Colors.grey, fontFamily: 'Laca Light'),
                 ),
-              ),
-              BeautyTextfield(
-                width: double.maxFinite, //REQUIRED
-                height: 60, //REQUIRED
-                accentColor: Colors.white, // On Focus Color
-                textColor: Colors.grey, //Text Color
-                backgroundColor: Colors.white, //Not Focused Color
-                textBaseline: TextBaseline.alphabetic,
-                autocorrect: false,
-                autofocus: false,
-                enabled: true, // Textfield enabled
-                focusNode: FocusNode(),
-                fontFamily: 'Laca Regular', //Text Fontfamily
-                fontWeight: FontWeight.w500,
-
-                margin: EdgeInsets.all(30),
-                cornerRadius: BorderRadius.all(Radius.circular(0)),
-                duration: Duration(milliseconds: 300),
-                inputType: TextInputType.text, //REQUIRED
-                placeholder: "Usuario",
-                isShadow: true,
-                obscureText: false,
-                prefixIcon: Icon(
-                  Icons.person,
-                  color: Colors.grey,
-                ), //REQUIRED
-                onClickSuffix: () {
-                  print('Suffix Clicked');
-                },
-                onTap: () {
-                  print('Click');
-                },
-                onChanged: (text) {
-                  print(text);
-                },
-                onSubmitted: (data) {
-                  print(data.length);
-                },
-              ),
+              ),             
               BeautyTextfield(
                 width: double.maxFinite, //REQUIRED
                 height: 60, //REQUIRED
@@ -92,7 +54,7 @@ class _LoginState extends State<Login> {
                 cornerRadius: BorderRadius.all(Radius.circular(0)),
                 duration: Duration(milliseconds: 300),
                 inputType: TextInputType.text, //REQUIRED
-                placeholder: "Contraseña",
+                placeholder: "Número de Teléfono",
                 isShadow: true,
                 obscureText: true,
                 prefixIcon: Icon(Icons.lock), //REQUIRED
