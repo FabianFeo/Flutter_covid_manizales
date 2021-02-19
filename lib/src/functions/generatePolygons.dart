@@ -26,9 +26,10 @@ class GeneratePolygons {
         TaggedPolyline polygon = TaggedPolyline(
           points: polygonsPoints,
           tag: element['properties']['NOMBRES_CO'],
-          strokeWidth: 1.0,
-          color: Colors.red
-          
+          strokeWidth: 3.0,
+          color: Colors.red,
+          borderColor: Colors.red,
+          gradientColors: [Colors.red]
         );
       lista.add(polygon);
 

@@ -1,7 +1,9 @@
+import 'package:aprendiendo/src/functions/preferenceslogin.dart';
 import 'package:aprendiendo/src/model/registration.model.dart';
 import 'package:aprendiendo/src/service/barrio.service.dart';
 import 'package:aprendiendo/src/service/comuna.service.dart';
 import 'package:aprendiendo/src/service/register.service.dart';
+import 'package:aprendiendo/src/view/index.dart';
 import 'package:aprendiendo/src/view/login.dart';
 import 'package:aprendiendo/src/widget/navbar.dart';
 import 'package:beauty_textfield/beauty_textfield.dart';
@@ -31,6 +33,7 @@ class _RegistroState extends State<Registro> {
   bool diagnosticadoCovid = false;
   bool loadingBarrios = false;
   Registration registration = new Registration();
+  PreferenceLogin _preferenceLogin = new PreferenceLogin();
   @override
   void initState() {
     super.initState();
@@ -235,7 +238,33 @@ class _RegistroState extends State<Registro> {
                               gravity: ToastGravity.CENTER,
                               timeInSecForIosWeb: 1);
                         } else {
-                          registroService.register(registration);
+                          try {
+                            registroService
+                                .register(registration)
+                                .then((value) {
+                              if (value == 'Enter a valid phone number.') {
+                                Fluttertoast.showToast(
+                                    msg: "Ingrese un número de teléfono válido.",
+                                    toastLength: Toast.LENGTH_SHORT,
+                                    gravity: ToastGravity.CENTER,
+                                    timeInSecForIosWeb: 1);
+                              } else {
+                                _preferenceLogin.typeLogin(true).then((value) {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => Index(),
+                                      ));
+                                });
+                              }
+                            });
+                          } catch (e) {
+                            Fluttertoast.showToast(
+                                msg: e.toString(),
+                                toastLength: Toast.LENGTH_SHORT,
+                                gravity: ToastGravity.CENTER,
+                                timeInSecForIosWeb: 1);
+                          }
                         }
                       },
                       child: Container(

@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:aprendiendo/src/functions/generatePolygons.dart';
+import 'package:aprendiendo/src/view/qrScan.dart';
 import 'package:aprendiendo/src/widget/BottomPermisos.dart';
 import 'package:aprendiendo/src/widget/navbar.dart';
 import 'package:extended_tabs/extended_tabs.dart';
@@ -40,9 +41,15 @@ class _InicioState extends State<Inicio> with TickerProviderStateMixin {
           onPressed: () => setState(() {
             _sesion = !_sesion;
           }),
-          child: Icon(
-            Icons.qr_code_rounded,
-            color: Colors.grey,
+          child: GestureDetector(
+            child: Icon(
+              Icons.qr_code_rounded,
+              color: Colors.grey,
+            ),
+            onTap:()=> Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => QrScan()),
+                            ),
           ),
           backgroundColor: Colors.white,
         ),
@@ -93,10 +100,7 @@ class _InicioState extends State<Inicio> with TickerProviderStateMixin {
                           ],
                         ),
                         layers: [
-                          new TileLayerOptions(
-                              urlTemplate:
-                                  "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-                              subdomains: ['a', 'b', 'c']),
+                       
                           new TappablePolylineLayerOptions(
                               polylineCulling: true,
                               polylines: _polygons,
