@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:aprendiendo/src/functions/preferenceslogin.dart';
 import 'package:aprendiendo/src/service/login.service.dart';
+import 'package:aprendiendo/src/view/CodigoSeguridad.dart';
 import 'package:aprendiendo/src/view/Registro.dart';
 import 'package:aprendiendo/src/view/index.dart';
 import 'package:aprendiendo/src/view/inicio.dart';
@@ -86,7 +87,7 @@ class _LoginState extends State<Login> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => Index(),
+                                builder: (context) => CodigoSeguridad(),
                               ));
                         });
                       }
