@@ -1,12 +1,14 @@
 import 'dart:io';
 
 import 'package:aprendiendo/src/functions/preferenceslogin.dart';
+import 'package:aprendiendo/src/service/login.service.dart';
 import 'package:aprendiendo/src/view/Registro.dart';
 import 'package:aprendiendo/src/view/index.dart';
 import 'package:aprendiendo/src/view/inicio.dart';
 import 'package:beauty_textfield/beauty_textfield.dart';
 import 'package:bouncing_widget/bouncing_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class Login extends StatefulWidget {
   Login({Key key}) : super(key: key);
@@ -17,6 +19,7 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   PreferenceLogin _preferenceLogin = new PreferenceLogin();
+  String phonenumber = "";
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -35,7 +38,7 @@ class _LoginState extends State<Login> {
                   style:
                       TextStyle(color: Colors.grey, fontFamily: 'Laca Light'),
                 ),
-              ),             
+              ),
               BeautyTextfield(
                 width: double.maxFinite, //REQUIRED
                 height: 60, //REQUIRED
@@ -53,35 +56,41 @@ class _LoginState extends State<Login> {
                 margin: EdgeInsets.all(30),
                 cornerRadius: BorderRadius.all(Radius.circular(0)),
                 duration: Duration(milliseconds: 300),
-                inputType: TextInputType.text, //REQUIRED
+                inputType: TextInputType.phone, //REQUIRED
                 placeholder: "Número de Teléfono",
                 isShadow: true,
-                obscureText: true,
+
                 prefixIcon: Icon(Icons.lock), //REQUIRED
                 onClickSuffix: () {
                   print('Suffix Clicked');
                 },
-                onTap: () {
-                  print('Click');
-                },
+
                 onChanged: (text) {
-                  print(text);
-                },
-                onSubmitted: (data) {
-                  print(data.length);
+                  phonenumber = text;
                 },
               ),
               BouncingWidget(
                   duration: Duration(milliseconds: 100),
                   scaleFactor: 1.5,
                   onPressed: () {
-                    _preferenceLogin
-                        .typeLogin(true)
-                        .then((value) => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => Index(),
-                            )));
+                    LoginService loginService = LoginService();
+                    loginService.login(phonenumber).then((value) {
+                      if (value == null) {
+                        Fluttertoast.showToast(
+                            msg: "Usuario no registrad@",
+                            toastLength: Toast.LENGTH_SHORT,
+                            gravity: ToastGravity.CENTER,
+                            timeInSecForIosWeb: 1);
+                      } else {
+                        _preferenceLogin.typeLogin(true).then((value) {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => Index(),
+                              ));
+                        });
+                      }
+                    });
                   },
                   child: Card(
                       shape: RoundedRectangleBorder(
@@ -115,7 +124,7 @@ class _LoginState extends State<Login> {
               Container(
                 margin: EdgeInsets.symmetric(
                   vertical: 35,
-                  horizontal: height /8.5,
+                  horizontal: height / 8.5,
                 ),
                 child: Row(
                   children: [
