@@ -9,6 +9,12 @@
         android:name="io.flutter.app.FlutterApplication"
         android:label="aprendiendo"
         android:icon="@mipmap/ic_launcher">
+        <receiver android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationBootReceiver">
+          <intent-filter>
+              <action android:name="android.intent.action.BOOT_COMPLETED"></action>
+          </intent-filter>
+          </receiver>
+          <receiver android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationReceiver" />
         <activity
             android:showWhenLocked="true"
             android:turnScreenOn="true"

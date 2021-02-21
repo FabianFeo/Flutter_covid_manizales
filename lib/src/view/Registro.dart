@@ -244,7 +244,8 @@ class _RegistroState extends State<Registro> {
                                 .then((value) {
                               if (value == 'Enter a valid phone number.') {
                                 Fluttertoast.showToast(
-                                    msg: "Ingrese un número de teléfono válido.",
+                                    msg:
+                                        "Ingrese un número de teléfono válido.",
                                     toastLength: Toast.LENGTH_SHORT,
                                     gravity: ToastGravity.CENTER,
                                     timeInSecForIosWeb: 1);

@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:aprendiendo/src/beaconBroadcast/BeanBroascast.dart';
 import 'package:aprendiendo/src/functions/preferenceslogin.dart';
 import 'package:aprendiendo/src/service/login.service.dart';
 import 'package:aprendiendo/src/view/CodigoSeguridad.dart';
@@ -19,6 +20,13 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  @override
+  void initState() {
+    super.initState();
+    BeaconBroadcastSrvice beaconBroadcastSrvice = BeaconBroadcastSrvice();
+    beaconBroadcastSrvice.beaconBroadcast();
+  }
+
   PreferenceLogin _preferenceLogin = new PreferenceLogin();
   String phonenumber = "";
   @override
@@ -75,7 +83,7 @@ class _LoginState extends State<Login> {
                   scaleFactor: 1.5,
                   onPressed: () {
                     LoginService loginService = LoginService();
-                    loginService.login(phonenumber).then((value) {
+                    loginService.login(phonenumber, context).then((value) {
                       if (value == null) {
                         Fluttertoast.showToast(
                             msg: "Usuario no registrad@",
@@ -87,7 +95,9 @@ class _LoginState extends State<Login> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => CodigoSeguridad(),
+                                builder: (context) => CodigoSeguridad(
+                                  phoneNumber: phonenumber,
+                                ),
                               ));
                         });
                       }
