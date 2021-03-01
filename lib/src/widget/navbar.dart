@@ -1,5 +1,6 @@
 import 'package:aprendiendo/src/view/ControlPermisos.dart';
 import 'package:flutter/material.dart';
+import 'package:hexcolor/hexcolor.dart';
 
 class NavBar extends StatelessWidget implements PreferredSizeWidget {
   const NavBar({Key key}) : super(key: key);
@@ -14,8 +15,8 @@ class NavBar extends StatelessWidget implements PreferredSizeWidget {
       title:Row( mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Text(
-            '20 Dic 2020',
-            style: TextStyle(color: Colors.grey, fontSize: 14),
+            '16 Feb 2021',
+            style: TextStyle(color: HexColor('#103E68'), fontSize: 14),
           ),
           Image(
             image: AssetImage('assets/Marca_png/Logo_CoVIDAlert_positivo.png'),
@@ -32,7 +33,7 @@ class NavBar extends StatelessWidget implements PreferredSizeWidget {
                     ),
                 child: Icon(
                   Icons.reorder_rounded,
-                  color: Colors.grey,
+                  color: HexColor('#103E68'),
                 )),
           )
         ],

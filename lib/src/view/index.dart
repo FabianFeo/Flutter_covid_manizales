@@ -1,4 +1,5 @@
 import 'package:aprendiendo/src/functions/preferenceslogin.dart';
+import 'package:aprendiendo/src/view/Carga.dart';
 import 'package:aprendiendo/src/view/Contagios.dart';
 import 'package:aprendiendo/src/view/MiRed.dart';
 import 'package:aprendiendo/src/view/ReportarContagio.dart';
@@ -34,7 +35,7 @@ class _IndexState extends State<Index> {
     return FutureBuilder(
       future: _preferenceLogin.getTypeLogin(),
       builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
-        _widgetOptions = <Widget>[
+        _widgetOptions = <Widget>[          
           snapshot.data ? Inicio() : InicioSinRegistro(),
           Contagios(),
           MiRed(),

@@ -12,6 +12,7 @@ import 'package:date_time_picker/date_time_picker.dart';
 import 'package:dropdown_formfield/dropdown_formfield.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:hexcolor/hexcolor.dart';
 
 class Registro extends StatefulWidget {
   Registro({Key key}) : super(key: key);
@@ -54,10 +55,13 @@ class _RegistroState extends State<Registro> {
           child: Column(
             children: [
               Container(
-                  margin: EdgeInsets.only(right: width / 2),
-                  child: Text('R E G I S T R O',
+                  margin: EdgeInsets.only(right: width / 1.6),
+                  child: Text('Registro',
                       style: TextStyle(
-                          color: Colors.grey, fontFamily: 'Laca light'))),
+                          color: HexColor('#103E68'), 
+                          fontFamily: 'Roboto-Bold',
+                          fontSize: 24))),
+                          
               Container(
                 margin: EdgeInsets.all(25),
                 child: DropDownFormField(
@@ -97,18 +101,18 @@ class _RegistroState extends State<Registro> {
                 width: double.maxFinite, //REQUIRED
                 height: 60, //REQUIRED
                 accentColor: Colors.white, // On Focus Color
-                textColor: Colors.grey, //Text Color
+                textColor: HexColor('#698596'), //Text Color
                 backgroundColor: Colors.white, //Not Focused Color
                 textBaseline: TextBaseline.alphabetic,
                 autocorrect: false,
                 autofocus: false,
                 enabled: true, // Textfield enabled
                 focusNode: FocusNode(),
-                fontFamily: 'Laca Regular', //Text Fontfamily
+                fontFamily: 'Roboto-Light', //Text Fontfamily
                 fontWeight: FontWeight.w500,
 
                 margin: EdgeInsets.all(30),
-                cornerRadius: BorderRadius.all(Radius.circular(0)),
+                cornerRadius: BorderRadius.all(Radius.circular(50)),
                 duration: Duration(milliseconds: 300),
                 inputType: TextInputType.number, //REQUIRED
                 placeholder: "Número de documento",
@@ -124,12 +128,24 @@ class _RegistroState extends State<Registro> {
                 },
               ),
               Container(
+                margin: EdgeInsets.only(right: width / 2.5),
+                child:
+                Text('Fecha de Nacimiento',
+              style: 
+              TextStyle(
+                fontFamily: 'Roboto-Medium',
+                color: HexColor('#49657A'),
+                fontSize: 18
+                 ) ,),
+              ),
+              
+              Container(
                 margin: EdgeInsets.all(25),
                 child: DateTimePicker(
                   initialValue: '',
                   firstDate: DateTime(1920),
                   lastDate: DateTime(2100),
-                  dateLabelText: 'Fecha de Nacimiento',
+                  dateLabelText: 'DD/MM/AAAA',
                   onChanged: (val) {
                     print(val);
                     registration.birth_date = val;
@@ -148,7 +164,7 @@ class _RegistroState extends State<Registro> {
                 width: double.maxFinite, //REQUIRED
                 height: 60, //REQUIRED
                 accentColor: Colors.white, // On Focus Color
-                textColor: Colors.grey, //Text Color
+                textColor: HexColor('#698596'), //Text Color
                 backgroundColor: Colors.white, //Not Focused Color
                 textBaseline: TextBaseline.alphabetic,
                 autocorrect: false,
@@ -159,7 +175,7 @@ class _RegistroState extends State<Registro> {
                 fontWeight: FontWeight.w500,
 
                 margin: EdgeInsets.all(30),
-                cornerRadius: BorderRadius.all(Radius.circular(0)),
+                cornerRadius: BorderRadius.all(Radius.circular(50)),
                 duration: Duration(milliseconds: 300),
                 inputType: TextInputType.phone, //REQUIRED
                 placeholder: "Celular",
@@ -272,31 +288,32 @@ class _RegistroState extends State<Registro> {
                           alignment: Alignment.center,
                           child: Card(
                               shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(15.0),
+                                borderRadius: BorderRadius.circular(50.0),
                               ),
-                              color: Colors.grey,
+                              color: HexColor('#103E68'),
                               child: Container(
-                                width: width / 1.5,
+                                width: width / 2.5,
+                                height: height / 22,
                                 child: Text(
                                   "Registrarme",
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                     color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 30,
+                                    fontFamily: 'Roboto-Medium',
+                                    fontSize: 18,
                                   ),
                                 ),
                               ))))),
               Container(
                 margin: EdgeInsets.symmetric(
                   vertical: 35,
-                  horizontal: 20,
+                  horizontal: 80,
                 ),
                 child: Row(
                   children: [
                     Text(
                       '¿Ya estás registrado?',
-                      style: TextStyle(color: Colors.grey, fontSize: 15),
+                      style: TextStyle(color: HexColor('#49657A'), fontSize: 15),
                     ),
                     GestureDetector(
                         onTap: () => Navigator.push(
@@ -306,7 +323,7 @@ class _RegistroState extends State<Registro> {
                         child: Text(
                           'Inicia Sesión',
                           style: TextStyle(
-                              color: Colors.grey,
+                              color: HexColor('#49657A'),
                               fontSize: 15,
                               decoration: TextDecoration.underline),
                         )),
@@ -315,13 +332,13 @@ class _RegistroState extends State<Registro> {
               ),
               Container(
                 margin: EdgeInsets.only(
-                  right: width / 2.5,
+                  right: width / 25,
                 ),
                 child: GestureDetector(
                   child: Text(
-                    'continuar sin registrarme',
+                    'Continuar sin registrarme',
                     style: TextStyle(
-                        color: Colors.grey,
+                        color: HexColor('#49657A'),
                         fontSize: 18,
                         fontFamily: 'Laca Black',
                         decoration: TextDecoration.underline),
