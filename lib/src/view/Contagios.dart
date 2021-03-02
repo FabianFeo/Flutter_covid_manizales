@@ -3,6 +3,7 @@ import 'package:aprendiendo/src/widget/navbar.dart';
 import 'package:extended_tabs/extended_tabs.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hexcolor/hexcolor.dart';
 
 class Contagios extends StatefulWidget {
   Contagios({Key key}) : super(key: key);
@@ -44,20 +45,20 @@ class _ContagiosState extends State<Contagios> with TickerProviderStateMixin {
            Container(
                 alignment: Alignment.centerLeft,
                 margin: EdgeInsets.only(left: width / 11),
-                child: Text('C O N T A G I O S  P O R',
+                child: Text('Contagios por',
                     style: TextStyle(
-                        color: Colors.grey,
-                        fontFamily: 'Laca Light',
-                        fontSize: 20)),
+                        color: HexColor('#103E68'),
+                        fontFamily: 'Roboto-Bold',
+                        fontSize: 24)),
               ),
                             Container(
                 alignment: Alignment.centerLeft,
                 margin: EdgeInsets.only(left: width / 11),
-                child: Text('B A R R R I O S  Y  D Í A S',
+                child: Text('Barrios y días',
                     style: TextStyle(
-                        color: Colors.grey,
-                        fontFamily: 'Laca Light',
-                        fontSize: 20)),
+                        color: HexColor('#103E68'),
+                        fontFamily: 'Roboto-Bold',
+                        fontSize: 24)),
               ),
               
               Container(
@@ -65,7 +66,9 @@ class _ContagiosState extends State<Contagios> with TickerProviderStateMixin {
                 margin: EdgeInsets.all(30),
                 child: Text(
                   'Aquí podrás observar la similitud en el comportamiento de contagios por comunas para los próximos días, desliza con tu dedo en el indicador de fecha hacia arriba o hacia abajo para ver la probabilidad de un día en específico.',
-                  style: TextStyle(color: Colors.grey),
+                  style: TextStyle(color: HexColor('#49657A'),
+                  fontFamily: 'Roboto-Light',
+                  fontSize: 16),
                 ),
               ),
               Image(

@@ -50,6 +50,7 @@ dependencies:
   uuid: 2.2.2
   flutter_native_splash: ^0.3.0
   hexcolor: ^2.0.0
+  flutter_svg: ^0.19.1
 
 
 
@@ -87,6 +88,13 @@ flutter:
   - assets/Imagenes_assetspng/logos/logo_apertura.png
   - assets/Imagenes_assetspng/logos/logos_apertura.png
   - assets/Imagenes_assetspng/logos/textura_apertura.png
+  - assets/Imagenes_assets_svg/iconos/contagio_comunas_off.svg
+  - assets/Imagenes_assets_svg/iconos/inicio_off.svg
+  - assets/Imagenes_assets_svg/iconos/red_contactos_off.svg
+  - assets/Imagenes_assets_svg/iconos/vacuna_off.svg
+  - assets/Imagenes_assets_svg/iconos/reportar_off.svg
+  - assets/Imagenes_assets_svg/qr/qr.svg
+
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -120,9 +128,12 @@ flutter:
         - asset: fonts/Laca Semibold Italic.otf
         - asset: fonts/Laca Semibold.otf
         - asset: fonts/FiraSans-ExtraBold.ttf
+    - family: Roboto
+      fonts:
         - asset: fonts/Roboto-Bold.ttf
         - asset: fonts/Roboto-Light.ttf
         - asset: fonts/Roboto-Medium.ttf
+
 
     #   - family: Trajan Pro
   #     fonts:
@@ -132,3 +143,6 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
+
+  

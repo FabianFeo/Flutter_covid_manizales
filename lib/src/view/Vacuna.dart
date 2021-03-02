@@ -7,14 +7,14 @@ import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 
-class ReportarContagio extends StatefulWidget {
-  ReportarContagio({Key key}) : super(key: key);
+class ReportarVacuna extends StatefulWidget {
+  ReportarVacuna({Key key}) : super(key: key);
 
   @override
-  _ReportarContagioState createState() => _ReportarContagioState();
+  _ReportarVacunaState createState() => _ReportarVacunaState();
 }
 
-class _ReportarContagioState extends State<ReportarContagio> with TickerProviderStateMixin {
+class _ReportarVacunaState extends State<ReportarVacuna> with TickerProviderStateMixin {
   bool _sesion = false;
   TabController _tabController;
 
@@ -50,7 +50,7 @@ class _ReportarContagioState extends State<ReportarContagio> with TickerProvider
               Container(
                 alignment: Alignment.centerLeft,
                 margin: EdgeInsets.only(left: width / 18),
-                child: Text('Reportar contagio por Covid-19',
+                child: Text('Reportar vacuna por Covid-19',
                     style: TextStyle(
                         color: HexColor('#103E68'),
                         fontFamily: 'Roboto-Bold',
@@ -60,7 +60,7 @@ class _ReportarContagioState extends State<ReportarContagio> with TickerProvider
                 alignment: Alignment.centerLeft,
                 margin: EdgeInsets.all(30),
                 child: Text(
-                  'Si fuiste diagnosticado positivo por Covid 19, infórmanos para actualizar la base de datos y ayudarnos a suministrar información más precisa a las personas con quienes haya podido tener contacto.',
+                  'Si recibiste la vacuna por Covid 19, infórmanos para actualizar la base de datos y ayudarnos a suministrar información más precisa a las personas con quienes haya podido tener contacto.',
                   style: TextStyle(color: HexColor('#49657A'),
                   fontFamily: 'Roboto-Light',
                   fontSize: 16),
