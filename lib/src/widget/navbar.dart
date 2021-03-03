@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 class NavBar extends StatelessWidget implements PreferredSizeWidget {
-  const NavBar({Key key}) : super(key: key);
-
+  const NavBar({
+    Key key, this.current,
+  }) : super(key: key);
+final String current;
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -12,7 +14,8 @@ class NavBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       backgroundColor: Colors.white,
       automaticallyImplyLeading: false,
-      title:Row( mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      title: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Text(
             '16 Feb 2021',
@@ -24,24 +27,44 @@ class NavBar extends StatelessWidget implements PreferredSizeWidget {
             width: width / 2.3,
           ),
           Container(
-            margin: EdgeInsets.only(left: width/ 8),
-            child: GestureDetector(
+              
+              
+              child: DropdownButton<String>(
+                value: current,
+                icon: Icon(
+                  Icons.reorder_rounded,
+                  color: HexColor('#103E68'),
+                ),
+                iconSize: 24,
+                elevation: 16,
+                onChanged: (String newValue) {},
+                items: getWidgetsMenu(),
+              ) /*GestureDetector(
                 onTap: () => Navigator.push(
                       context,
                       MaterialPageRoute(
                           builder: (context) => ControlPermisos()),
                     ),
-                child: Icon(
-                  Icons.reorder_rounded,
-                  color: HexColor('#103E68'),
-                )),
-          )
+                child: ,
+          )*/
+              )
         ],
       ),
-
-      );
+    );
   }
 
   @override
   Size get preferredSize => new Size.fromHeight(AppBar().preferredSize.height);
+}
+
+Widget getCurrentWidget() {
+  return Container();
+}
+
+List<DropdownMenuItem<String>> getWidgetsMenu() {
+  List<DropdownMenuItem<String>> lista = List();
+
+  lista.add(DropdownMenuItem(
+      value: 'Control de permisos', child: Text('Control de permisos'),));
+  return lista;
 }

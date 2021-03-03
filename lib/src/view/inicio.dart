@@ -4,6 +4,7 @@ import 'package:aprendiendo/src/functions/generatePolygons.dart';
 import 'package:aprendiendo/src/view/qrScan.dart';
 import 'package:aprendiendo/src/widget/BottomPermisos.dart';
 import 'package:aprendiendo/src/widget/navbar.dart';
+import 'package:date_time_picker/date_time_picker.dart';
 import 'package:extended_tabs/extended_tabs.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -25,6 +26,7 @@ class _InicioState extends State<Inicio> with TickerProviderStateMixin {
   bool _sesion = false;
   TabController _tabController;
   List<TaggedPolyline> _polygons = List();
+  double _currentSliderValue=0;
   bool chargeMap = true;
   @override
   void initState() {
@@ -115,6 +117,18 @@ class _InicioState extends State<Inicio> with TickerProviderStateMixin {
                         ],
                       ),
                     ),
+                    Slider(
+      value: _currentSliderValue,
+      min: 0,
+      max: 14,
+      divisions: 14,
+      label:getLabelSlider(),
+      onChanged: (double value) {
+        setState(() {
+          _currentSliderValue = value;
+        });
+      },
+    ),
               Divider(
                 color: HexColor('#49657A'),
               ),
@@ -153,5 +167,12 @@ class _InicioState extends State<Inicio> with TickerProviderStateMixin {
         chargeMap = false;
       });
     });
+  }
+
+  getLabelSlider() {
+    DateTime dateTime = DateTime.now();
+   dateTime= dateTime.subtract(Duration(days: _currentSliderValue.toInt()));
+    return DateFormat('dd/MM').format(dateTime);
+    
   }
 }
