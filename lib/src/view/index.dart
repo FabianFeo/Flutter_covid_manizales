@@ -12,7 +12,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hexcolor/hexcolor.dart';
 
-
 class Index extends StatefulWidget {
   Index({Key key}) : super(key: key);
 
@@ -30,7 +29,7 @@ class _IndexState extends State<Index> {
 
   List<bool> estados;
   @override
-  void initState() { 
+  void initState() {
     super.initState();
     estados = List();
     estados.add(true);
@@ -43,13 +42,18 @@ class _IndexState extends State<Index> {
   void _onItemTapped(int index) {
     setState(() {
       for (var i = 0; i < estados.length; i++) {
-        estados[i]=false;
+        estados[i] = false;
       }
-      estados[index]=true;
+      estados[index] = true;
       _selectedIndex = index;
     });
   }
 
+  void _closeEndDrawer() {
+    Navigator.of(context).pop();
+  }
+
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
@@ -63,36 +67,76 @@ class _IndexState extends State<Index> {
           ReportarVacuna(),
         ];
         return Scaffold(
+          endDrawerEnableOpenDragGesture: true,
+          key: _scaffoldKey,
           backgroundColor: HexColor('#103E68'),
-          appBar: NavBar(),
+          appBar: NavBar(
+            scaffoldKey: _scaffoldKey,
+          ),
+          endDrawer: Container(
+            width: MediaQuery.of(context).size.width /1.8,
+            child: Drawer(
+                child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  const Text('This is the Drawer'),
+                  ElevatedButton(
+                    onPressed: _closeEndDrawer,
+                    child: const Text('Close Drawer'),
+                  ),
+                ],
+              ),
+            )),
+          ),
           body: Center(
             child: _widgetOptions.elementAt(_selectedIndex),
           ),
           bottomNavigationBar: new Theme(
-            data: Theme.of(context).copyWith(canvasColor: HexColor('#103E68'), primaryColor: HexColor('#D0EAE5')),
+            data: Theme.of(context).copyWith(
+                canvasColor: HexColor('#103E68'),
+                primaryColor: HexColor('#D0EAE5')),
             child: BottomNavigationBar(
               selectedIconTheme: IconThemeData(color: HexColor('#D0EAE5')),
               items: <BottomNavigationBarItem>[
                 BottomNavigationBarItem(
-                  icon: SvgPicture.asset('assets/Imagenes_assets_svg/iconos/inicio_off.svg', color: estados[0]? HexColor('#D0EAE5'): HexColor('#698596') ,), 
+                  icon: SvgPicture.asset(
+                    'assets/Imagenes_assets_svg/iconos/inicio_off.svg',
+                    color:
+                        estados[0] ? HexColor('#D0EAE5') : HexColor('#698596'),
+                  ),
                   label: 'Inicio',
                 ),
                 BottomNavigationBarItem(
-                  icon:  SvgPicture.asset('assets/Imagenes_assets_svg/iconos/contagio_comunas_off.svg', color: estados[0]? HexColor('#D0EAE5'): HexColor('#698596') ,),
+                  icon: SvgPicture.asset(
+                    'assets/Imagenes_assets_svg/iconos/contagio_comunas_off.svg',
+                    color:
+                        estados[0] ? HexColor('#D0EAE5') : HexColor('#698596'),
+                  ),
                   label: 'Contagios por comunas y días',
-                  
                 ),
-                BottomNavigationBarItem( 
-                  
-                  icon: SvgPicture.asset('assets/Imagenes_assets_svg/iconos/red_contactos_off.svg', color: estados[0]? HexColor('#D0EAE5'): HexColor('#698596') ,),
+                BottomNavigationBarItem(
+                  icon: SvgPicture.asset(
+                    'assets/Imagenes_assets_svg/iconos/red_contactos_off.svg',
+                    color:
+                        estados[0] ? HexColor('#D0EAE5') : HexColor('#698596'),
+                  ),
                   label: 'Mi red de contactos',
                 ),
                 BottomNavigationBarItem(
-                  icon:SvgPicture.asset('assets/Imagenes_assets_svg/iconos/reportar_off.svg', color: estados[0]? HexColor('#D0EAE5'): HexColor('#698596') ,),
+                  icon: SvgPicture.asset(
+                    'assets/Imagenes_assets_svg/iconos/reportar_off.svg',
+                    color:
+                        estados[0] ? HexColor('#D0EAE5') : HexColor('#698596'),
+                  ),
                   label: 'reportar contagio Covid',
                 ),
                 BottomNavigationBarItem(
-                  icon:SvgPicture.asset('assets/Imagenes_assets_svg/iconos/vacuna_off.svg', color: estados[0]? HexColor('#D0EAE5'): HexColor('#698596') ,),
+                  icon: SvgPicture.asset(
+                    'assets/Imagenes_assets_svg/iconos/vacuna_off.svg',
+                    color:
+                        estados[0] ? HexColor('#D0EAE5') : HexColor('#698596'),
+                  ),
                   label: 'reportar vacuna',
                 ),
               ],

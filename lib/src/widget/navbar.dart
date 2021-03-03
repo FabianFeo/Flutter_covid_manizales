@@ -1,16 +1,21 @@
 import 'package:aprendiendo/src/view/ControlPermisos.dart';
+import 'package:date_time_picker/date_time_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 class NavBar extends StatelessWidget implements PreferredSizeWidget {
   const NavBar({
-    Key key, this.current,
+    Key key,
+    this.current,
+    this.scaffoldKey,
   }) : super(key: key);
-final String current;
+  final GlobalKey<ScaffoldState> scaffoldKey;
+  final String current;
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
+    DateTime dateTime = DateTime.now();
     return AppBar(
       backgroundColor: Colors.white,
       automaticallyImplyLeading: false,
@@ -18,7 +23,7 @@ final String current;
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Text(
-            '16 Feb 2021',
+            DateFormat('dd-MM-yyyy').format(dateTime),
             style: TextStyle(color: HexColor('#103E68'), fontSize: 14),
           ),
           Image(
@@ -27,27 +32,14 @@ final String current;
             width: width / 2.3,
           ),
           Container(
-              
-              
-              child: DropdownButton<String>(
-                value: current,
-                icon: Icon(
-                  Icons.reorder_rounded,
-                  color: HexColor('#103E68'),
-                ),
-                iconSize: 24,
-                elevation: 16,
-                onChanged: (String newValue) {},
-                items: getWidgetsMenu(),
-              ) /*GestureDetector(
-                onTap: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => ControlPermisos()),
-                    ),
-                child: ,
-          )*/
-              )
+            child: GestureDetector(
+              onTap: () => _openEndDrawer(),
+              child: Icon(
+                Icons.reorder_rounded,
+                color: HexColor('#103E68'),
+              ),
+            ),
+          )
         ],
       ),
     );
@@ -55,16 +47,8 @@ final String current;
 
   @override
   Size get preferredSize => new Size.fromHeight(AppBar().preferredSize.height);
-}
 
-Widget getCurrentWidget() {
-  return Container();
-}
-
-List<DropdownMenuItem<String>> getWidgetsMenu() {
-  List<DropdownMenuItem<String>> lista = List();
-
-  lista.add(DropdownMenuItem(
-      value: 'Control de permisos', child: Text('Control de permisos'),));
-  return lista;
+  void _openEndDrawer() {
+    scaffoldKey.currentState.openEndDrawer();
+  }
 }
