@@ -11,6 +11,7 @@ import 'package:aprendiendo/src/widget/navbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:http/http.dart';
 
 class Index extends StatefulWidget {
   Index({Key key}) : super(key: key);
@@ -74,21 +75,132 @@ class _IndexState extends State<Index> {
             scaffoldKey: _scaffoldKey,
           ),
           endDrawer: Container(
-            width: MediaQuery.of(context).size.width /1.8,
+            margin: EdgeInsets.only(bottom: 300),
+            width: MediaQuery.of(context).size.width / 1.4,
+            height: MediaQuery.of(context).size.height / 2.27,
             child: Drawer(
-                child: Center(
-              child: Column(
+              child:Container(  
+                
+                child:
+                Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  const Text('This is the Drawer'),
-                  ElevatedButton(
-                    onPressed: _closeEndDrawer,
-                    child: const Text('Close Drawer'),
-                  ),
+                  GestureDetector(
+                    child: Column(
+                      children: [
+                        Divider(),
+                        Text('Control de permisos', 
+                        style: TextStyle( 
+                          fontFamily: 'Roboto-Medium',
+                          color: HexColor('#103E68'),
+                          fontSize: 16,
+                          ),),
+                        Divider(),
+                        ],
+                    ),), 
+                    GestureDetector(
+                    child: Column(
+                      children: [                       
+                        Text('Preguntas frecuentes', 
+                        style: TextStyle( 
+                          fontFamily: 'Roboto-Medium',
+                          color: HexColor('#103E68'),
+                          fontSize: 16,
+                          ),),
+                        Divider(),
+                        ],
+                    ),),
+                    GestureDetector(
+                    child: Column(
+                      children: [                        
+                        Text('Política de tratamiento de datos', 
+                        style: TextStyle( 
+                          fontFamily: 'Roboto-Medium',
+                          color: HexColor('#103E68'),
+                          fontSize: 16,
+                          ),),
+                        Divider(),
+                        ],
+                    ),),
+                    GestureDetector(
+                    child: Column(
+                      children: [                        
+                        Text('Aclaraciones de provacidad', 
+                        style: TextStyle( 
+                          fontFamily: 'Roboto-Medium',
+                          color: HexColor('#103E68'),
+                          fontSize: 16,
+                          ),),
+                        Divider(),
+                        ],
+                    ),),
+                    GestureDetector(
+                    child: Column(
+                      children: [                        
+                        Text('Preguntas frecuentes', 
+                        style: TextStyle( 
+                          fontFamily: 'Roboto-Medium',
+                          color: HexColor('#103E68'),
+                          fontSize: 16,
+                          ),),
+                        Divider(),
+                        ],
+                    ),),
+                    GestureDetector(
+                    child: Column(
+                      children: [                        
+                        Text('Sobre Covidalert', 
+                        style: TextStyle( 
+                          fontFamily: 'Roboto-Medium',
+                          color: HexColor('#103E68'),
+                          fontSize: 16,
+                          ),),
+                        Divider(),
+                        ],
+                    ),),
+                    GestureDetector(
+                    child: Column(
+                      children: [                        
+                        Text('Ayúdanos con más datos', 
+                        style: TextStyle( 
+                          fontFamily: 'Roboto-Medium',
+                          color: HexColor('#103E68'),
+                          fontSize: 16,
+                          ),),
+                        Divider(),
+                        ],
+                    ),),
+                    GestureDetector(
+                    child: Column(
+                      children: [                        
+                        Text('Invita a tus contactos', 
+                        style: TextStyle( 
+                          fontFamily: 'Roboto-Medium',
+                          color: HexColor('#103E68'),
+                          fontSize: 16,
+                          ),),
+                        Divider(),
+                        ],
+                    ),),
+                    GestureDetector(
+                    child: Column(
+                      children: [                        
+                        Text('Ir al portal web', 
+                        style: TextStyle( 
+                          fontFamily: 'Roboto-Medium',
+                          color: HexColor('#103E68'),
+                          fontSize: 16,
+                          ),),
+                        Divider(),
+                        ],
+                    ),),
+
+                
+                 
                 ],
               ),
-            )),
-          ),
+            ),
+          ),),
           body: Center(
             child: _widgetOptions.elementAt(_selectedIndex),
           ),

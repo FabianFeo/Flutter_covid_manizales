@@ -32,6 +32,7 @@ class NavBar extends StatelessWidget implements PreferredSizeWidget {
             width: width / 2.3,
           ),
           Container(
+            margin: EdgeInsets.only(left: width / 15),
             child: GestureDetector(
               onTap: () => _openEndDrawer(),
               child: Icon(
