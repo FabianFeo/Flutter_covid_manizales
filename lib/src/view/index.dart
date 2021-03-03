@@ -1,6 +1,7 @@
 import 'package:aprendiendo/src/functions/preferenceslogin.dart';
 import 'package:aprendiendo/src/view/Carga.dart';
 import 'package:aprendiendo/src/view/Contagios.dart';
+import 'package:aprendiendo/src/view/ControlPermisos.dart';
 import 'package:aprendiendo/src/view/MiRed.dart';
 import 'package:aprendiendo/src/view/ReportarContagio.dart';
 import 'package:aprendiendo/src/view/Vacuna.dart';
@@ -75,9 +76,10 @@ class _IndexState extends State<Index> {
             scaffoldKey: _scaffoldKey,
           ),
           endDrawer: Container(
-            margin: EdgeInsets.only(bottom: 300),
+            padding:  EdgeInsets.only(top: MediaQuery.of(context).size.height/9),
+            margin: EdgeInsets.only(bottom: MediaQuery.of(context).size.height /3),
             width: MediaQuery.of(context).size.width / 1.4,
-            height: MediaQuery.of(context).size.height / 2.27,
+            height: MediaQuery.of(context).size.height ,
             child: Drawer(
               child:Container(  
                 
@@ -86,6 +88,11 @@ class _IndexState extends State<Index> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   GestureDetector(
+                    onTap:()=> Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ControlPermisos()),
+                            ),
                     child: Column(
                       children: [
                         Divider(),
@@ -223,7 +230,7 @@ class _IndexState extends State<Index> {
                   icon: SvgPicture.asset(
                     'assets/Imagenes_assets_svg/iconos/contagio_comunas_off.svg',
                     color:
-                        estados[0] ? HexColor('#D0EAE5') : HexColor('#698596'),
+                        estados[1] ? HexColor('#D0EAE5') : HexColor('#698596'),
                   ),
                   label: 'Contagios por comunas y días',
                 ),
@@ -231,7 +238,7 @@ class _IndexState extends State<Index> {
                   icon: SvgPicture.asset(
                     'assets/Imagenes_assets_svg/iconos/red_contactos_off.svg',
                     color:
-                        estados[0] ? HexColor('#D0EAE5') : HexColor('#698596'),
+                        estados[2] ? HexColor('#D0EAE5') : HexColor('#698596'),
                   ),
                   label: 'Mi red de contactos',
                 ),
@@ -239,7 +246,7 @@ class _IndexState extends State<Index> {
                   icon: SvgPicture.asset(
                     'assets/Imagenes_assets_svg/iconos/reportar_off.svg',
                     color:
-                        estados[0] ? HexColor('#D0EAE5') : HexColor('#698596'),
+                        estados[3] ? HexColor('#D0EAE5') : HexColor('#698596'),
                   ),
                   label: 'reportar contagio Covid',
                 ),
@@ -247,7 +254,7 @@ class _IndexState extends State<Index> {
                   icon: SvgPicture.asset(
                     'assets/Imagenes_assets_svg/iconos/vacuna_off.svg',
                     color:
-                        estados[0] ? HexColor('#D0EAE5') : HexColor('#698596'),
+                        estados[4] ? HexColor('#D0EAE5') : HexColor('#698596'),
                   ),
                   label: 'reportar vacuna',
                 ),

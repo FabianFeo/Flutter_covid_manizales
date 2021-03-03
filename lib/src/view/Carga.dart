@@ -16,7 +16,7 @@ class _CargaState extends State<Carga> {
 
   @override
     void initState() { 
-      Future.delayed(Duration(milliseconds: 1500),
+      Future.delayed(Duration(seconds: 3),
       ()=> Navigator.push(
         context, 
         MaterialPageRoute(
