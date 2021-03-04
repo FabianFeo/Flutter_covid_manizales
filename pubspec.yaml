@@ -51,6 +51,7 @@ dependencies:
   flutter_native_splash: ^0.3.0
   hexcolor: ^2.0.0
   flutter_svg: ^0.19.1
+  direct_select: "^1.0.0"
 
 
 

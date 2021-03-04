@@ -13,6 +13,7 @@ import 'package:dropdown_formfield/dropdown_formfield.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:direct_select/direct_select.dart';
 
 class Registro extends StatefulWidget {
   Registro({Key key}) : super(key: key);
@@ -58,10 +59,11 @@ class _RegistroState extends State<Registro> {
                   margin: EdgeInsets.only(right: width / 1.6),
                   child: Text('Registro',
                       style: TextStyle(
-                          color: HexColor('#103E68'), 
+                          color: HexColor('#103E68'),
                           fontFamily: 'Roboto-Bold',
                           fontSize: 24))),
-                          
+
+             
               Container(
                 margin: EdgeInsets.all(25),
                 child: DropDownFormField(
@@ -129,16 +131,14 @@ class _RegistroState extends State<Registro> {
               ),
               Container(
                 margin: EdgeInsets.only(right: width / 2.5),
-                child:
-                Text('Fecha de Nacimiento',
-              style: 
-              TextStyle(
-                fontFamily: 'Roboto-Medium',
-                color: HexColor('#49657A'),
-                fontSize: 18
-                 ) ,),
+                child: Text(
+                  'Fecha de Nacimiento',
+                  style: TextStyle(
+                      fontFamily: 'Roboto-Medium',
+                      color: HexColor('#49657A'),
+                      fontSize: 18),
+                ),
               ),
-              
               Container(
                 margin: EdgeInsets.all(25),
                 child: DateTimePicker(
@@ -313,7 +313,8 @@ class _RegistroState extends State<Registro> {
                   children: [
                     Text(
                       '¿Ya estás registrado?',
-                      style: TextStyle(color: HexColor('#49657A'), fontSize: 15),
+                      style:
+                          TextStyle(color: HexColor('#49657A'), fontSize: 15),
                     ),
                     GestureDetector(
                         onTap: () => Navigator.push(
