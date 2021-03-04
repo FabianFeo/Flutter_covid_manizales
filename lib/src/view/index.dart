@@ -1,5 +1,6 @@
 import 'package:aprendiendo/src/functions/preferenceslogin.dart';
 import 'package:aprendiendo/src/view/Carga.dart';
+import 'package:aprendiendo/src/view/Contactos.dart';
 import 'package:aprendiendo/src/view/Contagios.dart';
 import 'package:aprendiendo/src/view/ControlPermisos.dart';
 import 'package:aprendiendo/src/view/MiRed.dart';
@@ -13,6 +14,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:http/http.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class Index extends StatefulWidget {
   Index({Key key}) : super(key: key);
@@ -178,6 +180,11 @@ class _IndexState extends State<Index> {
                         ],
                     ),),
                     GestureDetector(
+                      onTap: ()  =>  Permission.contacts.request().then((elem)=>  Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Contactos(permisos:elem.isGranted)),
+                            )),
                     child: Column(
                       children: [                        
                         Text('Invita a tus contactos', 
