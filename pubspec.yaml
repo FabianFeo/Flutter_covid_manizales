@@ -94,6 +94,12 @@ flutter:
   - assets/Imagenes_assets_svg/iconos/vacuna_off.svg
   - assets/Imagenes_assets_svg/iconos/reportar_off.svg
   - assets/Imagenes_assets_svg/qr/qr.svg
+  - assets/Imagenes_assetspng/íconos/contagio_comunas_off.png
+  - assets/Imagenes_assetspng/íconos/inicio_off.png
+  - assets/Imagenes_assetspng/íconos/red_contactos_off.png
+  - assets/Imagenes_assetspng/íconos/reportar_off.png
+  - assets/Imagenes_assetspng/íconos/vacuna_off.png
+  - assets/Imagenes_assetspng/qr/qr.png
 
 
 

@@ -87,7 +87,7 @@ class _ControlPermisosState extends State<ControlPermisos>
                         margin: EdgeInsets.only(left: width / 15),
                         width: width / 5,
                         child: CustomSwitch(
-                          activeColor: Colors.blueAccent,
+                          activeColor: HexColor('#103E68'),
                           value: status,
                           onChanged: (value) {
                             print("VALUE : $value");
@@ -168,7 +168,7 @@ class _ControlPermisosState extends State<ControlPermisos>
                         margin: EdgeInsets.only(left: width / 15),
                         width: width / 5,
                         child: CustomSwitch(
-                          activeColor: Colors.blueAccent,
+                          activeColor: HexColor('#103E68'),
                           value: status,
                           onChanged: (value) {
                             print("VALUE : $value");
@@ -208,7 +208,7 @@ class _ControlPermisosState extends State<ControlPermisos>
                         margin: EdgeInsets.only(left: width / 15),
                         width: width / 5,
                         child: CustomSwitch(
-                          activeColor: Colors.blueAccent,
+                          activeColor: HexColor('#103E68'),
                           value: status,
                           onChanged: (value) {
                             print("VALUE : $value");
@@ -248,7 +248,7 @@ class _ControlPermisosState extends State<ControlPermisos>
                         margin: EdgeInsets.only(left: width / 15),
                         width: width / 5,
                         child: CustomSwitch(
-                          activeColor: Colors.blueAccent,
+                          activeColor: HexColor('#103E68'),
                           value: status,
                           onChanged: (value) {
                             print("VALUE : $value");
