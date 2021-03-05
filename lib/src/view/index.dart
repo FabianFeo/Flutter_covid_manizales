@@ -77,7 +77,7 @@ class _IndexState extends State<Index> {
           ),
           endDrawer: Container(
             padding:  EdgeInsets.only(top: MediaQuery.of(context).size.height/9),
-            margin: EdgeInsets.only(bottom: MediaQuery.of(context).size.height /3),
+            margin: EdgeInsets.only(bottom: MediaQuery.of(context).size.height /3.8),
             width: MediaQuery.of(context).size.width / 1.4,
             height: MediaQuery.of(context).size.height ,
             child: Drawer(

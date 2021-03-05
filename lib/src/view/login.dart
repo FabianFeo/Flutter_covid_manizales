@@ -43,14 +43,14 @@ class _LoginState extends State<Login> {
             children: [
               Container(
                 margin: EdgeInsets.only(right: width / 3),
-                padding: EdgeInsets.only(top: height /8),
+                padding: EdgeInsets.only(top: height / 8),
                 child: Text(
                   'Inicio de sesión',
-                  style:
-                      TextStyle(
-                        color: HexColor('#103E68'), 
-                        fontFamily: 'Roboto-Bold',
-                        fontSize: 24,),
+                  style: TextStyle(
+                    color: HexColor('#103E68'),
+                    fontFamily: 'Roboto-Bold',
+                    fontSize: 24,
+                  ),
                 ),
               ),
               BeautyTextfield(
@@ -114,26 +114,25 @@ class _LoginState extends State<Login> {
                       ),
                       color: HexColor('#103E68'),
                       child: Container(
-                        width: width / 2.5,
-                        height: height / 15,
-                        child: 
-                        Center( child:Text(
-                          "Ingresar",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18,
-                            fontFamily: 'Roboto-Medium',
-                          ),
-                        ),)
-                        
-                      ))),
+                          width: width / 2.5,
+                          height: height / 15,
+                          child: Center(
+                            child: Text(
+                              "Ingresar",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18,
+                                fontFamily: 'Roboto-Medium',
+                              ),
+                            ),
+                          )))),
               Container(
                 margin: EdgeInsets.symmetric(vertical: 50),
                 child: GestureDetector(
-                  child: Center(
-                    child: Text(
+                    child: Center(
+                  child: Text(
                     '¿Olvidaste tu contraseña?',
                     style: TextStyle(
                         color: HexColor('#49657A'),
@@ -141,55 +140,49 @@ class _LoginState extends State<Login> {
                         fontFamily: 'Roboto-Light',
                         decoration: TextDecoration.underline),
                   ),
-                  )
-                ),
-              ),
-              Container(
-                margin: EdgeInsets.only( left: width /3.8, top: height / 55),
-                child: Row(
-                  children: [                    
-                    GestureDetector(
-                        onTap: () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => Registro()),
-                            ),
-                        child: Center(
-                          child: Text(
-                          '¿No tienes cuenta?Regístrate',
-                          style: TextStyle(
-                              color: HexColor('#49657A'),
-                              fontSize: 14,
-                              fontFamily: 'Roboto-Light',
-                              decoration: TextDecoration.underline),
-                        
-                        ) )),
-                  ],
-                ),
+                )),
               ),
               Container(
                 margin: EdgeInsets.symmetric(vertical: 50),
                 child: GestureDetector(
-                  onTap: () {
-                    _preferenceLogin
-                        .typeLogin(false)
-                        .then((value) => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => Index(),
-                            )));
-                  },
-                  child: Center(
-                    child: Text(
-                    'continuar sin registrarme',
+                  onTap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Registro()),
+                            ),
+                    child: Center(
+                  child: Text(
+                    '¿No tienes cuenta?Regístrate',
                     style: TextStyle(
-                        color: HexColor('#103E68'),
-                        fontSize: 18,
-                        fontFamily: 'Raca Bold',
-                        ),
+                        color: HexColor('#49657A'),
+                        fontSize: 14,
+                        fontFamily: 'Roboto-Light',
+                        decoration: TextDecoration.underline),
                   ),
-                  ) 
-                ),
+                )),
+              ),              
+              Container(
+                margin: EdgeInsets.symmetric(vertical: 50),
+                child: GestureDetector(
+                    onTap: () {
+                      _preferenceLogin
+                          .typeLogin(false)
+                          .then((value) => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => Index(),
+                              )));
+                    },
+                    child: Center(
+                      child: Text(
+                        'continuar sin registrarme',
+                        style: TextStyle(
+                          color: HexColor('#103E68'),
+                          fontSize: 18,
+                          fontFamily: 'Raca Bold',
+                        ),
+                      ),
+                    )),
               ),
             ],
           ),
