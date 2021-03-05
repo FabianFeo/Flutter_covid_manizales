@@ -6,10 +6,10 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 class Notification {
   BuildContext context;
-   FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
+  FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
   Notification(this.context);
   initNotification() {
-      flutterLocalNotificationsPlugin = new FlutterLocalNotificationsPlugin();
+    flutterLocalNotificationsPlugin = new FlutterLocalNotificationsPlugin();
     var initializationSettingsAndroid =
         new AndroidInitializationSettings('@mipmap/ic_launcher');
     var initializationSettingsIOS = new IOSInitializationSettings();
@@ -27,7 +27,6 @@ class Notification {
 
   Future onDidReceiveLocalNotification(
       int id, String title, String body, String payload) async {
-    // display a dialog with the notification details, tap ok to go to another page
     var scheduledNotificationDateTime =
         DateTime.now().add(Duration(seconds: 5));
     var android = new AndroidNotificationDetails(
@@ -39,12 +38,8 @@ class Notification {
     );
     var iOS = new IOSNotificationDetails();
     var platform = new NotificationDetails(android: android, iOS: iOS);
-    // await flutterLocalNotificationsPlugin.show(
-    //     0, 'current reminder', 'current reminder', platform,
-    //     payload: 'Awesome');
 
-    // ignore: deprecated_member_use
-    await flutterLocalNotificationsPlugin.schedule(id, title,
-        body, scheduledNotificationDateTime, platform);
+    await flutterLocalNotificationsPlugin.schedule(
+        id, title, body, scheduledNotificationDateTime, platform);
   }
 }
