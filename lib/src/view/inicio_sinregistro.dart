@@ -34,7 +34,7 @@ class _InicioSinRegistroState extends State<InicioSinRegistro>
           onPressed: () => setState(() {
             _sesion = !_sesion;
           }),
-          child: SvgPicture.asset('assets/Imagenes_assets_svg/qr/qr.svg'),
+          child: Image.asset('assets/Imagenes_assetspng/qr/qr.png'),
           backgroundColor: Colors.white,
         ),
       ),

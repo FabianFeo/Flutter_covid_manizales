@@ -34,10 +34,7 @@ class _ReportarContagioState extends State<ReportarContagio> with TickerProvider
           onPressed: () => setState(() {
             _sesion = !_sesion;
           }),
-          child: Icon(
-            Icons.qr_code_rounded,
-            color: Colors.grey,
-          ),
+          child: Image.asset('assets/Imagenes_assetspng/qr/qr.png'),
           backgroundColor: Colors.white,
         ),
       ),

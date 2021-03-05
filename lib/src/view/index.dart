@@ -79,7 +79,7 @@ class _IndexState extends State<Index> {
           ),
           endDrawer: Container(
             padding:  EdgeInsets.only(top: MediaQuery.of(context).size.height/9),
-            margin: EdgeInsets.only(bottom: MediaQuery.of(context).size.height /3),
+            margin: EdgeInsets.only(bottom: MediaQuery.of(context).size.height /3.8),
             width: MediaQuery.of(context).size.width / 1.4,
             height: MediaQuery.of(context).size.height ,
             child: Drawer(
@@ -221,45 +221,50 @@ class _IndexState extends State<Index> {
           bottomNavigationBar: new Theme(
             data: Theme.of(context).copyWith(
                 canvasColor: HexColor('#103E68'),
-                primaryColor: HexColor('#D0EAE5')),
+            ),
             child: BottomNavigationBar(
               selectedIconTheme: IconThemeData(color: HexColor('#D0EAE5')),
               items: <BottomNavigationBarItem>[
                 BottomNavigationBarItem(
-                  icon: SvgPicture.asset(
-                    'assets/Imagenes_assets_svg/iconos/inicio_off.svg',
+                  icon: Image.asset(
+                    'assets/Imagenes_assetspng/íconos/inicio_off.png',
+                    height: 30,
                     color:
                         estados[0] ? HexColor('#D0EAE5') : HexColor('#698596'),
                   ),
                   label: 'Inicio',
                 ),
                 BottomNavigationBarItem(
-                  icon: SvgPicture.asset(
-                    'assets/Imagenes_assets_svg/iconos/contagio_comunas_off.svg',
+                  icon: Image.asset(
+                    'assets/Imagenes_assetspng/íconos/contagio_comunas_off.png',
+                    height: 30,
                     color:
                         estados[1] ? HexColor('#D0EAE5') : HexColor('#698596'),
                   ),
                   label: 'Contagios por comunas y días',
                 ),
                 BottomNavigationBarItem(
-                  icon: SvgPicture.asset(
-                    'assets/Imagenes_assets_svg/iconos/red_contactos_off.svg',
+                  icon: Image.asset(
+                    'assets/Imagenes_assetspng/íconos/red_contactos_off.png',
+                    height: 30,
                     color:
                         estados[2] ? HexColor('#D0EAE5') : HexColor('#698596'),
                   ),
                   label: 'Mi red de contactos',
                 ),
                 BottomNavigationBarItem(
-                  icon: SvgPicture.asset(
-                    'assets/Imagenes_assets_svg/iconos/reportar_off.svg',
+                  icon: Image.asset(
+                    'assets/Imagenes_assetspng/íconos/reportar_off.png',
+                    height: 30,
                     color:
                         estados[3] ? HexColor('#D0EAE5') : HexColor('#698596'),
                   ),
                   label: 'reportar contagio Covid',
                 ),
                 BottomNavigationBarItem(
-                  icon: SvgPicture.asset(
-                    'assets/Imagenes_assets_svg/iconos/vacuna_off.svg',
+                  icon: Image.asset(
+                    'assets/Imagenes_assetspng/íconos/vacuna_off.png',
+                    height: 30,
                     color:
                         estados[4] ? HexColor('#D0EAE5') : HexColor('#698596'),
                   ),

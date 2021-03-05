@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_verification_code/flutter_verification_code.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:hexcolor/hexcolor.dart';
 
 class CodigoSeguridad extends StatefulWidget {
   final String phoneNumber;
@@ -32,21 +33,25 @@ class _CodigoSeguridadState extends State<CodigoSeguridad> {
                 margin: EdgeInsets.symmetric(horizontal: 50, vertical: 60),
                 child: Text('Introduce tu Código de Seguridad',
                     style: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 20,
+                      color: HexColor('#103E68'),
+                      fontSize: 24,
+                      fontFamily: 'Roboto-Bold'
                     )),
               ),
               Container(
                 alignment: Alignment.center,
-                margin: EdgeInsets.only(left: width / 10, bottom: height / 12),
+                margin: EdgeInsets.only(left: width / 10, bottom: height / 12, right: width / 10),
                 child: Text(
                   'Enviaremos un código de 6 digitos a tu numero de teléfono registrado, para verificar tu identidad',
-                  style: TextStyle(color: Colors.grey),
+                  style: TextStyle(color: HexColor('#49657A'),
+                  fontSize: 16,
+                  fontFamily: 'Roboto-Light'),
                 ),
               ),
               VerificationCode(
-                textStyle: TextStyle(fontSize: 20, color: Colors.grey),
-                underlineColor: Colors.black,
+                textStyle: TextStyle(fontSize: 18, color: HexColor('#698596'),
+                ),
+                underlineColor: HexColor('#698596'),
                 keyboardType: TextInputType.number,
                 length: 6,
                 clearAll: Padding(
@@ -54,9 +59,9 @@ class _CodigoSeguridadState extends State<CodigoSeguridad> {
                   child: Text(
                     'Código de Seguridad',
                     style: TextStyle(
-                        fontSize: 14,
+                        fontSize: 16,
                         decoration: TextDecoration.underline,
-                        color: Colors.blue),
+                        color: HexColor('#103E68')),
                   ),
                 ),
                 onCompleted: (String value) {
@@ -91,15 +96,15 @@ class _CodigoSeguridadState extends State<CodigoSeguridad> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15.0),
                       ),
-                      color: Colors.grey,
+                      color: HexColor('#D0EAE5'),
                       child: Container(
                         width: width / 1.5,
                         child: Text(
                           "Verificar",
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
+                            color: HexColor('#103E68'),
+                            fontFamily: 'Roboto-Medium',
                             fontSize: 30,
                           ),
                         ),
