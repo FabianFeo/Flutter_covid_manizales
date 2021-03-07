@@ -1,3 +1,4 @@
+import 'package:aprendiendo/src/view/qrScan.dart';
 import 'package:aprendiendo/src/widget/BottomPermisos.dart';
 import 'package:aprendiendo/src/widget/navbar.dart';
 import 'package:bouncing_widget/bouncing_widget.dart';
@@ -30,14 +31,16 @@ class _InicioSinRegistroState extends State<InicioSinRegistro>
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
       floatingActionButton: Container(
-        child: FloatingActionButton(
-          onPressed: () => setState(() {
-            _sesion = !_sesion;
-          }),
-          child: Image.asset('assets/Imagenes_assetspng/qr/qr.png'),
-          backgroundColor: Colors.white,
-        ),
-      ),
+          child: FloatingActionButton(
+              onPressed: () => setState(() {
+                    _sesion = !_sesion;
+                  }),
+              child: GestureDetector(
+                  child: Image.asset('assets/Imagenes_assetspng/qr/qr.png'),
+                  onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => QrScan()),
+                      )))),
       body: SingleChildScrollView(
         child: Container(
           alignment: Alignment.centerLeft,
