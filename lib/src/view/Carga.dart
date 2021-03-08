@@ -1,3 +1,5 @@
+import 'package:aprendiendo/src/service/locacion.service.dart';
+import 'package:aprendiendo/src/service/login.service.dart';
 import 'package:aprendiendo/src/view/Registro.dart';
 import 'package:aprendiendo/src/view/inicio.dart';
 import 'package:aprendiendo/src/view/login.dart';
@@ -13,18 +15,16 @@ class Carga extends StatefulWidget {
 }
 
 class _CargaState extends State<Carga> {
-
   @override
-    void initState() { 
-      Future.delayed(Duration(seconds: 3),
-      ()=> Navigator.push(
-        context, 
-        MaterialPageRoute(
-          builder: (context) => Login())));
+  void initState() {
+    LocactionService locactionService = LocactionService();
+    locactionService.initLocatioService();
+    Future.delayed(
+        Duration(seconds: 3),
+        () => Navigator.push(
+            context, MaterialPageRoute(builder: (context) => Login())));
     super.initState();
-    
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -36,33 +36,39 @@ class _CargaState extends State<Carga> {
           alignment: Alignment.centerLeft,
           child: Column(
             children: [
-              Image(image: AssetImage('assets/Imagenes_assetspng/logos/textura_apertura.png'),
-              height: height / 4, 
-              width: width,
-              alignment: Alignment.centerLeft,),
-              Image(image: AssetImage('assets/Imagenes_assetspng/logos/logo_apertura.png'),
-              height: height / 7,
+              Image(
+                image: AssetImage(
+                    'assets/Imagenes_assetspng/logos/textura_apertura.png'),
+                height: height / 4,
+                width: width,
+                alignment: Alignment.centerLeft,
+              ),
+              Image(
+                image: AssetImage(
+                    'assets/Imagenes_assetspng/logos/logo_apertura.png'),
+                height: height / 7,
               ),
               Container(
-                padding: EdgeInsets.all(width /6),
-                child:                 
-                Text(                
-                'Sistema de apoyo para alertas tempranas de posibles contagios mediante técnicas de análisis de datos',
-                style: TextStyle(fontFamily:'Roboto-Light', 
-                fontSize: 14, 
-                color: HexColor("#49657A"),
-                
+                padding: EdgeInsets.all(width / 6),
+                child: Text(
+                  'Sistema de apoyo para alertas tempranas de posibles contagios mediante técnicas de análisis de datos',
+                  style: TextStyle(
+                    fontFamily: 'Roboto-Light',
+                    fontSize: 14,
+                    color: HexColor("#49657A"),
+                  ),
+                  textAlign: TextAlign.center,
                 ),
-                textAlign: TextAlign.center,),
-               ),
-              Image(image: AssetImage('assets/Imagenes_assetspng/logos/logos_apertura.png'),
-              height: height / 2.7,)
+              ),
+              Image(
+                image: AssetImage(
+                    'assets/Imagenes_assetspng/logos/logos_apertura.png'),
+                height: height / 2.7,
+              )
             ],
           ),
-          
-          ),
+        ),
       ),
-      
     );
   }
 }
