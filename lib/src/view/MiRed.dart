@@ -1,3 +1,4 @@
+import 'package:aprendiendo/src/view/qrScan.dart';
 import 'package:aprendiendo/src/widget/BottomPermisos.dart';
 import 'package:aprendiendo/src/widget/navbar.dart';
 import 'package:bouncing_widget/bouncing_widget.dart';
@@ -28,17 +29,18 @@ class _MiRedState extends State<MiRed> with TickerProviderStateMixin {
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
         floatingActionButton: Container(
-          child: FloatingActionButton(
-            onPressed: () => setState(() {
-              _sesion = !_sesion;
-            }),
-            child:Image.asset('assets/Imagenes_assetspng/qr/qr.png'),
-            backgroundColor: Colors.white,
-          ),
-        ),
+            child: FloatingActionButton(
+                onPressed: () => setState(() {
+                      _sesion = !_sesion;
+                    }),
+                child: GestureDetector(
+                    child: Image.asset('assets/Imagenes_assetspng/qr/qr.png'),
+                    onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => QrScan()),
+                        )))),
         body: SingleChildScrollView(
           child: Container(
-            
             alignment: Alignment.centerLeft,
             child: Column(
               children: [
@@ -66,9 +68,9 @@ class _MiRedState extends State<MiRed> with TickerProviderStateMixin {
                   child: Text(
                     'Aquí podrás observar el comportamiento del virus dentro de tu red de contactos, sabrás cuantos de tus contactos inscritos en la App, han sido diagnosticados y cál es tu riesgo de contagio',
                     style: TextStyle(
-                      color: HexColor('#49657A'),
-                      fontSize: 16,
-                      fontFamily: 'Roboto-Light'),
+                        color: HexColor('#49657A'),
+                        fontSize: 16,
+                        fontFamily: 'Roboto-Light'),
                   ),
                 ),
                 Container(
@@ -77,13 +79,11 @@ class _MiRedState extends State<MiRed> with TickerProviderStateMixin {
                   padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                   child: Text(
                     'Nota de privacidad: Recuerda que los datos dispuestos a continuación solo pueden ser visualizados por ti y no tienen fines comerciales',
-                    style: TextStyle(
-                      color: HexColor('#103E68')),
+                    style: TextStyle(color: HexColor('#103E68')),
                   ),
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(50), 
-                    color: HexColor('#D0EAE5')
-                  ),
+                      borderRadius: BorderRadius.circular(50),
+                      color: HexColor('#D0EAE5')),
                 ),
                 Image(
                   image: AssetImage('assets/Marca_png/grafo.png'),
@@ -93,22 +93,24 @@ class _MiRedState extends State<MiRed> with TickerProviderStateMixin {
                   margin: EdgeInsets.all(50),
                   child: Text(
                       'Probabilidad de contagio según lugares visitados',
-                      style: TextStyle(color: HexColor('#103E68'), 
-                      fontSize: 18,
-                      fontFamily: 'Roboto-Bold'
-                      )),
+                      style: TextStyle(
+                          color: HexColor('#103E68'),
+                          fontSize: 18,
+                          fontFamily: 'Roboto-Bold')),
                 ),
                 Image(
-                  image: AssetImage('assets/Marca_png/mapa_manizales_barra.png'),
+                  image:
+                      AssetImage('assets/Marca_png/mapa_manizales_barra.png'),
                 ),
                 Container(
                     alignment: Alignment.centerLeft,
                     margin: EdgeInsets.all(30),
                     child: Text(
                       '*Solo puedes visualizar la información de tus contactos que también usan COVIDALERT app. Invita a otros a usarla.',
-                      style: TextStyle(color: HexColor('#49657A'),
-                      fontFamily: 'Roboto-Light',
-                      fontSize: 14),
+                      style: TextStyle(
+                          color: HexColor('#49657A'),
+                          fontFamily: 'Roboto-Light',
+                          fontSize: 14),
                     )),
                 BouncingWidget(
                     duration: Duration(milliseconds: 100),
@@ -122,12 +124,10 @@ class _MiRedState extends State<MiRed> with TickerProviderStateMixin {
                         child: Container(
                           width: width / 2,
                           height: height / 20,
-                          child: 
-                          Text(
+                          child: Text(
                             "Compártela",
                             textAlign: TextAlign.center,
                             style: TextStyle(
-                              
                               color: HexColor('#103E68'),
                               fontFamily: 'Roboto-Medium',
                               fontSize: 16,
