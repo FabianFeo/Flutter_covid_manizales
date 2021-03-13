@@ -11,7 +11,6 @@ import 'package:aprendiendo/src/view/inicio_sinregistro.dart';
 import 'package:aprendiendo/src/view/login.dart';
 import 'package:aprendiendo/src/widget/navbar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:http/http.dart';
 import 'package:permission_handler/permission_handler.dart';

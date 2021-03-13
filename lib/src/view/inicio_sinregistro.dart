@@ -4,7 +4,6 @@ import 'package:bouncing_widget/bouncing_widget.dart';
 import 'package:extended_tabs/extended_tabs.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 class InicioSinRegistro extends StatefulWidget {

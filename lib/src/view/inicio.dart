@@ -10,7 +10,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_tappable_polyline/flutter_map_tappable_polyline.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+
 import 'package:hexcolor/hexcolor.dart';
 
 import 'package:latlong/latlong.dart';
@@ -26,7 +26,7 @@ class _InicioState extends State<Inicio> with TickerProviderStateMixin {
   bool _sesion = false;
   TabController _tabController;
   List<TaggedPolyline> _polygons = List();
-  double _currentSliderValue=0;
+  double _currentSliderValue = 0;
   bool chargeMap = true;
   @override
   void initState() {
@@ -47,10 +47,10 @@ class _InicioState extends State<Inicio> with TickerProviderStateMixin {
           }),
           child: GestureDetector(
             child: Image.asset('assets/Imagenes_assetspng/qr/qr.png'),
-            onTap:()=> Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => QrScan()),
-                            ),
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => QrScan()),
+            ),
           ),
           backgroundColor: Colors.white,
         ),
@@ -88,9 +88,10 @@ class _InicioState extends State<Inicio> with TickerProviderStateMixin {
                 margin: EdgeInsets.all(30),
                 child: Text(
                   'Tendencia del comportamiento de contagio por comunas',
-                  style: TextStyle(color: HexColor('#103E68'),
-                  fontFamily: 'Roboto-Bold',
-                  fontSize: 20),
+                  style: TextStyle(
+                      color: HexColor('#103E68'),
+                      fontFamily: 'Roboto-Bold',
+                      fontSize: 20),
                 ),
               ),
               chargeMap
@@ -107,7 +108,6 @@ class _InicioState extends State<Inicio> with TickerProviderStateMixin {
                           ],
                         ),
                         layers: [
-                       
                           new TappablePolylineLayerOptions(
                               polylineCulling: true,
                               polylines: _polygons,
@@ -117,18 +117,18 @@ class _InicioState extends State<Inicio> with TickerProviderStateMixin {
                         ],
                       ),
                     ),
-                    Slider(
-      value: _currentSliderValue,
-      min: 0,
-      max: 14,
-      divisions: 14,
-      label:getLabelSlider(),
-      onChanged: (double value) {
-        setState(() {
-          _currentSliderValue = value;
-        });
-      },
-    ),
+              Slider(
+                value: _currentSliderValue,
+                min: 0,
+                max: 14,
+                divisions: 14,
+                label: getLabelSlider(),
+                onChanged: (double value) {
+                  setState(() {
+                    _currentSliderValue = value;
+                  });
+                },
+              ),
               Divider(
                 color: HexColor('#49657A'),
               ),
@@ -136,22 +136,25 @@ class _InicioState extends State<Inicio> with TickerProviderStateMixin {
                 alignment: Alignment.topCenter,
                 margin: EdgeInsets.symmetric(vertical: 1, horizontal: 30),
                 child: Text(
-                  'Conoce la probabilidad de contagios por cominas y días en el menú "Contagios por comunas y días"',
-                  style: TextStyle(color: HexColor('#49657A'),
-                  fontFamily: 'Roboto-Light',
-                  fontSize: 16,)
-                ),
+                    'Conoce la probabilidad de contagios por cominas y días en el menú "Contagios por comunas y días"',
+                    style: TextStyle(
+                      color: HexColor('#49657A'),
+                      fontFamily: 'Roboto-Light',
+                      fontSize: 16,
+                    )),
               ),
               Container(
                 alignment: Alignment.topCenter,
                 margin: EdgeInsets.symmetric(vertical: 50, horizontal: 30),
                 child: Text(
                   'O explora la probabilidad de contagio con tu red de contactos en el menú " mi red de contactos", para esta opción debes ingresar tus datos personales.',
-                  style: TextStyle(color: HexColor('#49657A'),
-                  fontFamily: 'Roboto-Light',
-                  fontSize: 16,
+                  style: TextStyle(
+                    color: HexColor('#49657A'),
+                    fontFamily: 'Roboto-Light',
+                    fontSize: 16,
+                  ),
                 ),
-              ),)
+              )
             ],
           ),
         ),
@@ -171,8 +174,7 @@ class _InicioState extends State<Inicio> with TickerProviderStateMixin {
 
   getLabelSlider() {
     DateTime dateTime = DateTime.now();
-   dateTime= dateTime.subtract(Duration(days: _currentSliderValue.toInt()));
+    dateTime = dateTime.subtract(Duration(days: _currentSliderValue.toInt()));
     return DateFormat('dd/MM').format(dateTime);
-    
   }
 }
