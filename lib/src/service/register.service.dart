@@ -12,7 +12,7 @@ class RegistroService {
   PreferenceUser preferenceUser = PreferenceUser();
   Future<String> register(Registration registration) async {
     http.Response response = await http.post(
-        'http://gaia.manizales.unal.edu.co:3200/rest-auth/registration/',
+        'http://168.176.145.73/rest-auth/registration/',
         body: {
           "document_type": registration.document_type,
           "document_number": registration.document_number,

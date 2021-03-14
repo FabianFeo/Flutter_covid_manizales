@@ -15,7 +15,7 @@ class ContactosService {
       return e;
     }).toList();
     http.Response response = await http.post(
-        'http://gaia.manizales.unal.edu.co:3200/core/users/${user["id"]}/contacts/',
+        'http://168.176.145.73/core/users/${user["id"]}/contacts/',
         body: json.encode(contacts),
         headers: {'Authorization': 'JWT ${token}'});
     Map<String, dynamic> body = jsonDecode(response.body);
