@@ -2,6 +2,7 @@ import 'package:aprendiendo/src/view/qrScan.dart';
 import 'package:aprendiendo/src/widget/BottomPermisos.dart';
 import 'package:aprendiendo/src/widget/navbar.dart';
 import 'package:bouncing_widget/bouncing_widget.dart';
+import 'package:date_time_picker/date_time_picker.dart';
 import 'package:extended_tabs/extended_tabs.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -18,6 +19,8 @@ class _ReportarVacunaState extends State<ReportarVacuna>
     with TickerProviderStateMixin {
   bool _sesion = false;
   TabController _tabController;
+  String FirstDose;
+  String SecondDose;
 
   @override
   void initState() {
@@ -77,6 +80,48 @@ class _ReportarVacunaState extends State<ReportarVacuna>
                     fontSize: 16),
               ),
             ),
+             Container(
+                margin: EdgeInsets.all(25),
+                child: DateTimePicker(                  
+                  initialValue: '',
+                  firstDate: DateTime(1920),
+                  lastDate: DateTime(2100),
+                  dateLabelText: 'Fecha primera dosis',
+                  onChanged: (val) {
+                    print(val);
+                    FirstDose = val;
+                  },
+                  validator: (val) {
+                    print(val);
+                    return null;
+                  },
+                  onSaved: (val) {
+                    print(val);
+                    FirstDose = val;
+                  },
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.all(25),
+                child: DateTimePicker(                  
+                  initialValue: '',
+                  firstDate: DateTime(1920),
+                  lastDate: DateTime(2100),
+                  dateLabelText: 'Fecha segunda dosis',
+                  onChanged: (val) {
+                    print(val);
+                    SecondDose = val;
+                  },
+                  validator: (val) {
+                    print(val);
+                    return null;
+                  },
+                  onSaved: (val) {
+                    print(val);
+                    SecondDose = val;
+                  },
+                ),
+              ),
             BouncingWidget(
                 duration: Duration(milliseconds: 100),
                 scaleFactor: 1.5,
