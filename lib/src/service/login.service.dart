@@ -40,7 +40,7 @@ class LoginService {
 
   Future<String> loginOtp(String phoneNumber,String otp) async {
     http.Response response = await http.post(
-        " http://168.176.145.73/core/login/otp/",
+        "http://168.176.145.73/core/login/otp/",
         body: {"phone_number": phoneNumber, "OTP": otp});
     Map<String, dynamic> body = jsonDecode(response.body);
     Map<String, dynamic> data = body['data'];
