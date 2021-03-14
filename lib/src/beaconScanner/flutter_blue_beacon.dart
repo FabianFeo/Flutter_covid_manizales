@@ -16,4 +16,5 @@ class FlutterBlueBeacon {
   Stream scan() {
     return FlutterBlue.instance.scanResults;
   }
+  
 }

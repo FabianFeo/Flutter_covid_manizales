@@ -1,3 +1,7 @@
+import 'dart:async';
+
+import 'package:aprendiendo/src/beaconScanner/beacon.dart';
+import 'package:aprendiendo/src/beaconScanner/flutter_blue_beacon.dart';
 import 'package:aprendiendo/src/service/locacion.service.dart';
 import 'package:aprendiendo/src/service/login.service.dart';
 import 'package:aprendiendo/src/view/Registro.dart';
@@ -5,6 +9,7 @@ import 'package:aprendiendo/src/view/inicio.dart';
 import 'package:aprendiendo/src/view/login.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_blue/flutter_blue.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 class Carga extends StatefulWidget {
@@ -24,6 +29,57 @@ class _CargaState extends State<Carga> {
         () => Navigator.push(
             context, MaterialPageRoute(builder: (context) => Login())));
     super.initState();
+  }
+ bool isScanning = false;
+  Map<String, List<int>> listaRssiBeacons = Map();
+   Map<String, Beacon> beacons = new Map();
+  FlutterBlueBeacon flutterBlueBeacon = FlutterBlueBeacon.instance;
+  StreamSubscription _scanSubscription;
+  _startScan() {
+    _scanSubscription = flutterBlueBeacon.scan().listen((data) {
+      List<List<Beacon>> beacons3 = List();
+      data.forEach((eleemnt) {
+        beacons3.add(Beacon.fromScanResult(eleemnt));
+      });
+      beacons3.forEach((beacons2) {
+        beacons2.forEach((beacon) {
+          if (listaRssiBeacons[beacon.id] == null) {
+            listaRssiBeacons[beacon.id] = new List();
+            List list = listaRssiBeacons[beacon.id];
+            list.add(beacon.rssi);
+            listaRssiBeacons[beacon.id] = list;
+            print('entro');
+          } else {
+            List list = listaRssiBeacons[beacon.id];
+            list.add(beacon.rssi);
+            listaRssiBeacons[beacon.id] = list;
+            print('entro');
+          }
+
+          print('localName: ${beacon.scanResult.advertisementData.localName}');
+          print(
+              'manufacturerData: ${beacon.scanResult.advertisementData.manufacturerData}');
+          print(
+              'serviceData: ${beacon.scanResult.advertisementData.serviceData}');
+
+          setState(() {
+            beacons[beacon.id] = beacon;
+          });
+        });
+      });
+    });
+    FlutterBlue.instance.isScanning.listen((value) {
+      if (!value) {
+        print(listaRssiBeacons);
+        FlutterBlue.instance.startScan(timeout: Duration(seconds: 20));
+        listaRssiBeacons.clear();
+      }
+    });
+    //((Beacon beacon) {
+
+    setState(() {
+      isScanning = true;
+    });
   }
 
   @override
