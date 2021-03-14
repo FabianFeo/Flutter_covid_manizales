@@ -1,3 +1,4 @@
+import 'package:aprendiendo/src/view/grapho.dart';
 import 'package:aprendiendo/src/view/qrScan.dart';
 import 'package:aprendiendo/src/widget/BottomPermisos.dart';
 import 'package:aprendiendo/src/widget/navbar.dart';
@@ -85,11 +86,31 @@ class _MiRedState extends State<MiRed> with TickerProviderStateMixin {
                       borderRadius: BorderRadius.circular(50),
                       color: HexColor('#D0EAE5')),
                 ),
-                CustomPaint(
-                  //                       <-- CustomPaint widget
-                  size: Size(300, 300),
-                  painter: MyPainter(),
-                ),
+                BouncingWidget(
+                    duration: Duration(milliseconds: 100),
+                    scaleFactor: 2,
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => Grafo()));
+                    },
+                    child: Card(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(50.0),
+                        ),
+                        color: HexColor('#D0EAE5'),
+                        child: Container(
+                          width: width / 2,
+                          height: height / 20,
+                          child: Text(
+                            "Ver Grafo",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: HexColor('#103E68'),
+                              fontFamily: 'Roboto-Medium',
+                              fontSize: 16,
+                            ),
+                          ),
+                        ))),
                 Container(
                   alignment: Alignment.centerLeft,
                   margin: EdgeInsets.all(50),
@@ -140,68 +161,5 @@ class _MiRedState extends State<MiRed> with TickerProviderStateMixin {
             ),
           ),
         ));
-  }
-}
-
-class MyPainter extends CustomPainter {
-  //         <-- CustomPainter class
-  List node = [
-    {"id": "(838) 822-3152"},
-    {"id": "(507)127-5742x82681"},
-    {"id": "790-193-7788"},
-    {"id": "8071863828"},
-    {"id": "377-382-9014"},
-    {"id": "(832)899-5296x5232"},
-    {"id": "765-748-5285"},
-    {"id": "(657)324-0617x53594"},
-    {"id": "174-032-5438x2964"},
-    {"infected": true, "id": "(795)831-0785"},
-    {"id": "(496)782-6697"},
-    {"id": "001-795-860-3430"},
-    {"id": "4219415506"},
-    {"id": "995.788.5260x28477"},
-    {"id": "472.010.3963x1521"},
-    {"id": "001-879-125-7247"},
-    {"id": "906-188-5942x04580"},
-    {"id": "(747)518-1764"},
-    {"id": "+1-129-530-5650x28684"}
-  ];
-  List links = [
-    {"weight": 3, "source": "(838) 822-3152", "target": "(507)127-5742x82681"},
-    {"weight": 3, "source": "(838) 822-3152", "target": "(795)831-0785"},
-    {"weight": 3, "source": "(838) 822-3152", "target": "(496)782-6697"},
-    {"weight": 1, "source": "(507)127-5742x82681", "target": "790-193-7788"},
-    {"weight": 3, "source": "(507)127-5742x82681", "target": "8071863828"},
-    {"weight": 3, "source": "(507)127-5742x82681", "target": "377-382-9014"},
-    {
-      "weight": 2,
-      "source": "(507)127-5742x82681",
-      "target": "+1-129-530-5650x28684"
-    },
-    {"weight": 1, "source": "8071863828", "target": "(832)899-5296x5232"},
-    {"weight": 1, "source": "8071863828", "target": "765-748-5285"},
-    {"weight": 1, "source": "8071863828", "target": "(657)324-0617x53594"},
-    {"weight": 1, "source": "8071863828", "target": "174-032-5438x2964"},
-    {"weight": 3, "source": "8071863828", "target": "001-795-860-3430"},
-    {"weight": 1, "source": "8071863828", "target": "4219415506"},
-    {
-      "weight": 1,
-      "source": "174-032-5438x2964",
-      "target": "995.788.5260x28477"
-    },
-    {"weight": 3, "source": "174-032-5438x2964", "target": "472.010.3963x1521"},
-    {"weight": 1, "source": "174-032-5438x2964", "target": "001-879-125-7247"},
-    {"weight": 1, "source": "174-032-5438x2964", "target": "(747)518-1764"},
-    {"weight": 3, "source": "4219415506", "target": "906-188-5942x04580"}
-  ];
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    //                                             <-- Insert your painting code here.
-  }
-
-  @override
-  bool shouldRepaint(CustomPainter old) {
-    return false;
   }
 }
