@@ -84,8 +84,8 @@ class MyPainter extends CustomPainter {
     var initialvauex = 0;
     var initialvauey = 0;
     for (var i = 0; i < node.length; i++) {
-      Offset offset = Offset(random.nextDouble() * (300 - 0) + 50,
-          random.nextDouble() * (300 - 0) + 0);
+      Offset offset = Offset(random.nextDouble() * (300 - 10) + 10,
+          random.nextDouble() * (300 - 50) + 50);
       points.add(offset);
       mapaSource[node[i]['id']] = offset;
     }
@@ -98,7 +98,7 @@ class MyPainter extends CustomPainter {
     links.forEach((element) {
       var paint2 = Paint()
         ..color = Colors.blue
-        ..strokeWidth = double.parse(element['weight'].toString())
+        ..strokeWidth = 3
         ..strokeCap = StrokeCap.round;
       canvas.drawLine(
           mapaSource[element['source']], mapaSource[element['target']], paint2);

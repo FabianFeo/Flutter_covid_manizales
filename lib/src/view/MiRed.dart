@@ -86,31 +86,7 @@ class _MiRedState extends State<MiRed> with TickerProviderStateMixin {
                       borderRadius: BorderRadius.circular(50),
                       color: HexColor('#D0EAE5')),
                 ),
-                BouncingWidget(
-                    duration: Duration(milliseconds: 100),
-                    scaleFactor: 2,
-                    onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Grafo()));
-                    },
-                    child: Card(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(50.0),
-                        ),
-                        color: HexColor('#D0EAE5'),
-                        child: Container(
-                          width: width / 2,
-                          height: height / 20,
-                          child: Text(
-                            "Ver Grafo",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: HexColor('#103E68'),
-                              fontFamily: 'Roboto-Medium',
-                              fontSize: 16,
-                            ),
-                          ),
-                        ))),
+                Container(height: 200,width: 200,),
                 Container(
                   alignment: Alignment.centerLeft,
                   margin: EdgeInsets.all(50),
