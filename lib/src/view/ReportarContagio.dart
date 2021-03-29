@@ -100,6 +100,49 @@ class _ReportarContagioState extends State<ReportarContagio>
                   },
                 ),
               ),
+              Container(
+                margin: EdgeInsets.all(25),
+                child: DateTimePicker(                  
+                  initialValue: '',
+                  firstDate: DateTime(1920),
+                  lastDate: DateTime(2100),
+                  dateLabelText: 'Selecciona el día del test',
+                  onChanged: (val) {
+                    print(val);
+                    ContagionDate = val;
+                  },
+                  validator: (val) {
+                    print(val);
+                    return null;
+                  },
+                  onSaved: (val) {
+                    print(val);
+                    ContagionDate = val;
+                  },
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.all(25),
+                child: DateTimePicker(                  
+                  initialValue: '',
+                  firstDate: DateTime(1920),
+                  lastDate: DateTime(2100),
+                  dateLabelText: 'Indicanos cuando iniciaron los sintomas',
+                  onChanged: (val) {
+                    print(val);
+                    ContagionDate = val;
+                  },
+                  validator: (val) {
+                    print(val);
+                    return null;
+                  },
+                  onSaved: (val) {
+                    print(val);
+                    ContagionDate = val;
+                  },
+                ),
+              ),
+
             BouncingWidget(
                 duration: Duration(milliseconds: 100),
                 scaleFactor: 1.5,
