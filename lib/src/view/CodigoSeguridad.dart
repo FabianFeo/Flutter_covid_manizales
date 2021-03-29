@@ -6,9 +6,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_verification_code/flutter_verification_code.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:pin_code_fields/pin_code_fields.dart';
 
 class CodigoSeguridad extends StatefulWidget {
   final String phoneNumber;
+  
   CodigoSeguridad({Key key, @required this.phoneNumber}) : super(key: key);
 
   @override
@@ -17,6 +19,10 @@ class CodigoSeguridad extends StatefulWidget {
 
 class _CodigoSeguridadState extends State<CodigoSeguridad> {
   String securityCode = null;
+
+  var errorController;
+
+  var textEditingController;
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -48,27 +54,48 @@ class _CodigoSeguridadState extends State<CodigoSeguridad> {
                   fontFamily: 'Roboto-Light'),
                 ),
               ),
-              VerificationCode(
-                textStyle: TextStyle(fontSize: 18, color: HexColor('#698596'),
-                ),
-                underlineColor: HexColor('#698596'),
-                keyboardType: TextInputType.number,
-                length: 6,
-                clearAll: Padding(
-                  padding: const EdgeInsets.all(30),
-                  child: Text(
-                    'Código de Seguridad',
-                    style: TextStyle(
-                        fontSize: 16,
-                        decoration: TextDecoration.underline,
-                        color: HexColor('#103E68')),
+              Container(
+                margin: EdgeInsets.all(22),
+                child: PinCodeTextField(
+                  length: 6,
+                  obscureText: false,
+                  animationType: AnimationType.fade,
+                  pinTheme: PinTheme(
+                    shape: PinCodeFieldShape.box,
+                    borderRadius: BorderRadius.circular(5),
+                    inactiveFillColor: HexColor('#D0EAE5'),
+                    inactiveColor: HexColor('#D0EAE5'),
+                    fieldHeight: 50,
+                    fieldWidth: 40,
+                    selectedColor:  HexColor('#103E68'),
+                    selectedFillColor: HexColor('#D0EAE5'),
+                    activeColor:  HexColor('#103E68'),
+                    activeFillColor: HexColor('#D0EAE5'),
                   ),
+                  animationDuration: Duration(milliseconds: 300),
+                  backgroundColor: Colors.transparent,
+                  enableActiveFill: true,
+                  errorAnimationController: errorController,
+                  controller: textEditingController,
+                  onCompleted: (v) {
+                    print("Completed");
+                  },
+                  onChanged: (value) {
+                    print(value);
+                    setState(() {
+                      securityCode = value;
+                    });
+                  },
+                  beforeTextPaste: (text) {
+                    print("Allowing to paste $text");
+                    //if you return true then it will show the paste confirmation dialog. Otherwise if false, then nothing will happen.
+                    //but you can show anything you want here, like your pop up saying wrong paste format or etc
+                    return true;
+                  },
+                  appContext: context,
                 ),
-                onCompleted: (String value) {
-                  securityCode = value;
-                },
-                onEditing: (bool value) {},
               ),
+             
               BouncingWidget(
                   duration: Duration(milliseconds: 100),
                   scaleFactor: 1.5,

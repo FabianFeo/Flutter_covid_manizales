@@ -294,15 +294,17 @@ class _RegistroState extends State<Registro> {
                               child: Container(
                                 width: width / 2.5,
                                 height: height / 22,
-                                child: Text(
+                                child: Center(
+                                  child: Text(
                                   "Registrarme",
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontFamily: 'Roboto-Medium',
-                                    fontSize: 18,
+                                    fontSize: height / 40,
                                   ),
                                 ),
+                                )
                               ))))),
               Container(
                 margin: EdgeInsets.symmetric(
