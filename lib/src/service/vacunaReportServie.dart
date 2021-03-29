@@ -8,17 +8,18 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class VacunaReportService {
-  report() async {
+  Future<http.Response> report(String firstDose, String lastDosis) async {
     PreferenceToken preferenceToken = PreferenceToken();
     PreferenceUser preferenceUser = PreferenceUser();
     String token = await preferenceToken.getToken();
     http.Response response =
-        await http.post('http://168.176.145.73/report/covid/', body: {
+        await http.post('https://covidalert.com.co/api/report/vaccine/', body: {
       "vaccine_creator": "CureVac",
-      "date_first_dose": "2021-01-09",
-      "date_last_dose": "2021-02-09"
+      "date_first_dose": firstDose,
+      "date_last_dose": lastDosis
     }, headers: {
       'Authorization': 'JWT ${token}'
     });
+    return response;
   }
 }

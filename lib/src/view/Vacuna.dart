@@ -1,3 +1,4 @@
+import 'package:aprendiendo/src/service/vacunaReportServie.dart';
 import 'package:aprendiendo/src/view/qrScan.dart';
 import 'package:aprendiendo/src/widget/BottomPermisos.dart';
 import 'package:aprendiendo/src/widget/navbar.dart';
@@ -6,6 +7,7 @@ import 'package:date_time_picker/date_time_picker.dart';
 import 'package:extended_tabs/extended_tabs.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 class ReportarVacuna extends StatefulWidget {
@@ -19,8 +21,8 @@ class _ReportarVacunaState extends State<ReportarVacuna>
     with TickerProviderStateMixin {
   bool _sesion = false;
   TabController _tabController;
-  String FirstDose;
-  String SecondDose;
+  String firstDose;
+  String lastDose;
 
   @override
   void initState() {
@@ -89,7 +91,7 @@ class _ReportarVacunaState extends State<ReportarVacuna>
                   dateLabelText: 'Fecha primera dosis',
                   onChanged: (val) {
                     print(val);
-                    FirstDose = val;
+                    firstDose = val;
                   },
                   validator: (val) {
                     print(val);
@@ -97,7 +99,7 @@ class _ReportarVacunaState extends State<ReportarVacuna>
                   },
                   onSaved: (val) {
                     print(val);
-                    FirstDose = val;
+                    firstDose = val;
                   },
                 ),
               ),
@@ -110,7 +112,7 @@ class _ReportarVacunaState extends State<ReportarVacuna>
                   dateLabelText: 'Fecha segunda dosis',
                   onChanged: (val) {
                     print(val);
-                    SecondDose = val;
+                    lastDose = val;
                   },
                   validator: (val) {
                     print(val);
@@ -118,14 +120,23 @@ class _ReportarVacunaState extends State<ReportarVacuna>
                   },
                   onSaved: (val) {
                     print(val);
-                    SecondDose = val;
+                    lastDose = val;
                   },
                 ),
               ),
             BouncingWidget(
                 duration: Duration(milliseconds: 100),
                 scaleFactor: 1.5,
-                onPressed: () {},
+                onPressed: () {
+                VacunaReportService vacunaReportService=VacunaReportService();
+                vacunaReportService.report(this.firstDose, lastDose).then((value) => {
+                    Fluttertoast.showToast(
+                          msg: 'Reporte de vacuna creado',
+                          toastLength: Toast.LENGTH_SHORT,
+                          gravity: ToastGravity.CENTER,
+                          timeInSecForIosWeb: 1)
+                });
+                },
                 child: Card(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15.0),

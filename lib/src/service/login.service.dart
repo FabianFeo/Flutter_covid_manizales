@@ -29,7 +29,7 @@ class LoginService {
 
   Future<String> _loginRequest(String phoneNumber) async {
     http.Response response = await http.post(
-        "http://168.176.145.73/core/login/",
+        "https://covidalert.com.co/api/core/login/",
         body: {"phone_number": phoneNumber});
     Map<String, dynamic> body = jsonDecode(response.body);
     if (body['data'].toString() == "Unregistered user") {
@@ -40,7 +40,7 @@ class LoginService {
 
   Future<String> loginOtp(String phoneNumber,String otp) async {
     http.Response response = await http.post(
-        "http://168.176.145.73/core/login/otp/",
+        "https://covidalert.com.co/api/core/login/otp/",
         body: {"phone_number": phoneNumber, "OTP": otp});
     Map<String, dynamic> body = jsonDecode(response.body);
     Map<String, dynamic> data = body['data'];
