@@ -192,7 +192,7 @@ class _ReportarContagioState extends State<ReportarContagio>
                   ),
                   color: HexColor('#D0EAE5'),
                   child: Container(
-                    width: width / 1.9,
+                    width: width / 3,
                     child: Text(
                       "Reportar",
                       textAlign: TextAlign.center,
