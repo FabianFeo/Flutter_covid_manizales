@@ -20,12 +20,24 @@ class _ReportarContagioState extends State<ReportarContagio>
   bool _sesion = false;
   TabController _tabController;
   String ContagionDate;
+  int selectedRadio;
 
   @override
   void initState() {
     _tabController = new TabController(length: 3, vsync: this);
     super.initState();
+
+  @override
+  void initState() {
+    super.initState();
+    selectedRadio = 0;    
+  }  
   }
+
+  setSelectedRadio(int val) {
+    setState(() {
+      selectedRadio = val;
+    });}
 
   @override
   Widget build(BuildContext context) {
@@ -142,6 +154,33 @@ class _ReportarContagioState extends State<ReportarContagio>
                   },
                 ),
               ),
+               Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    Radio(
+                      value: 1,
+                      groupValue: selectedRadio,
+                      activeColor: HexColor('#103E68'),
+                      onChanged: (val) {
+                        print("Radio $val");
+                         "Sintomatico";
+                        setSelectedRadio(val);
+                      },
+                    ),
+                    Text('Sintomatico'),
+                    Radio(
+                      value: 2,
+                      groupValue: selectedRadio,
+                      activeColor: HexColor('#103E68'),
+                      onChanged: (val) {
+                        "Asintomatico";
+                        print("Radio $val");
+                        setSelectedRadio(val);
+                      },
+                    ),
+                    Text('Asintomatico')
+                  ],
+                ),
 
             BouncingWidget(
                 duration: Duration(milliseconds: 100),
@@ -170,3 +209,4 @@ class _ReportarContagioState extends State<ReportarContagio>
     );
   }
 }
+    
