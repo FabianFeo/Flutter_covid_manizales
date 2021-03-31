@@ -20,27 +20,24 @@ class NavBar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: Colors.white,
       automaticallyImplyLeading: false,
       title: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          Text(
-            DateFormat('dd-MM-yyyy').format(dateTime),
-            style: TextStyle(color: HexColor('#103E68'), fontSize: 14),
-          ),
-          Image(
-            image: AssetImage('assets/Marca_png/Logo_CoVIDAlert_positivo.png'),
-            height: height / 20,
-            width: width / 2.3,
+          Container(
+            child: Text(
+              DateFormat('dd-MM-yyyy').format(dateTime),
+              style: TextStyle(color: HexColor('#103E68'), fontSize: 14),
+            ),
           ),
           Container(
-            margin: EdgeInsets.only(left: width / 15),
-            child: GestureDetector(
-              onTap: () => _openEndDrawer(),
-              child: Icon(
-                Icons.reorder_rounded,
-                color: HexColor('#103E68'),
-              ),
+            width: width / 2.5,
+            margin: EdgeInsets.only(right: width / 8),
+            child: Image(
+              image:
+                  AssetImage('assets/Marca_png/Logo_CoVIDAlert_positivo.png'),
+              height: height / 20,
+              width: width / 2.3,
             ),
-          )
+          ),
         ],
       ),
     );

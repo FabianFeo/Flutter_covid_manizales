@@ -77,149 +77,177 @@ class _IndexState extends State<Index> {
             scaffoldKey: _scaffoldKey,
           ),
           endDrawer: Container(
-            padding:  EdgeInsets.only(top: MediaQuery.of(context).size.height/9),
-            margin: EdgeInsets.only(bottom: MediaQuery.of(context).size.height /3.8),
+            padding:
+                EdgeInsets.only(top: MediaQuery.of(context).size.height / 9),
+            margin: EdgeInsets.only(
+                bottom: MediaQuery.of(context).size.height / 3.8),
             width: MediaQuery.of(context).size.width / 1.4,
-            height: MediaQuery.of(context).size.height ,
+            height: MediaQuery.of(context).size.height,
             child: Drawer(
-              child:Container(  
-                
-                child:
-                Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  GestureDetector(
-                    onTap:()=> Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => ControlPermisos()),
+              child: Container(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    GestureDetector(
+                      onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ControlPermisos()),
+                      ),
+                      child: Column(
+                        children: [
+                          Divider(),
+                          Text(
+                            'Control de permisos',
+                            style: TextStyle(
+                              fontFamily: 'Roboto-Medium',
+                              color: HexColor('#103E68'),
+                              fontSize: 16,
                             ),
-                    child: Column(
-                      children: [
-                        Divider(),
-                        Text('Control de permisos', 
-                        style: TextStyle( 
-                          fontFamily: 'Roboto-Medium',
-                          color: HexColor('#103E68'),
-                          fontSize: 16,
-                          ),),
-                        Divider(),
+                          ),
+                          Divider(),
                         ],
-                    ),), 
+                      ),
+                    ),
                     GestureDetector(
-                    child: Column(
-                      children: [                       
-                        Text('Preguntas frecuentes', 
-                        style: TextStyle( 
-                          fontFamily: 'Roboto-Medium',
-                          color: HexColor('#103E68'),
-                          fontSize: 16,
-                          ),),
-                        Divider(),
+                      child: Column(
+                        children: [
+                          Text(
+                            'Preguntas frecuentes',
+                            style: TextStyle(
+                              fontFamily: 'Roboto-Medium',
+                              color: HexColor('#103E68'),
+                              fontSize: 16,
+                            ),
+                          ),
+                          Divider(),
                         ],
-                    ),),
+                      ),
+                    ),
                     GestureDetector(
-                    child: Column(
-                      children: [                        
-                        Text('Política de tratamiento de datos', 
-                        style: TextStyle( 
-                          fontFamily: 'Roboto-Medium',
-                          color: HexColor('#103E68'),
-                          fontSize: 16,
-                          ),),
-                        Divider(),
+                      child: Column(
+                        children: [
+                          Text(
+                            'Política de tratamiento de datos',
+                            style: TextStyle(
+                              fontFamily: 'Roboto-Medium',
+                              color: HexColor('#103E68'),
+                              fontSize: 16,
+                            ),
+                          ),
+                          Divider(),
                         ],
-                    ),),
+                      ),
+                    ),
                     GestureDetector(
-                    child: Column(
-                      children: [                        
-                        Text('Aclaraciones de provacidad', 
-                        style: TextStyle( 
-                          fontFamily: 'Roboto-Medium',
-                          color: HexColor('#103E68'),
-                          fontSize: 16,
-                          ),),
-                        Divider(),
+                      child: Column(
+                        children: [
+                          Text(
+                            'Aclaraciones de provacidad',
+                            style: TextStyle(
+                              fontFamily: 'Roboto-Medium',
+                              color: HexColor('#103E68'),
+                              fontSize: 16,
+                            ),
+                          ),
+                          Divider(),
                         ],
-                    ),),
+                      ),
+                    ),
                     GestureDetector(
-                    child: Column(
-                      children: [                        
-                        Text('Preguntas frecuentes', 
-                        style: TextStyle( 
-                          fontFamily: 'Roboto-Medium',
-                          color: HexColor('#103E68'),
-                          fontSize: 16,
-                          ),),
-                        Divider(),
+                      child: Column(
+                        children: [
+                          Text(
+                            'Preguntas frecuentes',
+                            style: TextStyle(
+                              fontFamily: 'Roboto-Medium',
+                              color: HexColor('#103E68'),
+                              fontSize: 16,
+                            ),
+                          ),
+                          Divider(),
                         ],
-                    ),),
+                      ),
+                    ),
                     GestureDetector(
-                    child: Column(
-                      children: [                        
-                        Text('Sobre Covidalert', 
-                        style: TextStyle( 
-                          fontFamily: 'Roboto-Medium',
-                          color: HexColor('#103E68'),
-                          fontSize: 16,
-                          ),),
-                        Divider(),
+                      child: Column(
+                        children: [
+                          Text(
+                            'Sobre Covidalert',
+                            style: TextStyle(
+                              fontFamily: 'Roboto-Medium',
+                              color: HexColor('#103E68'),
+                              fontSize: 16,
+                            ),
+                          ),
+                          Divider(),
                         ],
-                    ),),
+                      ),
+                    ),
                     GestureDetector(
-                    child: Column(
-                      children: [                        
-                        Text('Ayúdanos con más datos', 
-                        style: TextStyle( 
-                          fontFamily: 'Roboto-Medium',
-                          color: HexColor('#103E68'),
-                          fontSize: 16,
-                          ),),
-                        Divider(),
+                      child: Column(
+                        children: [
+                          Text(
+                            'Ayúdanos con más datos',
+                            style: TextStyle(
+                              fontFamily: 'Roboto-Medium',
+                              color: HexColor('#103E68'),
+                              fontSize: 16,
+                            ),
+                          ),
+                          Divider(),
                         ],
-                    ),),
+                      ),
+                    ),
                     GestureDetector(
-                      onTap: ()  =>  Permission.contacts.request().then((elem)=>  Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => Contactos(permisos:elem.isGranted)),
-                            )),
-                    child: Column(
-                      children: [                        
-                        Text('Invita a tus contactos', 
-                        style: TextStyle( 
-                          fontFamily: 'Roboto-Medium',
-                          color: HexColor('#103E68'),
-                          fontSize: 16,
-                          ),),
-                        Divider(),
+                      onTap: () => Permission.contacts
+                          .request()
+                          .then((elem) => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        Contactos(permisos: elem.isGranted)),
+                              )),
+                      child: Column(
+                        children: [
+                          Text(
+                            'Invita a tus contactos',
+                            style: TextStyle(
+                              fontFamily: 'Roboto-Medium',
+                              color: HexColor('#103E68'),
+                              fontSize: 16,
+                            ),
+                          ),
+                          Divider(),
                         ],
-                    ),),
+                      ),
+                    ),
                     GestureDetector(
-                    child: Column(
-                      children: [                        
-                        Text('Ir al portal web', 
-                        style: TextStyle( 
-                          fontFamily: 'Roboto-Medium',
-                          color: HexColor('#103E68'),
-                          fontSize: 16,
-                          ),),
-                        Divider(),
+                      child: Column(
+                        children: [
+                          Text(
+                            'Ir al portal web',
+                            style: TextStyle(
+                              fontFamily: 'Roboto-Medium',
+                              color: HexColor('#103E68'),
+                              fontSize: 16,
+                            ),
+                          ),
+                          Divider(),
                         ],
-                    ),),
-
-                
-                 
-                ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),),
+          ),
           body: Center(
             child: _widgetOptions.elementAt(_selectedIndex),
           ),
           bottomNavigationBar: new Theme(
             data: Theme.of(context).copyWith(
-                canvasColor: HexColor('#103E68'),
+              canvasColor: HexColor('#103E68'),
             ),
             child: BottomNavigationBar(
               selectedIconTheme: IconThemeData(color: HexColor('#D0EAE5')),
