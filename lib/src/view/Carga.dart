@@ -26,8 +26,9 @@ class _CargaState extends State<Carga> {
     locactionService.initLocatioService();
     Future.delayed(
         Duration(seconds: 3),
-        () => Navigator.push(
-            context, MaterialPageRoute(builder: (context) => Login())));
+        () => {Navigator.of(context).pop(),
+         Navigator.push(
+            context, MaterialPageRoute(builder: (context) => Login()))});
     super.initState();
   }
  bool isScanning = false;

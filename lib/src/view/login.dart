@@ -97,6 +97,7 @@ class _LoginState extends State<Login> {
                             timeInSecForIosWeb: 1);
                       } else {
                         _preferenceLogin.typeLogin(true).then((value) {
+                          Navigator.of(context).pop();
                           Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -167,11 +168,12 @@ class _LoginState extends State<Login> {
                     onTap: () {
                       _preferenceLogin
                           .typeLogin(false)
-                          .then((value) => Navigator.push(
+                          .then((value) => {Navigator.of(context).pop(),
+                            Navigator.push(
                               context,
                               MaterialPageRoute(
                                 builder: (context) => Index(),
-                              )));
+                              ))});
                     },
                     child: Center(
                       child: Text(

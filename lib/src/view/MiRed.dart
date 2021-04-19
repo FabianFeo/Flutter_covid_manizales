@@ -91,7 +91,8 @@ class _MiRedState extends State<MiRed> with TickerProviderStateMixin {
                 ),
                   ),
                 ),
-                Container(height: 200,width: 200,),
+                Container(height: 300,width: 300,                
+                child: Grafo(),),
                 Container(
                   alignment: Alignment.centerLeft,
                   margin: EdgeInsets.all(50),

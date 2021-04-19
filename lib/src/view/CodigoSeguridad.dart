@@ -10,7 +10,7 @@ import 'package:pin_code_fields/pin_code_fields.dart';
 
 class CodigoSeguridad extends StatefulWidget {
   final String phoneNumber;
-  
+
   CodigoSeguridad({Key key, @required this.phoneNumber}) : super(key: key);
 
   @override
@@ -39,19 +39,20 @@ class _CodigoSeguridadState extends State<CodigoSeguridad> {
                 margin: EdgeInsets.symmetric(horizontal: 50, vertical: 60),
                 child: Text('Introduce tu Código de Seguridad',
                     style: TextStyle(
-                      color: HexColor('#103E68'),
-                      fontSize: 24,
-                      fontFamily: 'Roboto-Bold'
-                    )),
+                        color: HexColor('#103E68'),
+                        fontSize: 24,
+                        fontFamily: 'Roboto-Bold')),
               ),
               Container(
                 alignment: Alignment.center,
-                margin: EdgeInsets.only(left: width / 10, bottom: height / 12, right: width / 10),
+                margin: EdgeInsets.only(
+                    left: width / 10, bottom: height / 12, right: width / 10),
                 child: Text(
                   'Enviaremos un código de 6 digitos a tu numero de teléfono registrado, para verificar tu identidad',
-                  style: TextStyle(color: HexColor('#49657A'),
-                  fontSize: 16,
-                  fontFamily: 'Roboto-Light'),
+                  style: TextStyle(
+                      color: HexColor('#49657A'),
+                      fontSize: 16,
+                      fontFamily: 'Roboto-Light'),
                 ),
               ),
               Container(
@@ -67,9 +68,9 @@ class _CodigoSeguridadState extends State<CodigoSeguridad> {
                     inactiveColor: HexColor('#D0EAE5'),
                     fieldHeight: 50,
                     fieldWidth: 40,
-                    selectedColor:  HexColor('#103E68'),
+                    selectedColor: HexColor('#103E68'),
                     selectedFillColor: HexColor('#D0EAE5'),
-                    activeColor:  HexColor('#103E68'),
+                    activeColor: HexColor('#103E68'),
                     activeFillColor: HexColor('#D0EAE5'),
                   ),
                   animationDuration: Duration(milliseconds: 300),
@@ -95,7 +96,6 @@ class _CodigoSeguridadState extends State<CodigoSeguridad> {
                   appContext: context,
                 ),
               ),
-             
               BouncingWidget(
                   duration: Duration(milliseconds: 100),
                   scaleFactor: 1.5,
@@ -107,16 +107,16 @@ class _CodigoSeguridadState extends State<CodigoSeguridad> {
                           gravity: ToastGravity.CENTER,
                           timeInSecForIosWeb: 1);
                     } else {
-                      LoginService loginService=LoginService();
-                      loginService.loginOtp(widget.phoneNumber,securityCode).then((value){
-                        if (value!=null) {
-                         Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => Index()));
+                      LoginService loginService = LoginService();
+                      loginService
+                          .loginOtp(widget.phoneNumber, securityCode)
+                          .then((value) {
+                        if (value != null) {
+                          Navigator.of(context).pop();
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) => Index()));
                         }
                       });
-
                     }
                   },
                   child: Card(

@@ -1,3 +1,4 @@
+import 'package:aprendiendo/src/view/Contactos.dart';
 import 'package:aprendiendo/src/view/qrScan.dart';
 import 'package:aprendiendo/src/widget/BottomPermisos.dart';
 import 'package:aprendiendo/src/widget/navbar.dart';
@@ -115,7 +116,9 @@ class _InicioSinRegistroState extends State<InicioSinRegistro>
               BouncingWidget(
                   duration: Duration(milliseconds: 100),
                   scaleFactor: 1.5,
-                  onPressed: () {},
+                  onPressed: () {Navigator.push(
+            context, MaterialPageRoute(builder: (context) => Contactos(permisos: true,)));
+                  },
                   child: Card(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15.0),

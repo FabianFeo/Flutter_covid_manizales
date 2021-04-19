@@ -69,6 +69,7 @@ class _InicioState extends State<Inicio> with TickerProviderStateMixin {
                         fontFamily: 'Roboto-Bold',
                         fontSize: 24)),
               ),
+              
               Container(
                 alignment: Alignment.centerLeft,
                 margin: EdgeInsets.all(30),

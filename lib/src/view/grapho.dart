@@ -14,12 +14,16 @@ class _GrafoState extends State<Grafo> {
   Widget build(BuildContext context) {
     return Container(
       child: Scaffold(
-        body: CustomPaint(
-          size: Size(600, 300),
+        body: Container( 
+          height: 300,
+          width:  300,
+          child: Center( child:
+          CustomPaint(
+          size: Size(300, 300,),
           painter: MyPainter(),
         ),
       ),
-    );
+    )));
   }
 }
 
@@ -84,8 +88,8 @@ class MyPainter extends CustomPainter {
     var initialvauex = 0;
     var initialvauey = 0;
     for (var i = 0; i < node.length; i++) {
-      Offset offset = Offset(random.nextDouble() * (300 - 10) + 10,
-          random.nextDouble() * (300 - 50) + 50);
+      Offset offset = Offset(random.nextDouble() * (size.height - 10) + 10,
+          random.nextDouble() * (size.width - 50) + 50);
       points.add(offset);
       mapaSource[node[i]['id']] = offset;
     }
