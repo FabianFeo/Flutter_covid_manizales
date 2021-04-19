@@ -75,16 +75,21 @@ class _MiRedState extends State<MiRed> with TickerProviderStateMixin {
                   ),
                 ),
                 Container(
+                  child: Center(
+                    child: Container(
                   alignment: Alignment.centerLeft,
                   margin: EdgeInsets.symmetric(vertical: 5, horizontal: 30),
                   padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                   child: Text(
                     'Nota de privacidad: Recuerda que los datos dispuestos a continuación solo pueden ser visualizados por ti y no tienen fines comerciales',
+                    textAlign: TextAlign.left,
                     style: TextStyle(color: HexColor('#103E68')),
                   ),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(50),
                       color: HexColor('#D0EAE5')),
+                ),
+                  ),
                 ),
                 Container(height: 200,width: 200,),
                 Container(
@@ -111,7 +116,9 @@ class _MiRedState extends State<MiRed> with TickerProviderStateMixin {
                           fontFamily: 'Roboto-Light',
                           fontSize: 14),
                     )),
-                BouncingWidget(
+                    Container(
+                      child: Center(
+                        child:BouncingWidget(
                     duration: Duration(milliseconds: 100),
                     scaleFactor: 2,
                     onPressed: () {},
@@ -123,16 +130,21 @@ class _MiRedState extends State<MiRed> with TickerProviderStateMixin {
                         child: Container(
                           width: width / 2,
                           height: height / 20,
-                          child: Text(
+                          child: Center(
+                            child: Text(
                             "Compártela",
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               color: HexColor('#103E68'),
                               fontFamily: 'Roboto-Medium',
-                              fontSize: 16,
+                              fontSize: 20,
                             ),
                           ),
+                          )
                         ))),
+                      ),
+                    ),
+                
               ],
             ),
           ),
