@@ -130,7 +130,7 @@ class _LoginState extends State<Login> {
                             ),
                           )))),
               Container(
-                margin: EdgeInsets.symmetric(vertical: 50),
+                margin: EdgeInsets.only(top: height / 20),
                 child: GestureDetector(
                     child: Center(
                   child: Text(
@@ -144,7 +144,7 @@ class _LoginState extends State<Login> {
                 )),
               ),
               Container(
-                margin: EdgeInsets.symmetric(vertical: 50),
+                margin: EdgeInsets.only(top: height / 25),
                 child: GestureDetector(
                   onTap: () => Navigator.push(
                               context,
@@ -163,7 +163,7 @@ class _LoginState extends State<Login> {
                 )),
               ),              
               Container(
-                margin: EdgeInsets.symmetric(vertical: 50),
+                margin: EdgeInsets.only(top: height / 25),
                 child: GestureDetector(
                     onTap: () {
                       _preferenceLogin

@@ -1,3 +1,4 @@
+import 'package:aprendiendo/src/view/AnimacionCarga.dart';
 import 'package:aprendiendo/src/view/login.dart';
 import 'package:aprendiendo/src/view/index.dart';
 import 'package:aprendiendo/src/view/prueba.dart';
@@ -11,7 +12,7 @@ class Homepage extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(fontFamily: 'laca'),
-      home: Carga(),
+      home: Animacion(),
     );
   }
 }

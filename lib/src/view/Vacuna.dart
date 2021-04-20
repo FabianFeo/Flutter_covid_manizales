@@ -48,7 +48,7 @@ class _ReportarVacunaState extends State<ReportarVacuna>
                       )))),
       body: SingleChildScrollView(
         child: Container(
-          margin: EdgeInsets.only(top: height / 10),
+          margin: EdgeInsets.only(top: height / 40),
           alignment: Alignment.centerLeft,
           child: Column(children: [
             Container(

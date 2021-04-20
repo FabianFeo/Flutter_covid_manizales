@@ -57,6 +57,7 @@ class _InicioState extends State<Inicio> with TickerProviderStateMixin {
       ),
       body: SingleChildScrollView(
         child: Container(
+          margin: EdgeInsets.only(top: height / 40),
           alignment: Alignment.centerLeft,
           child: Column(
             children: [
