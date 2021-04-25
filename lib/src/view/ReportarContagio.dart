@@ -27,17 +27,18 @@ class _ReportarContagioState extends State<ReportarContagio>
     _tabController = new TabController(length: 3, vsync: this);
     super.initState();
 
-  @override
-  void initState() {
-    super.initState();
-    selectedRadio = 0;    
-  }  
+    @override
+    void initState() {
+      super.initState();
+      selectedRadio = 0;
+    }
   }
 
   setSelectedRadio(int val) {
     setState(() {
       selectedRadio = val;
-    });}
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +83,7 @@ class _ReportarContagioState extends State<ReportarContagio>
             ),
             Container(
               alignment: Alignment.centerLeft,
-              margin: EdgeInsets.all(30),
+              margin: EdgeInsets.only(top: 2, left: 30, right: 30 ),
               child: Text(
                 'Al hacerlo aceptas que verifiquemos está información con las fuentes oficiales.',
                 style: TextStyle(
@@ -91,122 +92,126 @@ class _ReportarContagioState extends State<ReportarContagio>
                     fontSize: 16),
               ),
             ),
-             Container(
-                margin: EdgeInsets.all(25),
-                child: DateTimePicker(                  
-                  initialValue: '',
-                  firstDate: DateTime(1920),
-                  lastDate: DateTime(2100),
-                  dateLabelText: 'Fecha de contagio',
-                  onChanged: (val) {
-                    print(val);
-                    ContagionDate = val;
-                  },
-                  validator: (val) {
-                    print(val);
-                    return null;
-                  },
-                  onSaved: (val) {
-                    print(val);
-                    ContagionDate = val;
-                  },
-                ),
+            Container(
+              margin: EdgeInsets.all(25),
+              child: DateTimePicker(
+                initialValue: '',
+                firstDate: DateTime(1920),
+                lastDate: DateTime(2100),
+                dateLabelText: 'Fecha de contagio',
+                onChanged: (val) {
+                  print(val);
+                  ContagionDate = val;
+                },
+                validator: (val) {
+                  print(val);
+                  return null;
+                },
+                onSaved: (val) {
+                  print(val);
+                  ContagionDate = val;
+                },
               ),
-              Container(
-                margin: EdgeInsets.all(25),
-                child: DateTimePicker(                  
-                  initialValue: '',
-                  firstDate: DateTime(1920),
-                  lastDate: DateTime(2100),
-                  dateLabelText: 'Selecciona el día del test',
-                  onChanged: (val) {
-                    print(val);
-                    ContagionDate = val;
-                  },
-                  validator: (val) {
-                    print(val);
-                    return null;
-                  },
-                  onSaved: (val) {
-                    print(val);
-                    ContagionDate = val;
-                  },
-                ),
+            ),
+            Container(
+              margin: EdgeInsets.all(25),
+              child: DateTimePicker(
+                initialValue: '',
+                firstDate: DateTime(1920),
+                lastDate: DateTime(2100),
+                dateLabelText: 'Selecciona el día del test',
+                onChanged: (val) {
+                  print(val);
+                  ContagionDate = val;
+                },
+                validator: (val) {
+                  print(val);
+                  return null;
+                },
+                onSaved: (val) {
+                  print(val);
+                  ContagionDate = val;
+                },
               ),
-              Container(
-                margin: EdgeInsets.all(25),
-                child: DateTimePicker(                  
-                  initialValue: '',
-                  firstDate: DateTime(1920),
-                  lastDate: DateTime(2100),
-                  dateLabelText: 'Indicanos cuando iniciaron los sintomas',
-                  onChanged: (val) {
-                    print(val);
-                    ContagionDate = val;
-                  },
-                  validator: (val) {
-                    print(val);
-                    return null;
-                  },
-                  onSaved: (val) {
-                    print(val);
-                    ContagionDate = val;
-                  },
-                ),
+            ),
+            Container(
+              margin: EdgeInsets.all(25),
+              child: DateTimePicker(
+                initialValue: '',
+                firstDate: DateTime(1920),
+                lastDate: DateTime(2100),
+                dateLabelText: 'Indicanos cuando iniciaron los sintomas',
+                onChanged: (val) {
+                  print(val);
+                  ContagionDate = val;
+                },
+                validator: (val) {
+                  print(val);
+                  return null;
+                },
+                onSaved: (val) {
+                  print(val);
+                  ContagionDate = val;
+                },
               ),
-               Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: <Widget>[
-                    Radio(
-                      value: 1,
-                      groupValue: selectedRadio,
-                      activeColor: HexColor('#103E68'),
-                      onChanged: (val) {
-                        print("Radio $val");
-                         "Sintomatico";
-                        setSelectedRadio(val);
-                      },
-                    ),
-                    Text('Sintomatico'),
-                    Radio(
-                      value: 2,
-                      groupValue: selectedRadio,
-                      activeColor: HexColor('#103E68'),
-                      onChanged: (val) {
-                        "Asintomatico";
-                        print("Radio $val");
-                        setSelectedRadio(val);
-                      },
-                    ),
-                    Text('Asintomatico')
-                  ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                Radio(
+                  value: 1,
+                  groupValue: selectedRadio,
+                  activeColor: HexColor('#103E68'),
+                  onChanged: (val) {
+                    print("Radio $val");
+                    "Sintomatico";
+                    setSelectedRadio(val);
+                  },
                 ),
-
-            BouncingWidget(
-                duration: Duration(milliseconds: 100),
-                scaleFactor: 1.5,
-                onPressed: () {},
-                child: Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15.0),
-                  ),
-                  color: HexColor('#D0EAE5'),
-                  child: Container(
-                    width: width / 3,
+                Text('Sintomatico'),
+                Radio(
+                  value: 2,
+                  groupValue: selectedRadio,
+                  activeColor: HexColor('#103E68'),
+                  onChanged: (val) {
+                    "Asintomatico";
+                    print("Radio $val");
+                    setSelectedRadio(val);
+                  },
+                ),
+                Text('Asintomatico')
+              ],
+            ),
+            Container(
+                child: Center(
+                    child: BouncingWidget(
+              duration: Duration(milliseconds: 100),
+              scaleFactor: 1.5,
+              onPressed: () {},
+              child: Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(50.0),
+                ),
+                color: HexColor('#D0EAE5'),
+                child: Container(
+                  width: width / 2,
+                  height: height / 20,
+                  child: Center(
                     child: Text(
-                      "Reportar",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          color: HexColor('#103E68'),
-                          fontFamily: 'Roboto-Medium',
-                          fontSize: 18),
-                    ),
+                    "Reportar",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        color: HexColor('#103E68'),
+                        fontFamily: 'Roboto-Medium',
+                        fontSize: 20),
                   ),
-                )),
+                  )
+                ),
+              ),
+            ))),
           ]),
         ),
       ),
     );
   }
 }
-    

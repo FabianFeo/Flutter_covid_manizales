@@ -41,7 +41,7 @@ class _QrScanState extends State<QrScan> {
               child: (result != null)
                   ? Text(
                       'Barcode Type:   Data: ${result.code}')
-                  : Text('Scan a code'),
+                  : Text('Escanea este QR para reportar tu visita a este lugar'),
             ),
           )
         ],

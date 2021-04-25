@@ -147,7 +147,7 @@ class _InicioState extends State<Inicio> with TickerProviderStateMixin {
               ),
               Container(
                 alignment: Alignment.topCenter,
-                margin: EdgeInsets.symmetric(vertical: 50, horizontal: 30),
+                margin: EdgeInsets.symmetric(vertical: 30, horizontal: 30),
                 child: Text(
                   'O explora la probabilidad de contagio con tu red de contactos en el menú " mi red de contactos", para esta opción debes ingresar tus datos personales.',
                   style: TextStyle(

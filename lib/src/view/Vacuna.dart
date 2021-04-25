@@ -73,7 +73,7 @@ class _ReportarVacunaState extends State<ReportarVacuna>
             ),
             Container(
               alignment: Alignment.centerLeft,
-              margin: EdgeInsets.all(30),
+              margin: EdgeInsets.only(top: 2, left: 30, right: 30 ),
               child: Text(
                 'Al hacerlo aceptas que verifiquemos está información con las fuentes oficiales.',
                 style: TextStyle(
@@ -139,19 +139,22 @@ class _ReportarVacunaState extends State<ReportarVacuna>
                 },
                 child: Card(
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15.0),
+                    borderRadius: BorderRadius.circular(50.0),
                   ),
                   color: HexColor('#D0EAE5'),
                   child: Container(
-                    width: width / 3,
-                    child: Text(
+                    width: width / 2,
+                    height: height / 20,
+                    child: Center(
+                      child:  Text(
                       "Reportar",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           color: HexColor('#103E68'),
                           fontFamily: 'Roboto-Medium',
-                          fontSize: 18),
+                          fontSize: 20),
                     ),
+                    )
                   ),
                 )),
           ]),

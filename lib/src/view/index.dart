@@ -86,7 +86,7 @@ class _IndexState extends State<Index> {
             child: Drawer(
               child: Container(
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,                  
                   children: <Widget>[
                     GestureDetector(
                       onTap: () => Navigator.push(
@@ -95,6 +95,7 @@ class _IndexState extends State<Index> {
                             builder: (context) => ControlPermisos()),
                       ),
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           Divider(),
                           Text(
@@ -111,6 +112,7 @@ class _IndexState extends State<Index> {
                     ),
                     GestureDetector(
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           Text(
                             'Preguntas frecuentes',
@@ -126,6 +128,7 @@ class _IndexState extends State<Index> {
                     ),
                     GestureDetector(
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           Text(
                             'Política de tratamiento de datos',
@@ -141,9 +144,10 @@ class _IndexState extends State<Index> {
                     ),
                     GestureDetector(
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           Text(
-                            'Aclaraciones de provacidad',
+                            'Aclaraciones de privacidad',
                             style: TextStyle(
                               fontFamily: 'Roboto-Medium',
                               color: HexColor('#103E68'),
@@ -156,6 +160,7 @@ class _IndexState extends State<Index> {
                     ),
                     GestureDetector(
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           Text(
                             'Preguntas frecuentes',
@@ -171,6 +176,7 @@ class _IndexState extends State<Index> {
                     ),
                     GestureDetector(
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           Text(
                             'Sobre Covidalert',
@@ -186,6 +192,7 @@ class _IndexState extends State<Index> {
                     ),
                     GestureDetector(
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           Text(
                             'Ayúdanos con más datos',
@@ -209,6 +216,7 @@ class _IndexState extends State<Index> {
                                         Contactos(permisos: elem.isGranted)),
                               )),
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           Text(
                             'Invita a tus contactos',
@@ -224,6 +232,7 @@ class _IndexState extends State<Index> {
                     ),
                     GestureDetector(
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           Text(
                             'Ir al portal web',
