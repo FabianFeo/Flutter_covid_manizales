@@ -1,3 +1,4 @@
+import 'package:aprendiendo/src/service/covidReportService.dart';
 import 'package:aprendiendo/src/view/qrScan.dart';
 import 'package:aprendiendo/src/widget/BottomPermisos.dart';
 import 'package:aprendiendo/src/widget/navbar.dart';
@@ -6,6 +7,7 @@ import 'package:date_time_picker/date_time_picker.dart';
 import 'package:extended_tabs/extended_tabs.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 class ReportarContagio extends StatefulWidget {
@@ -20,6 +22,7 @@ class _ReportarContagioState extends State<ReportarContagio>
   bool _sesion = false;
   TabController _tabController;
   String ContagionDate;
+  String testsDate;
   int selectedRadio;
 
   @override
@@ -83,7 +86,7 @@ class _ReportarContagioState extends State<ReportarContagio>
             ),
             Container(
               alignment: Alignment.centerLeft,
-              margin: EdgeInsets.only(top: 2, left: 30, right: 30 ),
+              margin: EdgeInsets.only(top: 2, left: 30, right: 30),
               child: Text(
                 'Al hacerlo aceptas que verifiquemos está información con las fuentes oficiales.',
                 style: TextStyle(
@@ -122,7 +125,7 @@ class _ReportarContagioState extends State<ReportarContagio>
                 dateLabelText: 'Selecciona el día del test',
                 onChanged: (val) {
                   print(val);
-                  ContagionDate = val;
+                  testsDate = val;
                 },
                 validator: (val) {
                   print(val);
@@ -130,7 +133,7 @@ class _ReportarContagioState extends State<ReportarContagio>
                 },
                 onSaved: (val) {
                   print(val);
-                  ContagionDate = val;
+                  testsDate = val;
                 },
               ),
             ),
@@ -187,26 +190,39 @@ class _ReportarContagioState extends State<ReportarContagio>
                     child: BouncingWidget(
               duration: Duration(milliseconds: 100),
               scaleFactor: 1.5,
-              onPressed: () {},
+              onPressed: () {
+                CovidReportService covidReportService = CovidReportService();
+                covidReportService
+                    .report(
+                        testsDate.split('T')[0],
+                        selectedRadio == 1 ? "True" : "False",
+                        ContagionDate.split('T')[0])
+                    .then((value) => {
+                          Fluttertoast.showToast(
+                              msg: 'Reporte de contagio creado',
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.CENTER,
+                              timeInSecForIosWeb: 1)
+                        });
+              },
               child: Card(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(50.0),
                 ),
                 color: HexColor('#D0EAE5'),
                 child: Container(
-                  width: width / 2,
-                  height: height / 20,
-                  child: Center(
-                    child: Text(
-                    "Reportar",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        color: HexColor('#103E68'),
-                        fontFamily: 'Roboto-Medium',
-                        fontSize: 20),
-                  ),
-                  )
-                ),
+                    width: width / 2,
+                    height: height / 20,
+                    child: Center(
+                      child: Text(
+                        "Reportar",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: HexColor('#103E68'),
+                            fontFamily: 'Roboto-Medium',
+                            fontSize: 20),
+                      ),
+                    )),
               ),
             ))),
           ]),
