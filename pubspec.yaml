@@ -55,6 +55,9 @@ dependencies:
   direct_select: "^1.0.0"
   geolocator: ^6.2.0
   pin_code_fields: ^6.1.0
+ 
+  
+  
 
 
 
@@ -64,6 +67,12 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+
+  
+
+
+    
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -92,6 +101,8 @@ flutter:
   - assets/Imagenes_assetspng/logos/logo_apertura.png
   - assets/Imagenes_assetspng/logos/logos_apertura.png
   - assets/Imagenes_assetspng/logos/textura_apertura.png
+  - assets/Imagenes_assetspng/logos/logoapp_sobreclaros.png
+  - assets/Imagenes_assetspng/logos/logoapp_sobreoscuros.png
   - assets/Imagenes_assets_svg/iconos/contagio_comunas_off.svg
   - assets/Imagenes_assets_svg/iconos/inicio_off.svg
   - assets/Imagenes_assets_svg/iconos/red_contactos_off.svg
@@ -153,6 +164,7 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
 
 
   
