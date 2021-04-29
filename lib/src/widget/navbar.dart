@@ -1,4 +1,3 @@
-import 'package:aprendiendo/src/view/ControlPermisos.dart';
 import 'package:date_time_picker/date_time_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -17,29 +16,37 @@ class NavBar extends StatelessWidget implements PreferredSizeWidget {
     double width = MediaQuery.of(context).size.width;
     DateTime dateTime = DateTime.now();
     return AppBar(
-      backgroundColor: Colors.white,
-      automaticallyImplyLeading: false,
-      title: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          Container(
-            child: Text(
-              DateFormat('dd-MM-yyyy').format(dateTime),
-              style: TextStyle(color: HexColor('#103E68'), fontSize: 14),
-            ),
+      backgroundColor: Colors.white,   
+       automaticallyImplyLeading: false,
+      actions: [
+        Container(
+          height: height / 2,
+          width: width / 4,
+          alignment: Alignment.center,
+          margin: EdgeInsets.only(right: width / 11),
+          child: Text(
+            DateFormat('dd-MM-yyyy').format(dateTime),
+            style: TextStyle(color: HexColor('#103E68'), fontSize: 14),
           ),
-          Container(
-            width: width / 2.5,
-            margin: EdgeInsets.only(right: width / 8),
-            child: Image(
-              image:
-                  AssetImage('assets/Marca_png/Logo_CoVIDAlert_positivo.png'),
-              height: height / 20,
-              width: width / 2.3,
-            ),
+        ),
+        Container(
+          width: width / 2.5,
+          margin: EdgeInsets.only(right: width / 6),
+          child: Image(
+            image: AssetImage('assets/Marca_png/Logo_CoVIDAlert_positivo.png'),
+            height: height / 20,
+            width: width / 2.3,
           ),
-        ],
-      ),
+        ),
+        GestureDetector(
+          child: Icon(
+            Icons.dehaze,
+            color: HexColor('#103E68'),
+            size: height / 30,
+          ),
+          onTap: () { _openEndDrawer();},
+        ),
+      ],
     );
   }
 
