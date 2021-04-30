@@ -113,15 +113,15 @@ class ColorSelector extends CustomPainter {
     final paint = Paint()
       ..style = PaintingStyle.fill
       ..strokeWidth = 4.0
-      ..color = nivel == 'Bajo'? Colors.green:Colors.grey;
+      ..color = nivel == 'Bajo'? HexColor('#ED1C24'):Colors.grey;
     final paint2 = Paint()
       ..style = PaintingStyle.fill
       ..strokeWidth = 4.0
-      ..color = nivel == 'Medio'? Colors.orange:Colors.grey;
+      ..color = nivel == 'Medio'? HexColor('#FBB03B'):Colors.grey;
     final paint3 = Paint()
       ..style = PaintingStyle.fill
       ..strokeWidth = 4.0
-      ..color = nivel == 'Alto'? Colors.red:Colors.grey;
+      ..color = nivel == 'Alto'? HexColor('#85C40C'):Colors.grey;
 
     canvas.drawRRect(
       RRect.fromRectAndRadius(

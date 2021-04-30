@@ -86,7 +86,7 @@ class _IndexState extends State<Index> {
             child: Drawer(
               child: Container(
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,                  
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     GestureDetector(
                       onTap: () => Navigator.push(
@@ -259,6 +259,8 @@ class _IndexState extends State<Index> {
               canvasColor: HexColor('#103E68'),
             ),
             child: BottomNavigationBar(
+              showUnselectedLabels: true,
+              unselectedItemColor: HexColor('#698596'),
               selectedIconTheme: IconThemeData(color: HexColor('#D0EAE5')),
               items: <BottomNavigationBarItem>[
                 BottomNavigationBarItem(
