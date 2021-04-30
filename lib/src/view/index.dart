@@ -259,6 +259,7 @@ class _IndexState extends State<Index> {
               canvasColor: HexColor('#103E68'),
             ),
             child: BottomNavigationBar(
+              elevation: 20,
               showUnselectedLabels: true,
               unselectedItemColor: HexColor('#698596'),
               selectedIconTheme: IconThemeData(color: HexColor('#D0EAE5')),
