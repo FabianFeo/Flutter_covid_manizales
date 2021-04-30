@@ -8,7 +8,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class CovidReportService {
-  report() async {
+  Future<void> report(String date_test,String is_symptomatic,String date_symptom) async {
     PreferenceToken preferenceToken = PreferenceToken();
     PreferenceUser preferenceUser = PreferenceUser();
     String token = await preferenceToken.getToken();

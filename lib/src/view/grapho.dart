@@ -20,6 +20,8 @@ class _GrafoState extends State<Grafo> {
           child: Center( child:
           CustomPaint(
           size: Size(300, 300,),
+          willChange: false,
+          isComplex: false,
           painter: MyPainter(),
         ),
       ),
