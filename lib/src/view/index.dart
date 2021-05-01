@@ -70,252 +70,376 @@ class _IndexState extends State<Index> {
           ReportarVacuna(),
         ];
         return Scaffold(
-          endDrawerEnableOpenDragGesture: true,
-          key: _scaffoldKey,
-          backgroundColor: HexColor('#103E68'),
-          appBar: NavBar(
-            scaffoldKey: _scaffoldKey,
-          ),
-          endDrawer: Container(
-            padding:
-                EdgeInsets.only(top: MediaQuery.of(context).size.height / 9),
-            margin: EdgeInsets.only(
-                bottom: MediaQuery.of(context).size.height / 3.8),
-            width: MediaQuery.of(context).size.width / 1.4,
-            height: MediaQuery.of(context).size.height,
-            child: Drawer(
-              child: Container(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    GestureDetector(
-                      onTap: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => ControlPermisos()),
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Divider(),
-                          Text(
-                            'Control de permisos',
-                            style: TextStyle(
-                              fontFamily: 'Roboto-Medium',
-                              color: HexColor('#103E68'),
-                              fontSize: 16,
+            endDrawerEnableOpenDragGesture: true,
+            key: _scaffoldKey,
+            backgroundColor: HexColor('#103E68'),
+            appBar: NavBar(
+              scaffoldKey: _scaffoldKey,
+            ),
+            endDrawer: Container(
+              padding:
+                  EdgeInsets.only(top: MediaQuery.of(context).size.height / 9),
+              margin: EdgeInsets.only(
+                  bottom: MediaQuery.of(context).size.height / 3.8),
+              width: MediaQuery.of(context).size.width / 1.4,
+              height: MediaQuery.of(context).size.height,
+              child: Drawer(
+                child: Container(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      GestureDetector(
+                        onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ControlPermisos()),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Divider(),
+                            Text(
+                              'Control de permisos',
+                              style: TextStyle(
+                                fontFamily: 'Roboto-Medium',
+                                color: HexColor('#103E68'),
+                                fontSize: 16,
+                              ),
                             ),
-                          ),
-                          Divider(),
-                        ],
+                            Divider(),
+                          ],
+                        ),
                       ),
-                    ),
-                    GestureDetector(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Text(
-                            'Preguntas frecuentes',
-                            style: TextStyle(
-                              fontFamily: 'Roboto-Medium',
-                              color: HexColor('#103E68'),
-                              fontSize: 16,
+                      GestureDetector(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Text(
+                              'Preguntas frecuentes',
+                              style: TextStyle(
+                                fontFamily: 'Roboto-Medium',
+                                color: HexColor('#103E68'),
+                                fontSize: 16,
+                              ),
                             ),
-                          ),
-                          Divider(),
-                        ],
+                            Divider(),
+                          ],
+                        ),
                       ),
-                    ),
-                    GestureDetector(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Text(
-                            'Política de tratamiento de datos',
-                            style: TextStyle(
-                              fontFamily: 'Roboto-Medium',
-                              color: HexColor('#103E68'),
-                              fontSize: 16,
+                      GestureDetector(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Text(
+                              'Política de tratamiento de datos',
+                              style: TextStyle(
+                                fontFamily: 'Roboto-Medium',
+                                color: HexColor('#103E68'),
+                                fontSize: 16,
+                              ),
                             ),
-                          ),
-                          Divider(),
-                        ],
+                            Divider(),
+                          ],
+                        ),
                       ),
-                    ),
-                    GestureDetector(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Text(
-                            'Aclaraciones de privacidad',
-                            style: TextStyle(
-                              fontFamily: 'Roboto-Medium',
-                              color: HexColor('#103E68'),
-                              fontSize: 16,
+                      GestureDetector(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Text(
+                              'Aclaraciones de privacidad',
+                              style: TextStyle(
+                                fontFamily: 'Roboto-Medium',
+                                color: HexColor('#103E68'),
+                                fontSize: 16,
+                              ),
                             ),
-                          ),
-                          Divider(),
-                        ],
+                            Divider(),
+                          ],
+                        ),
                       ),
-                    ),
-                    GestureDetector(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Text(
-                            'Preguntas frecuentes',
-                            style: TextStyle(
-                              fontFamily: 'Roboto-Medium',
-                              color: HexColor('#103E68'),
-                              fontSize: 16,
+                      GestureDetector(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Text(
+                              'Preguntas frecuentes',
+                              style: TextStyle(
+                                fontFamily: 'Roboto-Medium',
+                                color: HexColor('#103E68'),
+                                fontSize: 16,
+                              ),
                             ),
-                          ),
-                          Divider(),
-                        ],
+                            Divider(),
+                          ],
+                        ),
                       ),
-                    ),
-                    GestureDetector(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Text(
-                            'Sobre Covidalert',
-                            style: TextStyle(
-                              fontFamily: 'Roboto-Medium',
-                              color: HexColor('#103E68'),
-                              fontSize: 16,
+                      GestureDetector(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Text(
+                              'Sobre Covidalert',
+                              style: TextStyle(
+                                fontFamily: 'Roboto-Medium',
+                                color: HexColor('#103E68'),
+                                fontSize: 16,
+                              ),
                             ),
-                          ),
-                          Divider(),
-                        ],
+                            Divider(),
+                          ],
+                        ),
                       ),
-                    ),
-                    GestureDetector(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Text(
-                            'Ayúdanos con más datos',
-                            style: TextStyle(
-                              fontFamily: 'Roboto-Medium',
-                              color: HexColor('#103E68'),
-                              fontSize: 16,
+                      GestureDetector(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Text(
+                              'Ayúdanos con más datos',
+                              style: TextStyle(
+                                fontFamily: 'Roboto-Medium',
+                                color: HexColor('#103E68'),
+                                fontSize: 16,
+                              ),
                             ),
-                          ),
-                          Divider(),
-                        ],
+                            Divider(),
+                          ],
+                        ),
                       ),
-                    ),
-                    GestureDetector(
-                      onTap: () => Permission.contacts
-                          .request()
-                          .then((elem) => Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        Contactos(permisos: elem.isGranted)),
-                              )),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Text(
-                            'Invita a tus contactos',
-                            style: TextStyle(
-                              fontFamily: 'Roboto-Medium',
-                              color: HexColor('#103E68'),
-                              fontSize: 16,
+                      GestureDetector(
+                        onTap: () => Permission.contacts
+                            .request()
+                            .then((elem) => Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          Contactos(permisos: elem.isGranted)),
+                                )),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Text(
+                              'Invita a tus contactos',
+                              style: TextStyle(
+                                fontFamily: 'Roboto-Medium',
+                                color: HexColor('#103E68'),
+                                fontSize: 16,
+                              ),
                             ),
-                          ),
-                          Divider(),
-                        ],
+                            Divider(),
+                          ],
+                        ),
                       ),
-                    ),
-                    GestureDetector(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Text(
-                            'Ir al portal web',
-                            style: TextStyle(
-                              fontFamily: 'Roboto-Medium',
-                              color: HexColor('#103E68'),
-                              fontSize: 16,
+                      GestureDetector(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Text(
+                              'Ir al portal web',
+                              style: TextStyle(
+                                fontFamily: 'Roboto-Medium',
+                                color: HexColor('#103E68'),
+                                fontSize: 16,
+                              ),
                             ),
-                          ),
-                          Divider(),
-                        ],
+                            Divider(),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
-          ),
-          body: Center(
-            child: _widgetOptions.elementAt(_selectedIndex),
-          ),
-          bottomNavigationBar: new Theme(
-            data: Theme.of(context).copyWith(
-              canvasColor: HexColor('#103E68'),
+            body: Center(
+              child: _widgetOptions.elementAt(_selectedIndex),
             ),
-            child: BottomNavigationBar(
-              showUnselectedLabels: true,
-              unselectedItemColor: HexColor('#698596'),
-              selectedIconTheme: IconThemeData(color: HexColor('#D0EAE5')),
-              items: <BottomNavigationBarItem>[
-                BottomNavigationBarItem(
-                  icon: Image.asset(
-                    'assets/Imagenes_assetspng/íconos/inicio_off.png',
-                    height: 30,
-                    color:
-                        estados[0] ? HexColor('#D0EAE5') : HexColor('#698596'),
-                  ),
-                  label: 'Inicio',
+            bottomNavigationBar: new Container(
+              height: MediaQuery.of(context).size.height / 10,
+              child: SingleChildScrollView( 
+                physics: NeverScrollableScrollPhysics(),
+                child: Theme(
+                data: Theme.of(context).copyWith(
+                  canvasColor: HexColor('#103E68'),
                 ),
-                BottomNavigationBarItem(
-                  icon: Image.asset(
-                    'assets/Imagenes_assetspng/íconos/contagio_comunas_off.png',
-                    height: 30,
-                    color:
-                        estados[1] ? HexColor('#D0EAE5') : HexColor('#698596'),
-                  ),
-                  label: 'Contagios por comunas y días',
+                child: BottomNavigationBar(
+                  showUnselectedLabels: true,
+                  unselectedItemColor: HexColor('#698596'),
+                  selectedIconTheme: IconThemeData(color: HexColor('#D0EAE5')),
+                  items: <BottomNavigationBarItem>[
+                    BottomNavigationBarItem(
+                      icon: Column(
+                        children: [
+                          Container(
+                            child: Image.asset(
+                              'assets/Imagenes_assetspng/íconos/inicio_off.png',
+                              height: 30,
+                              color: estados[0]
+                                  ? HexColor('#D0EAE5')
+                                  : HexColor('#698596'),
+                            ),
+                          ),
+                          Container(
+                            height: MediaQuery.of(context).size.height / 20,
+                            width: MediaQuery.of(context).size.width / 6,
+                            child: Text(
+                              'Inicio',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize:
+                                    MediaQuery.of(context).size.height / 77,
+                                color: estados[0]
+                                    ? HexColor('#D0EAE5')
+                                    : HexColor('#698596'),
+                              ),
+                              maxLines: 3,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          )
+                        ],
+                      ),
+                      label: '',
+                    ),
+                    BottomNavigationBarItem(
+                      icon: Column(
+                        children: [
+                          Container(
+                            child: Image.asset(
+                              'assets/Imagenes_assetspng/íconos/contagio_comunas_off.png',
+                              height: 30,
+                              color: estados[1]
+                                  ? HexColor('#D0EAE5')
+                                  : HexColor('#698596'),
+                            ),
+                          ),
+                          Container(
+                            height: MediaQuery.of(context).size.height / 20,
+                            width: MediaQuery.of(context).size.width / 6,
+                            child: Text(
+                              'Contagios por comunas y días',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize:
+                                    MediaQuery.of(context).size.height / 77,
+                                color: estados[1]
+                                    ? HexColor('#D0EAE5')
+                                    : HexColor('#698596'),
+                              ),
+                              maxLines: 3,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          )
+                        ],
+                      ),
+                      label: '',
+                    ),
+                    BottomNavigationBarItem(
+                      icon: Column(
+                        children: [
+                          Container(
+                            child: Image.asset(
+                              'assets/Imagenes_assetspng/íconos/red_contactos_off.png',
+                              height: 30,
+                              color: estados[2]
+                                  ? HexColor('#D0EAE5')
+                                  : HexColor('#698596'),
+                            ),
+                          ),
+                          Container(
+                            height: MediaQuery.of(context).size.height / 20,
+                            width: MediaQuery.of(context).size.width / 6,
+                            child: Text(
+                              'Mi red de contactos',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize:
+                                    MediaQuery.of(context).size.height / 77,
+                                color: estados[2]
+                                    ? HexColor('#D0EAE5')
+                                    : HexColor('#698596'),
+                              ),
+                              maxLines: 3,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          )
+                        ],
+                      ),
+                      label: '',
+                    ),
+                    BottomNavigationBarItem(
+                      icon: Column(
+                        children: [
+                          Container(
+                            child: Image.asset(
+                              'assets/Imagenes_assetspng/íconos/reportar_off.png',
+                              height: 30,
+                              color: estados[3]
+                                  ? HexColor('#D0EAE5')
+                                  : HexColor('#698596'),
+                            ),
+                          ),
+                          Container(
+                            height: MediaQuery.of(context).size.height / 20,
+                            width: MediaQuery.of(context).size.width / 6,
+                            child: Text(
+                              'Reportar contagio Covid',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize:
+                                    MediaQuery.of(context).size.height / 77,
+                                color: estados[3]
+                                    ? HexColor('#D0EAE5')
+                                    : HexColor('#698596'),
+                              ),
+                              maxLines: 3,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          )
+                        ],
+                      ),
+                      label: '',
+                    ),
+                    BottomNavigationBarItem(
+                      icon:  Column(
+                        children: [
+                          Container(
+                            child: Image.asset(
+                              'assets/Imagenes_assetspng/íconos/vacuna_off.png',
+                              height: 30,
+                              color: estados[4]
+                                  ? HexColor('#D0EAE5')
+                                  : HexColor('#698596'),
+                            ),
+                          ),
+                          Container(
+                            height: MediaQuery.of(context).size.height / 20,
+                            width: MediaQuery.of(context).size.width / 6,
+                            child: Text(
+                              'Reportar vacuna',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize:
+                                    MediaQuery.of(context).size.height / 77,
+                                color: estados[4]
+                                    ? HexColor('#D0EAE5')
+                                    : HexColor('#698596'),
+                              ),
+                              maxLines: 3,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          )
+                        ],
+                      ),
+                      label: '',
+                    ),
+                  ],
+                  currentIndex: _selectedIndex,
+                  selectedItemColor: HexColor('#D0EAE5'),
+                  backgroundColor: HexColor('#103E68'),
+                  onTap: _onItemTapped,
                 ),
-                BottomNavigationBarItem(
-                  icon: Image.asset(
-                    'assets/Imagenes_assetspng/íconos/red_contactos_off.png',
-                    height: 30,
-                    color:
-                        estados[2] ? HexColor('#D0EAE5') : HexColor('#698596'),
-                  ),
-                  label: 'Mi red de contactos',
-                ),
-                BottomNavigationBarItem(
-                  icon: Image.asset(
-                    'assets/Imagenes_assetspng/íconos/reportar_off.png',
-                    height: 30,
-                    color:
-                        estados[3] ? HexColor('#D0EAE5') : HexColor('#698596'),
-                  ),
-                  label: 'reportar contagio Covid',
-                ),
-                BottomNavigationBarItem(
-                  icon: Image.asset(
-                    'assets/Imagenes_assetspng/íconos/vacuna_off.png',
-                    height: 30,
-                    color:
-                        estados[4] ? HexColor('#D0EAE5') : HexColor('#698596'),
-                  ),
-                  label: 'reportar vacuna',
-                ),
-              ],
-              currentIndex: _selectedIndex,
-              selectedItemColor: HexColor('#D0EAE5'),
-              backgroundColor: HexColor('#103E68'),
-              onTap: _onItemTapped,
-            ),
-          ),
-        );
+              ),
+            )));
       },
     );
   }

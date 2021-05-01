@@ -103,8 +103,9 @@ class _InicioState extends State<Inicio> with TickerProviderStateMixin {
                       width: width,
                       child: FlutterMap(
                         options: new MapOptions(
-                          center: new LatLng(5.067, -75.517),
-                          zoom: 13.0,
+                          interactive: false,
+                          center: new LatLng(5.067, -75.489),
+                          zoom: 12.0,
                           plugins: [
                             TappablePolylineMapPlugin(),
                           ],
