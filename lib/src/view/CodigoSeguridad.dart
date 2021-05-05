@@ -125,7 +125,7 @@ class _CodigoSeguridadState extends State<CodigoSeguridad> {
                       ),
                       color: HexColor('#D0EAE5'),
                       child: Container(
-                        width: width / 1.5,
+                        width: width / 2,
                         child: Text(
                           "Verificar",
                           textAlign: TextAlign.center,

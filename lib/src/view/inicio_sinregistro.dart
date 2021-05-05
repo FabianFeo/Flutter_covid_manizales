@@ -114,28 +114,33 @@ class _InicioSinRegistroState extends State<InicioSinRegistro>
                         fontFamily: 'Roboto-Bold')),
               ),
               BouncingWidget(
-                  duration: Duration(milliseconds: 100),
-                  scaleFactor: 1.5,
-                  onPressed: () {Navigator.push(
+                duration: Duration(milliseconds: 100),
+                scaleFactor: 1.5,
+                onPressed: () {
+                  Navigator.push(
             context, MaterialPageRoute(builder: (context) => Contactos(permisos: true,)));
-                  },
-                  child: Card(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15.0),
-                      ),
-                      color: HexColor('#103E68'),
-                      child: Container(
-                        width: width / 1.5,
-                        child: Text(
-                          "Invita a tus contactos",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontFamily: 'Roboto-Medium',
-                            fontSize: 20,
-                          ),
-                        ),
-                      ))),
+
+                },
+                child: Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(50.0),
+                  ),
+                  color: HexColor('#103E68'),
+                  child: Container(
+                    width: width / 2,
+                    height: height / 20,
+                    child: Center(
+                      child:  Text(
+                      "Invita a tus contactos",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontFamily: 'Roboto-Medium',
+                          fontSize: 20),
+                    ),
+                    )
+                  ),
+                )),
             ],
           ),
         ),
