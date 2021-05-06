@@ -35,6 +35,7 @@ class _ReportarVacunaState extends State<ReportarVacuna>
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
+      backgroundColor: HexColor('#D0EAE5'),
       floatingActionButton: Container(
           child: FloatingActionButton(
               onPressed: () => setState(() {
@@ -141,7 +142,7 @@ class _ReportarVacunaState extends State<ReportarVacuna>
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(50.0),
                   ),
-                  color: HexColor('#D0EAE5'),
+                  color: HexColor('#103E68'),
                   child: Container(
                     width: width / 2,
                     height: height / 20,
@@ -150,7 +151,7 @@ class _ReportarVacunaState extends State<ReportarVacuna>
                       "Reportar",
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                          color: HexColor('#103E68'),
+                          color: Colors.white,
                           fontFamily: 'Roboto-Medium',
                           fontSize: 20),
                     ),

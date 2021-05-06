@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
 import 'dart:math';
 
+import 'package:hexcolor/hexcolor.dart';
+
 class Grafo extends StatefulWidget {
   Grafo({Key key}) : super(key: key);
 
@@ -14,6 +16,7 @@ class _GrafoState extends State<Grafo> {
   Widget build(BuildContext context) {
     return Container(
       child: Scaffold(
+        backgroundColor: HexColor('#D0EAE5'),
         body: Container( 
           height: 300,
           width:  300,

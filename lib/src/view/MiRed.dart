@@ -30,6 +30,7 @@ class _MiRedState extends State<MiRed> with TickerProviderStateMixin {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
+      backgroundColor: HexColor('#D0EAE5'),
         floatingActionButton: Container(
             child: FloatingActionButton(
                 onPressed: () => setState(() {
@@ -140,7 +141,7 @@ class _MiRedState extends State<MiRed> with TickerProviderStateMixin {
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(50.0),
                             ),
-                            color: HexColor('#D0EAE5'),
+                            color: HexColor('#103E68'),
                             child: Container(
                                 width: width / 2,
                                 height: height / 20,
@@ -149,7 +150,7 @@ class _MiRedState extends State<MiRed> with TickerProviderStateMixin {
                                     "Compártela",
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
-                                      color: HexColor('#103E68'),
+                                      color:Colors.white,
                                       fontFamily: 'Roboto-Medium',
                                       fontSize: 20,
                                     ),
