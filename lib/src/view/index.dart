@@ -115,27 +115,7 @@ class _IndexState extends State<Index> {
                           ],
                         ),
                       ),
-                      GestureDetector(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            Container(
-                              margin: EdgeInsets.only(
-                                  right:
-                                      MediaQuery.of(context).size.width / 30),
-                              child: Text(
-                                'Preguntas frecuentes',
-                                style: TextStyle(
-                                  fontFamily: 'Roboto-Medium',
-                                  color: HexColor('#103E68'),
-                                  fontSize: 16,
-                                ),
-                              ),
-                            ),
-                            Divider(),
-                          ],
-                        ),
-                      ),
+                      
                       GestureDetector(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.end,
@@ -146,6 +126,7 @@ class _IndexState extends State<Index> {
                                       MediaQuery.of(context).size.width / 30),
                               child: Text(
                                 'Política de tratamiento de datos',
+                                textAlign: TextAlign.right,
                                 style: TextStyle(
                                   fontFamily: 'Roboto-Medium',
                                   color: HexColor('#103E68'),

@@ -28,6 +28,7 @@ class _CodigoSeguridadState extends State<CodigoSeguridad> {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
+      backgroundColor: HexColor('#D0EAE5'),
       body: SingleChildScrollView(
         child: Container(
           margin: EdgeInsets.only(top: height / 10),
@@ -64,14 +65,14 @@ class _CodigoSeguridadState extends State<CodigoSeguridad> {
                   pinTheme: PinTheme(
                     shape: PinCodeFieldShape.box,
                     borderRadius: BorderRadius.circular(5),
-                    inactiveFillColor: HexColor('#D0EAE5'),
-                    inactiveColor: HexColor('#D0EAE5'),
+                    inactiveFillColor: Colors.white,
+                    inactiveColor: HexColor('#103E68'),
                     fieldHeight: 50,
                     fieldWidth: 40,
                     selectedColor: HexColor('#103E68'),
-                    selectedFillColor: HexColor('#D0EAE5'),
+                    selectedFillColor: Colors.white,
                     activeColor: HexColor('#103E68'),
-                    activeFillColor: HexColor('#D0EAE5'),
+                    activeFillColor: Colors.white,
                   ),
                   animationDuration: Duration(milliseconds: 300),
                   backgroundColor: Colors.transparent,
@@ -123,14 +124,14 @@ class _CodigoSeguridadState extends State<CodigoSeguridad> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15.0),
                       ),
-                      color: HexColor('#D0EAE5'),
+                      color: HexColor('#103E68'),
                       child: Container(
                         width: width / 2,
                         child: Text(
                           "Verificar",
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                            color: HexColor('#103E68'),
+                            color: Colors.white,
                             fontFamily: 'Roboto-Medium',
                             fontSize: 30,
                           ),

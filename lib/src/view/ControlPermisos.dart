@@ -29,6 +29,7 @@ class _ControlPermisosState extends State<ControlPermisos>
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
+      backgroundColor: HexColor('#D0EAE5'),
         floatingActionButton: Container(
           child: FloatingActionButton(
             onPressed: () => setState(() {
