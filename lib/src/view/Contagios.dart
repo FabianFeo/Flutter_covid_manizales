@@ -1,10 +1,12 @@
+import 'package:aprendiendo/src/functions/generatePolygons.dart';
 import 'package:aprendiendo/src/view/qrScan.dart';
-import 'package:aprendiendo/src/widget/BottomPermisos.dart';
-import 'package:aprendiendo/src/widget/navbar.dart';
-import 'package:extended_tabs/extended_tabs.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_map/flutter_map.dart';
+import 'package:flutter_map_tappable_polyline/flutter_map_tappable_polyline.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:latlong/latlong.dart';
 
 class Contagios extends StatefulWidget {
   Contagios({Key key}) : super(key: key);
@@ -17,9 +19,12 @@ class _ContagiosState extends State<Contagios> with TickerProviderStateMixin {
   String nivel = 'Bajo';
   bool _sesion = false;
   TabController _tabController;
+  List<TaggedPolyline> _polygons = List();
+  bool chargeMap = true;
   @override
   void initState() {
     _tabController = new TabController(length: 3, vsync: this);
+    genPolygon(context);
     super.initState();
   }
 
@@ -28,7 +33,7 @@ class _ContagiosState extends State<Contagios> with TickerProviderStateMixin {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      backgroundColor: HexColor('#D0EAE5'),
+        backgroundColor: HexColor('#D0EAE5'),
         floatingActionButton: Container(
             child: FloatingActionButton(
                 onPressed: () => setState(() {
@@ -70,7 +75,6 @@ class _ContagiosState extends State<Contagios> with TickerProviderStateMixin {
                     margin: EdgeInsets.only(top: height / 30),
                     padding: EdgeInsets.symmetric(
                         horizontal: width / 40, vertical: height / 30),
-                    
                     child: SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       child: Row(
@@ -94,14 +98,44 @@ class _ContagiosState extends State<Contagios> with TickerProviderStateMixin {
                         fontSize: 16),
                   ),
                 ),
-                Image(
-                  image:
-                      AssetImage('assets/Marca_png/mapa_manizales_barra.png'),
-                ),
+                chargeMap
+                    ? CircularProgressIndicator()
+                    : Container(
+                        height: height / 2,
+                        width: width,
+                        child: FlutterMap(
+                          options: new MapOptions(
+                            interactive: false,
+                            center: new LatLng(5.067, -75.489),
+                            zoom: 12.0,
+                            plugins: [
+                              TappablePolylineMapPlugin(),
+                            ],
+                          ),
+                          layers: [
+                            new TappablePolylineLayerOptions(
+                                polylineCulling: true,
+                                polylines: _polygons,
+                                onTap: (TaggedPolyline polyline) =>
+                                    print(polyline.tag),
+                                onMiss: () => print("No polyline tapped"))
+                          ],
+                        ),
+                      ),
               ],
             ),
           ),
         ));
+  }
+
+  genPolygon(BuildContext context) {
+    GeneratePolygons generatePolygons = GeneratePolygons();
+    generatePolygons.createPolygon(context).then((lista) {
+      setState(() {
+        this._polygons = lista;
+        chargeMap = false;
+      });
+    });
   }
 }
 
@@ -114,15 +148,15 @@ class ColorSelector extends CustomPainter {
     final paint = Paint()
       ..style = PaintingStyle.fill
       ..strokeWidth = 4.0
-      ..color = nivel == 'Bajo'? HexColor('#85C40C'):Colors.grey;
+      ..color = nivel == 'Bajo' ? HexColor('#85C40C') : Colors.grey;
     final paint2 = Paint()
       ..style = PaintingStyle.fill
       ..strokeWidth = 4.0
-      ..color = nivel == 'Medio'? HexColor('#FBB03B'):Colors.grey;
+      ..color = nivel == 'Medio' ? HexColor('#FBB03B') : Colors.grey;
     final paint3 = Paint()
       ..style = PaintingStyle.fill
       ..strokeWidth = 4.0
-      ..color = nivel == 'Alto'? HexColor('#ED1C24'):Colors.grey;
+      ..color = nivel == 'Alto' ? HexColor('#ED1C24') : Colors.grey;
 
     canvas.drawRRect(
       RRect.fromRectAndRadius(

@@ -4,31 +4,32 @@ import 'dart:math';
 
 import 'package:hexcolor/hexcolor.dart';
 
-class Grafo extends StatefulWidget {
-  Grafo({Key key}) : super(key: key);
+class Grafo extends StatelessWidget {
+  const Grafo({Key key}) : super(key: key);
 
-  @override
-  _GrafoState createState() => _GrafoState();
-}
-
-class _GrafoState extends State<Grafo> {
   @override
   Widget build(BuildContext context) {
+    
     return Container(
-      child: Scaffold(
-        backgroundColor: HexColor('#D0EAE5'),
-        body: Container( 
-          height: 300,
-          width:  300,
-          child: Center( child:
-          CustomPaint(
-          size: Size(300, 300,),
-          willChange: false,
-          isComplex: false,
-          painter: MyPainter(),
-        ),
-      ),
-    )));
+      child: Container(
+          child: Scaffold(
+              backgroundColor: HexColor('#D0EAE5'),
+              body: Container(
+                height: 300,
+                width: 300,
+                child: Center(
+                  child: CustomPaint(
+                    size: Size(
+                      300,
+                      300,
+                    ),
+                    willChange: false,
+                    isComplex: false,
+                    painter: MyPainter(),
+                  ),
+                ),
+              ))),
+    );
   }
 }
 

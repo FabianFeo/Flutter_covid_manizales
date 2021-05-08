@@ -1,7 +1,9 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:aprendiendo/src/beaconScanner/beacon.dart';
 import 'package:aprendiendo/src/beaconScanner/flutter_blue_beacon.dart';
+import 'package:aprendiendo/src/functions/PreferenceToken.dart';
 import 'package:aprendiendo/src/service/locacion.service.dart';
 import 'package:aprendiendo/src/service/login.service.dart';
 import 'package:aprendiendo/src/view/Registro.dart';
@@ -24,16 +26,37 @@ class _CargaState extends State<Carga> {
   void initState() {
     LocactionService locactionService = LocactionService();
     locactionService.initLocatioService();
-    Future.delayed(
-        Duration(seconds: 3),
-        () => {Navigator.of(context).pop(),
-         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => Login()))});
+    Future.delayed(Duration(seconds: 3), () {
+      Navigator.of(context).pop();
+      PreferenceToken preferenceToken = PreferenceToken();
+      preferenceToken.getToken().then((value) {
+        if (value != null) {
+          LoginService loginService = LoginService();
+          loginService.changeToken(value).then((value2) {
+            preferenceToken
+                .setToken(jsonDecode(value2.body)['token'])
+                .then((value) => {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => Inicio()))
+                    })
+                .catchError((error) => {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => Login()))
+                    });
+          }).onError((error, stackTrace) => Navigator.push(
+              context, MaterialPageRoute(builder: (context) => Login())));
+        } else {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => Login()));
+        }
+      });
+    });
     super.initState();
   }
- bool isScanning = false;
+
+  bool isScanning = false;
   Map<String, List<int>> listaRssiBeacons = Map();
-   Map<String, Beacon> beacons = new Map();
+  Map<String, Beacon> beacons = new Map();
   FlutterBlueBeacon flutterBlueBeacon = FlutterBlueBeacon.instance;
   StreamSubscription _scanSubscription;
   _startScan() {

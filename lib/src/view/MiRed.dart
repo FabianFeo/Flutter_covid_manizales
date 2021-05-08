@@ -1,3 +1,4 @@
+import 'package:aprendiendo/src/functions/generatePolygons.dart';
 import 'package:aprendiendo/src/view/Contactos.dart';
 import 'package:aprendiendo/src/view/grapho.dart';
 import 'package:aprendiendo/src/view/qrScan.dart';
@@ -7,7 +8,10 @@ import 'package:bouncing_widget/bouncing_widget.dart';
 import 'package:extended_tabs/extended_tabs.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_map/flutter_map.dart';
+import 'package:flutter_map_tappable_polyline/flutter_map_tappable_polyline.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:latlong/latlong.dart';
 
 class MiRed extends StatefulWidget {
   MiRed({Key key}) : super(key: key);
@@ -22,6 +26,7 @@ class _MiRedState extends State<MiRed> with TickerProviderStateMixin {
   @override
   void initState() {
     _tabController = new TabController(length: 3, vsync: this);
+    genPolygon(context);
     super.initState();
   }
 
@@ -30,7 +35,7 @@ class _MiRedState extends State<MiRed> with TickerProviderStateMixin {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      backgroundColor: HexColor('#D0EAE5'),
+        backgroundColor: HexColor('#D0EAE5'),
         floatingActionButton: Container(
             child: FloatingActionButton(
                 onPressed: () => setState(() {
@@ -110,10 +115,30 @@ class _MiRedState extends State<MiRed> with TickerProviderStateMixin {
                           fontSize: 18,
                           fontFamily: 'Roboto-Bold')),
                 ),
-                Image(
-                  image:
-                      AssetImage('assets/Marca_png/mapa_manizales_barra.png'),
-                ),
+                chargeMap
+                    ? CircularProgressIndicator()
+                    : Container(
+                        height: height / 2,
+                        width: width,
+                        child: FlutterMap(
+                          options: new MapOptions(
+                            interactive: false,
+                            center: new LatLng(5.067, -75.489),
+                            zoom: 12.0,
+                            plugins: [
+                              TappablePolylineMapPlugin(),
+                            ],
+                          ),
+                          layers: [
+                            new TappablePolylineLayerOptions(
+                                polylineCulling: true,
+                                polylines: _polygons,
+                                onTap: (TaggedPolyline polyline) =>
+                                    print(polyline.tag),
+                                onMiss: () => print("No polyline tapped"))
+                          ],
+                        ),
+                      ),
                 Container(
                     alignment: Alignment.centerLeft,
                     margin: EdgeInsets.all(30),
@@ -150,7 +175,7 @@ class _MiRedState extends State<MiRed> with TickerProviderStateMixin {
                                     "Compártela",
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
-                                      color:Colors.white,
+                                      color: Colors.white,
                                       fontFamily: 'Roboto-Medium',
                                       fontSize: 20,
                                     ),
@@ -162,5 +187,17 @@ class _MiRedState extends State<MiRed> with TickerProviderStateMixin {
             ),
           ),
         ));
+  }
+
+  List<TaggedPolyline> _polygons = List();
+  bool chargeMap = true;
+  genPolygon(BuildContext context) {
+    GeneratePolygons generatePolygons = GeneratePolygons();
+    generatePolygons.createPolygon(context).then((lista) {
+      setState(() {
+        this._polygons = lista;
+        chargeMap = false;
+      });
+    });
   }
 }

@@ -28,8 +28,9 @@ class GeneratePolygons {
           tag: element['properties']['NOMBRES_CO'],
           strokeWidth: 3.0,
           color: Colors.red,
-          borderColor: Colors.red,
-          gradientColors: [Colors.red]
+          borderColor: Colors.white,
+          gradientColors: [Colors.red],
+          colorsStop: Colors.red
         );
       lista.add(polygon);
 

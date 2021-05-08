@@ -9,7 +9,7 @@ import 'package:http/http.dart' as http;
 class LoginService {
   PreferenceToken preferenceToken = PreferenceToken();
   PreferenceUser preferenceUser = PreferenceUser();
- 
+
   Future login(String phoneNumber, BuildContext context) async {
     String otp = await _loginRequest(phoneNumber);
     if (otp == "Unregistered user") {
@@ -18,11 +18,11 @@ class LoginService {
       nt.Notification notification = nt.Notification(context);
       notification.initNotification();
       notification.onDidReceiveLocalNotification(
-          0,
-          'Codigo de seguridad',
-          'Tu codigo de seguridad es: ${otp}',
-          'Tu codigo de seguridad es: ${otp}',
-          );
+        0,
+        'Codigo de seguridad',
+        'Tu codigo de seguridad es: ${otp}',
+        'Tu codigo de seguridad es: ${otp}',
+      );
       return 'codigoEnviado';
     }
   }
@@ -38,7 +38,7 @@ class LoginService {
     return body['data']['OTP'].toString();
   }
 
-  Future<String> loginOtp(String phoneNumber,String otp) async {
+  Future<String> loginOtp(String phoneNumber, String otp) async {
     http.Response response = await http.post(
         "https://covidalert.com.co/api/core/login/otp/",
         body: {"phone_number": phoneNumber, "OTP": otp});
@@ -47,5 +47,12 @@ class LoginService {
     preferenceToken.setToken(data['token']);
     preferenceUser.setUser(json.encode(data['user']));
     return 'entro';
+  }
+
+  Future<http.Response> changeToken(String token) async {
+    http.Response response = await http.post(
+        "https://covidalert.com.co/api/api-token-refresh/",
+        body: {'token': token});
+    return response;
   }
 }
