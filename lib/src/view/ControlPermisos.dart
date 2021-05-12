@@ -1,3 +1,8 @@
+import 'package:aprendiendo/src/service/camareConfirService.dart';
+import 'package:aprendiendo/src/service/iotConfigService.dart';
+import 'package:aprendiendo/src/service/locationConfigservice.dart';
+import 'package:aprendiendo/src/service/mejorarConfigService.dart';
+import 'package:aprendiendo/src/service/rastreoConfigService.dart';
 import 'package:aprendiendo/src/widget/navbar.dart';
 import 'package:custom_switch/custom_switch.dart';
 import 'package:extended_tabs/extended_tabs.dart';
@@ -17,6 +22,11 @@ class _ControlPermisosState extends State<ControlPermisos>
   bool _sesion = false;
   bool status = false;
   TabController _tabController;
+  LocationConfigService _locationConfigService = LocationConfigService();
+  MejorarConfigService _mejorarConfigService = MejorarConfigService();
+  RastreoConfigService _rastreoConfigService = RastreoConfigService();
+  IotConfigService _iotConfigService = IotConfigService();
+  CamaraConfigService _camaraConfigService = CamaraConfigService();
 
   @override
   void initState() {
@@ -70,7 +80,11 @@ class _ControlPermisosState extends State<ControlPermisos>
                   ),
                 ),
                 Divider(color: HexColor('#103E68')),
-                Row(
+                FutureBuilder(
+                  future: _locationConfigService.getLocationConfig(),
+                  builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+                    return snapshot.data != null
+                    ? Row(
                   children: [
                     Container(
                       padding: EdgeInsets.symmetric(vertical: 30, horizontal: 10),
@@ -89,16 +103,17 @@ class _ControlPermisosState extends State<ControlPermisos>
                         width: width / 5,
                         child: CustomSwitch(
                           activeColor: HexColor('#103E68'),
-                          value: status,
-                          onChanged: (value) {
-                            print("VALUE : $value");
-                            setState(() {
-                              status = value;
-                            });
+                          value: snapshot.data,
+                          onChanged: (bool position) {
+                           _locationConfigService.saveLocationConfig(position);
                           },
                         )),
                   ],
-                ),
+                )
+                :
+                CircularProgressIndicator();
+                  }),
+                
                 Container(
                   alignment: Alignment.topCenter,
                   margin: EdgeInsets.symmetric(vertical: 1, horizontal: 30),
@@ -110,15 +125,19 @@ class _ControlPermisosState extends State<ControlPermisos>
                       fontFamily: 'Robnoto-Light'),
                   ),
                 ),
-                Row(
+                FutureBuilder(
+                  future: _camaraConfigService.getCamaraConfigService(),
+                  builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+                    return snapshot.data != null
+                    ? Row(
                   children: [
                     Container(
                       padding: EdgeInsets.symmetric(vertical: 30, horizontal: 10),
                       margin: EdgeInsets.only(left: width / 13),
                       width: width / 2,
                       child: Text(
-                        'Cámara',
-                        style:TextStyle(
+                        'Camara',
+                        style: TextStyle(
                           color: HexColor('#103E68'),
                           fontFamily: 'Roboto-Bold',
                           fontSize: 18),
@@ -129,17 +148,17 @@ class _ControlPermisosState extends State<ControlPermisos>
                         width: width / 5,
                         child: CustomSwitch(
                           activeColor: HexColor('#103E68'),
-                          
-                          value: status,
-                          onChanged: (value) {
-                            print("VALUE : $value");
-                            setState(() {
-                              status = value;
-                            });
+                          value: snapshot.data,
+                          onChanged: (bool position) {
+                           _camaraConfigService.saveCamaraConfig(position);
                           },
                         )),
                   ],
-                ),
+                )
+                :
+                CircularProgressIndicator();
+                  }),
+                
                 Container(
                   alignment: Alignment.topCenter,
                   margin: EdgeInsets.symmetric(vertical: 1, horizontal: 30),
@@ -151,7 +170,11 @@ class _ControlPermisosState extends State<ControlPermisos>
                       fontFamily: 'Robnoto-Light'),
                   ),
                 ),
-                Row(
+                FutureBuilder(
+                  future: _iotConfigService.getIotConfigService(),
+                  builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+                    return snapshot.data != null
+                    ? Row(
                   children: [
                     Container(
                       padding: EdgeInsets.symmetric(vertical: 30, horizontal: 10),
@@ -170,16 +193,17 @@ class _ControlPermisosState extends State<ControlPermisos>
                         width: width / 5,
                         child: CustomSwitch(
                           activeColor: HexColor('#103E68'),
-                          value: status,
-                          onChanged: (value) {
-                            print("VALUE : $value");
-                            setState(() {
-                              status = value;
-                            });
+                          value: snapshot.data,
+                          onChanged: (bool position) {
+                           _iotConfigService.saveIotConfig(position);
                           },
                         )),
                   ],
-                ),
+                )
+                :
+                CircularProgressIndicator();
+                  }),
+                
                 Container(
                   alignment: Alignment.topLeft,
                   margin: EdgeInsets.symmetric(vertical: 1, horizontal: 30),
@@ -191,7 +215,11 @@ class _ControlPermisosState extends State<ControlPermisos>
                       fontFamily: 'Robnoto-Light'),
                   ),
                 ),
-                Row(
+                FutureBuilder(
+                  future: _mejorarConfigService.getMejorarConfigService(),
+                  builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+                    return snapshot.data != null
+                    ? Row(
                   children: [
                     Container(
                       padding: EdgeInsets.symmetric(vertical: 30, horizontal: 10),
@@ -210,16 +238,17 @@ class _ControlPermisosState extends State<ControlPermisos>
                         width: width / 5,
                         child: CustomSwitch(
                           activeColor: HexColor('#103E68'),
-                          value: status,
-                          onChanged: (value) {
-                            print("VALUE : $value");
-                            setState(() {
-                              status = value;
-                            });
+                          value: snapshot.data,
+                          onChanged: (bool position) {
+                           _mejorarConfigService.saveMejorarConfig(position);
                           },
                         )),
                   ],
-                ),
+                )
+                :
+                CircularProgressIndicator();
+                  }),
+               
                 Container(
                   alignment: Alignment.topLeft,
                   margin: EdgeInsets.symmetric(vertical: 1, horizontal: 30),
@@ -231,7 +260,11 @@ class _ControlPermisosState extends State<ControlPermisos>
                       fontFamily: 'Robnoto-Light'),
                   ),
                 ),
-                Row(
+                FutureBuilder(
+                  future: _rastreoConfigService.getRastreoConfigService(),
+                  builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+                    return snapshot.data != null
+                    ? Row(
                   children: [
                     Container(
                       padding: EdgeInsets.symmetric(vertical: 30, horizontal: 10),
@@ -250,16 +283,17 @@ class _ControlPermisosState extends State<ControlPermisos>
                         width: width / 5,
                         child: CustomSwitch(
                           activeColor: HexColor('#103E68'),
-                          value: status,
-                          onChanged: (value) {
-                            print("VALUE : $value");
-                            setState(() {
-                              status = value;
-                            });
+                          value: snapshot.data,
+                          onChanged: (bool position) {
+                           _rastreoConfigService.saveRastreoConfig(position);
                           },
                         )),
                   ],
-                ),
+                )
+                :
+                CircularProgressIndicator();
+                  }),
+                
                 Container(
                   alignment: Alignment.topLeft,
                   margin: EdgeInsets.symmetric(vertical: 1, horizontal: 30),

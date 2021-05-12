@@ -30,7 +30,7 @@ class GeneratePolygons {
           color: Colors.red,
           borderColor: Colors.white,
           gradientColors: [Colors.red],
-          colorsStop: Colors.red
+          
         );
       lista.add(polygon);
 
