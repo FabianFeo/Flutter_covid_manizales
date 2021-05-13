@@ -193,6 +193,7 @@ class _MiRedState extends State<MiRed> with TickerProviderStateMixin {
   bool chargeMap = true;
   genPolygon(BuildContext context) {
     GeneratePolygons generatePolygons = GeneratePolygons();
+
     generatePolygons.createPolygon(context).then((lista) {
       setState(() {
         this._polygons = lista;

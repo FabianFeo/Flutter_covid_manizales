@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:flutter_map_tappable_polyline/flutter_map_tappable_polyline.dart';
+import 'package:hexcolor/hexcolor.dart';
 import 'package:latlong/latlong.dart';
 
 class GeneratePolygons {
@@ -27,9 +28,9 @@ class GeneratePolygons {
           points: polygonsPoints,
           tag: element['properties']['NOMBRES_CO'],
           strokeWidth: 3.0,
-          color: Colors.red,
+          color: Colors.grey,
           borderColor: Colors.white,
-          gradientColors: [Colors.red],
+          gradientColors: [Colors.white],
           
         );
       lista.add(polygon);
