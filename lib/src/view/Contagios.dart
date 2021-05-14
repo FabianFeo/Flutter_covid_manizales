@@ -75,8 +75,7 @@ class _ContagiosState extends State<Contagios> with TickerProviderStateMixin {
                     margin: EdgeInsets.only(top: height / 30),
                     padding: EdgeInsets.symmetric(
                         horizontal: width / 40, vertical: height / 30),
-                    child: SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
+                    child: Center(
                       child: Row(
                         children: [
                           Container(
