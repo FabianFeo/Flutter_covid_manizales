@@ -22,7 +22,7 @@ class Carga extends StatefulWidget {
 }
 
 class _CargaState extends State<Carga> {
-  BuildContext buildContext;
+  BuildContext _buildContext;
   @override
   void initState() {
     LocactionService locactionService = LocactionService();
@@ -37,18 +37,22 @@ class _CargaState extends State<Carga> {
             preferenceToken
                 .setToken(jsonDecode(value2.body)['token'])
                 .then((value) => {
-                      Navigator.push(buildContext,
-                          MaterialPageRoute(builder: (context) => Inicio()))
+                      Navigator.push(
+                          _buildContext,
+                          MaterialPageRoute(
+                              builder: (_buildContext) => Inicio()))
                     })
                 .catchError((error) => {
-                      Navigator.push(buildContext,
-                          MaterialPageRoute(builder: (context) => Login()))
+                      Navigator.push(
+                          _buildContext,
+                          MaterialPageRoute(
+                              builder: (_buildContext) => Login()))
                     });
-          }).onError((error, stackTrace) => Navigator.push(
-              buildContext, MaterialPageRoute(builder: (context) => Login())));
+          }).onError((error, stackTrace) => Navigator.push(_buildContext,
+              MaterialPageRoute(builder: (_buildContext) => Login())));
         } else {
-          Navigator.push(
-              buildContext, MaterialPageRoute(builder: (context) => Login()));
+          Navigator.push(_buildContext,
+              MaterialPageRoute(builder: (_buildContext) => Login()));
         }
       });
     });
@@ -109,7 +113,7 @@ class _CargaState extends State<Carga> {
 
   @override
   Widget build(BuildContext context) {
-    buildContext=context;
+    _buildContext = context;
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
