@@ -22,6 +22,7 @@ class Carga extends StatefulWidget {
 }
 
 class _CargaState extends State<Carga> {
+  BuildContext buildContext;
   @override
   void initState() {
     LocactionService locactionService = LocactionService();
@@ -36,18 +37,18 @@ class _CargaState extends State<Carga> {
             preferenceToken
                 .setToken(jsonDecode(value2.body)['token'])
                 .then((value) => {
-                      Navigator.push(context,
+                      Navigator.push(buildContext,
                           MaterialPageRoute(builder: (context) => Inicio()))
                     })
                 .catchError((error) => {
-                      Navigator.push(context,
+                      Navigator.push(buildContext,
                           MaterialPageRoute(builder: (context) => Login()))
                     });
           }).onError((error, stackTrace) => Navigator.push(
-              context, MaterialPageRoute(builder: (context) => Login())));
+              buildContext, MaterialPageRoute(builder: (context) => Login())));
         } else {
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => Login()));
+              buildContext, MaterialPageRoute(builder: (context) => Login()));
         }
       });
     });
@@ -108,6 +109,7 @@ class _CargaState extends State<Carga> {
 
   @override
   Widget build(BuildContext context) {
+    buildContext=context;
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
