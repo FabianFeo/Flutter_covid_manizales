@@ -118,7 +118,8 @@ class _MiRedState extends State<MiRed> with TickerProviderStateMixin {
                 chargeMap
                     ? CircularProgressIndicator()
                     : Container(
-                        height: height / 2,
+                      color: Colors.white,
+                        height: height / 3,
                         width: width,
                         child: FlutterMap(
                           options: new MapOptions(
@@ -149,6 +150,7 @@ class _MiRedState extends State<MiRed> with TickerProviderStateMixin {
                           fontFamily: 'Roboto-Light',
                           fontSize: 14),
                     )),
+                    
                 Container(
                   child: Center(
                     child: BouncingWidget(

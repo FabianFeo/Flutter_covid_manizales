@@ -100,7 +100,8 @@ class _ContagiosState extends State<Contagios> with TickerProviderStateMixin {
                 chargeMap
                     ? CircularProgressIndicator()
                     : Container(
-                        height: height / 2,
+                      color: Colors.white,
+                        height: height / 3,
                         width: width,
                         child: FlutterMap(
                           options: new MapOptions(
