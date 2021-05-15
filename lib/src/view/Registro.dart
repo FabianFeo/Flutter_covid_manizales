@@ -48,6 +48,7 @@ class _RegistroState extends State<Registro> {
     double width = MediaQuery.of(context).size.width;
 
     return Scaffold(
+      backgroundColor: HexColor('#D0EAE5'),
       appBar: NavBar(),
       body: SingleChildScrollView(
         child: Container(
@@ -62,28 +63,27 @@ class _RegistroState extends State<Registro> {
                           color: HexColor('#103E68'),
                           fontFamily: 'Roboto-Bold',
                           fontSize: 24))),
-
-
-              
               Container(
                   margin: EdgeInsets.only(top: height / 25),
                   width: width / 1.2,
                   height: height / 13,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(50.0),
-                    color: Colors.transparent,
+                    color: Colors.white,
                     border: Border.all(color: Colors.grey, width: 1),
                   ),
                   child: DropdownButtonHideUnderline(
                       child: DropdownButton<String>(
-                          value: null,
+                          value: _myActivity,
                           icon: const Icon(Icons.arrow_downward),
                           hint: Container(
                             margin: EdgeInsets.only(left: width / 8),
                             child: Text(
-                            'Tipo de documento',
-                            style: TextStyle(color: HexColor('#698596'), fontWeight: FontWeight.w500),
-                          ),
+                              'Tipo de documento',
+                              style: TextStyle(
+                                  color: HexColor('#698596'),
+                                  fontWeight: FontWeight.w500),
+                            ),
                           ),
                           iconSize: 24,
                           elevation: 16,
@@ -100,47 +100,28 @@ class _RegistroState extends State<Registro> {
                             registration.document_type = value;
                           },
                           items: [
-                          ]))),
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(50.0),
-                  color: Colors.white,
-                  border: Border.all(color: Colors.grey, width: 0.5),
-                ),
-                margin: EdgeInsets.all(25),
-                child: DropDownFormField(
-                  titleText: 'Tipo de Documento',
-                  hintText: '',
-                  value: _myActivity,
-                  onSaved: (value) {
-                    setState(() {
-                      _myActivity = value;
-                    });
-                  },
-                  onChanged: (value) {
-                    setState(() {
-                      _myActivity = value;
-                    });
-                    registration.document_type = value;
-                  },
-                  dataSource: [
-                    {
-                      "display": "C.C",
-                      "value": "CC",
-                    },
-                    {
-                      "display": "C.E",
-                      "value": "CE",
-                    },
-                    {
-                      "display": "T.I",
-                      "value": "TI",
-                    },
-                  ],
-                  textField: 'display',
-                  valueField: 'value',
-                ),
-              ),
+                        DropdownMenuItem(
+                          child: Container(
+                            margin: EdgeInsets.only(left: width / 8),
+                            child: Text('C.C'),
+                          ),
+                          value: 'CC',
+                        ),
+                        DropdownMenuItem(
+                          child: Container(
+                            margin: EdgeInsets.only(left: width / 8),
+                            child: Text('C.E'),
+                          ),
+                          value: 'CE',
+                        ),
+                        DropdownMenuItem(
+                          child: Container(
+                            margin: EdgeInsets.only(left: width / 8),
+                            child: Text('T.I'),
+                          ),
+                          value: 'TI',
+                        ),
+                      ]))),
               BeautyTextfield(
                 width: double.maxFinite, //REQUIRED
                 height: 60, //REQUIRED
@@ -232,131 +213,104 @@ class _RegistroState extends State<Registro> {
                   registration.cellphone = text;
                 },
               ),
-             Container(
-                  margin: EdgeInsets.only(top: height / 25),
-                  width: width / 1.2,
-                  height: height / 13,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(50.0),
-                    color: Colors.transparent,
-                    border: Border.all(color: Colors.grey, width: 1),
-                  ),
-                  child: DropdownButtonHideUnderline(
-                      child: DropdownButton<String>(
-                          value: null,
-                          icon: const Icon(Icons.arrow_downward),
-                          hint: Container(
-                            margin: EdgeInsets.only(left: width / 8),
-                            child: Text(
-                            'Comuna',
-                            style: TextStyle(color: HexColor('#698596'), fontWeight: FontWeight.w500),
-                          ),
-                          ),
-                          iconSize: 24,
-                          elevation: 16,
-                          style:
-                              const TextStyle(color: Colors.blue, fontSize: 20),
-                          underline: Container(
-                            height: 2,
-                            color: Colors.black,
-                          ),
-                          onChanged: (value) {
-                            setState(() {
-                              _myActivity = value;
-                            });
-                            registration.document_type = value;
-                          },
-                          items: [
-                          ]))),
               this.cumunaDataSource.isNotEmpty
                   ? Container(
-                      margin: EdgeInsets.all(25),
+                      margin: EdgeInsets.only(top: height / 25),
+                      width: width / 1.2,
+                      height: height / 13,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(50.0),
-                        color: Colors.transparent,
-                        border: Border.all(color: Colors.grey, width: 0.5),
+                        color: Colors.white,
+                        border: Border.all(color: Colors.grey, width: 1),
                       ),
-                      child: DropDownFormField(
-                        titleText: 'Comuna',
-                        hintText: '',
-                        value: _myActivity2,
-                        onSaved: (value) {
-                          setState(() {
-                            _myActivity2 = value;
-                          });
-                        },
-                        onChanged: (value) {
-                          setState(() {
-                            setBarrio(value.toString());
-                            _myActivity2 = value;
-                          });
-                        },
-                        dataSource: this.cumunaDataSource,
-                        textField: 'display',
-                        valueField: 'value',
-                      ),
-                    )
+                      child: DropdownButtonHideUnderline(
+                          child: DropdownButton<String>(
+                              value: _myActivity2,
+                              icon: const Icon(Icons.arrow_downward),
+                              hint: Container(
+                                margin: EdgeInsets.only(left: width / 8),
+                                child: Text(
+                                  'Comuna',
+                                  style: TextStyle(
+                                      color: HexColor('#698596'),
+                                      fontWeight: FontWeight.w500),
+                                ),
+                              ),
+                              iconSize: 24,
+                              elevation: 16,
+                              style: const TextStyle(
+                                  color: Colors.blue, fontSize: 20),
+                              underline: Container(
+                                height: 2,
+                                color: Colors.black,
+                              ),
+                              onChanged: (value) {
+                                setState(() {
+                                  setBarrio(value.toString());
+                                  _myActivity2 = value;
+                                });
+                              },
+                              items: this
+                                  .cumunaDataSource
+                                  .map<DropdownMenuItem<String>>((e) =>
+                                      DropdownMenuItem(
+                                        child: Container(
+                                          margin:
+                                              EdgeInsets.only(left: width / 8),
+                                          child: Text(e['display']),
+                                        ),
+                                        value: e['value'],
+                                      ))
+                                  .toList())))
                   : CircularProgressIndicator(),
-              Container(
-                  margin: EdgeInsets.only(top: height / 25),
-                  width: width / 1.2,
-                  height: height / 13,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(50.0),
-                    color: Colors.transparent,
-                    border: Border.all(color: Colors.grey, width: 1),
-                  ),
-                  child: DropdownButtonHideUnderline(
-                      child: DropdownButton<String>(
-                          value: null,
-                          icon: const Icon(Icons.arrow_downward),
-                          hint: Container(
-                            margin: EdgeInsets.only(left: width / 8),
-                            child: Text(
-                            'Barrio',
-                            style: TextStyle(color: HexColor('#698596'), fontWeight: FontWeight.w500),
-                          ),
-                          ),
-                          iconSize: 24,
-                          elevation: 16,
-                          style:
-                              const TextStyle(color: Colors.blue, fontSize: 20),
-                          underline: Container(
-                            height: 2,
-                            color: Colors.black,
-                          ),
-                          onChanged: (value) {
-                            setState(() {
-                              _myActivity = value;
-                            });
-                            registration.document_type = value;
-                          },
-                          items: [
-                          ]))),
               loadingBarrios
                   ? CircularProgressIndicator()
                   : Container(
-                      margin: EdgeInsets.all(25),
-                      child: DropDownFormField(
-                        titleText: 'Barrio',
-                        hintText: '',
-                        value: _myActivity3,
-                        onSaved: (value) {
-                          setState(() {
-                            _myActivity3 = value;
-                          });
-                        },
-                        onChanged: (value) {
-                          registration.neighborhood = int.parse(value);
-                          setState(() {
-                            _myActivity3 = value;
-                          });
-                        },
-                        dataSource: _barrioDataSource,
-                        textField: 'display',
-                        valueField: 'value',
+                      margin: EdgeInsets.only(top: height / 25),
+                      width: width / 1.2,
+                      height: height / 13,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(50.0),
+                        color: Colors.white,
+                        border: Border.all(color: Colors.grey, width: 1),
                       ),
-                    ),
+                      child: DropdownButtonHideUnderline(
+                          child: DropdownButton<String>(
+                              value: _myActivity3,
+                              icon: Icon(Icons.arrow_downward),
+                              hint: Container(
+                                margin: EdgeInsets.only(left: width / 8),
+                                child: Text(
+                                  'Barrio',
+                                  style: TextStyle(
+                                      color: HexColor('#698596'),
+                                      fontWeight: FontWeight.w500),
+                                ),
+                              ),
+                              iconSize: 24,
+                              elevation: 16,
+                              style: const TextStyle(
+                                  color: Colors.blue, fontSize: 20),
+                              underline: Container(
+                                height: 2,
+                                color: Colors.black,
+                              ),
+                              onChanged: (value) {
+                                registration.neighborhood = int.parse(value);
+                                setState(() {
+                                  _myActivity3 = value;
+                                });
+                              },
+                              items: this
+                                  ._barrioDataSource
+                                  .map<DropdownMenuItem<String>>(
+                                      (e) => DropdownMenuItem(
+                                            child: Container(
+                                              child: Text(e['display']),
+                                            ),
+                                            value: e['value'],
+                                          ))
+                                  .toList()))),
               Container(
                   alignment: Alignment.center,
                   child: BouncingWidget(
