@@ -62,9 +62,46 @@ class _RegistroState extends State<Registro> {
                           color: HexColor('#103E68'),
                           fontFamily: 'Roboto-Bold',
                           fontSize: 24))),
-
              
               Container(
+                  margin: EdgeInsets.only(top: height / 25),
+                  width: width / 1.2,
+                  height: height / 13,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(50.0),
+                    color: Colors.transparent,
+                    border: Border.all(color: Colors.grey, width: 1),
+                  ),
+                  child: DropdownButtonHideUnderline(
+                      child: DropdownButton<String>(
+                          value: null,
+                          icon: const Icon(Icons.arrow_downward),
+                          hint: Text(
+                            'Tipo de documento',
+                            style: TextStyle(color: HexColor('#698596')),
+                          ),
+                          iconSize: 24,
+                          elevation: 16,
+                          style:
+                              const TextStyle(color: Colors.blue, fontSize: 20),
+                          underline: Container(
+                            height: 2,
+                            color: Colors.black,
+                          ),
+                          onChanged: (value) {
+                            setState(() {
+                              _myActivity = value;
+                            });
+                            registration.document_type = value;
+                          },
+                          items: [
+                          ]))),
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(50.0),
+                  color: Colors.white,
+                  border: Border.all(color: Colors.grey, width: 0.5),
+                ),
                 margin: EdgeInsets.all(25),
                 child: DropDownFormField(
                   titleText: 'Tipo de Documento',
@@ -190,9 +227,41 @@ class _RegistroState extends State<Registro> {
                   registration.cellphone = text;
                 },
               ),
+              Container(
+                  margin: EdgeInsets.only(top: height / 25),
+                  width: width / 1.2,
+                  height: height / 13,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(50.0),
+                    color: Colors.transparent,
+                    border: Border.all(color: Colors.grey, width: 1),
+                  ),
+                  child: DropdownButtonHideUnderline(
+                      child: DropdownButton<String>(
+                          value: null,
+                          icon: const Icon(Icons.arrow_downward),
+                          hint: Text(
+                            'Comuna',
+                            style: TextStyle(color: HexColor('#698596')),
+                          ),
+                          iconSize: 24,
+                          elevation: 16,
+                          style:
+                              const TextStyle(color: Colors.blue, fontSize: 20),
+                          underline: Container(
+                            height: 2,
+                            color: Colors.black,
+                          ),
+                          onChanged: (Null) {},
+                          items: []))),
               this.cumunaDataSource.isNotEmpty
                   ? Container(
                       margin: EdgeInsets.all(25),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(50.0),
+                        color: Colors.transparent,
+                        border: Border.all(color: Colors.grey, width: 0.5),
+                      ),
                       child: DropDownFormField(
                         titleText: 'Comuna',
                         hintText: '',
@@ -214,6 +283,33 @@ class _RegistroState extends State<Registro> {
                       ),
                     )
                   : CircularProgressIndicator(),
+              Container(
+                  margin: EdgeInsets.only(top: height / 25),
+                  width: width / 1.2,
+                  height: height / 13,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(50.0),
+                    color: Colors.transparent,
+                    border: Border.all(color: Colors.grey, width: 1),
+                  ),
+                  child: DropdownButtonHideUnderline(
+                      child: DropdownButton<String>(
+                          value: null,
+                          icon: const Icon(Icons.arrow_downward),
+                          hint: Text(
+                            'Barrio',
+                            style: TextStyle(color: HexColor('#698596')),
+                          ),
+                          iconSize: 24,
+                          elevation: 16,
+                          style:
+                              const TextStyle(color: Colors.blue, fontSize: 20),
+                          underline: Container(
+                            height: 2,
+                            color: Colors.black,
+                          ),
+                          onChanged: (Null) {},
+                          items: []))),
               loadingBarrios
                   ? CircularProgressIndicator()
                   : Container(
@@ -292,20 +388,19 @@ class _RegistroState extends State<Registro> {
                               ),
                               color: HexColor('#103E68'),
                               child: Container(
-                                width: width / 2.5,
-                                height: height / 22,
-                                child: Center(
-                                  child: Text(
-                                  "Registrarme",
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontFamily: 'Roboto-Medium',
-                                    fontSize: height / 40,
-                                  ),
-                                ),
-                                )
-                              ))))),
+                                  width: width / 2.5,
+                                  height: height / 22,
+                                  child: Center(
+                                    child: Text(
+                                      "Registrarme",
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontFamily: 'Roboto-Medium',
+                                        fontSize: height / 40,
+                                      ),
+                                    ),
+                                  )))))),
               Container(
                 margin: EdgeInsets.symmetric(
                   vertical: 35,
