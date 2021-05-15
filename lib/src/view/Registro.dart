@@ -62,7 +62,9 @@ class _RegistroState extends State<Registro> {
                           color: HexColor('#103E68'),
                           fontFamily: 'Roboto-Bold',
                           fontSize: 24))),
-             
+
+
+              
               Container(
                   margin: EdgeInsets.only(top: height / 25),
                   width: width / 1.2,
@@ -76,9 +78,12 @@ class _RegistroState extends State<Registro> {
                       child: DropdownButton<String>(
                           value: null,
                           icon: const Icon(Icons.arrow_downward),
-                          hint: Text(
+                          hint: Container(
+                            margin: EdgeInsets.only(left: width / 8),
+                            child: Text(
                             'Tipo de documento',
-                            style: TextStyle(color: HexColor('#698596')),
+                            style: TextStyle(color: HexColor('#698596'), fontWeight: FontWeight.w500),
+                          ),
                           ),
                           iconSize: 24,
                           elevation: 16,
@@ -227,7 +232,7 @@ class _RegistroState extends State<Registro> {
                   registration.cellphone = text;
                 },
               ),
-              Container(
+             Container(
                   margin: EdgeInsets.only(top: height / 25),
                   width: width / 1.2,
                   height: height / 13,
@@ -240,9 +245,12 @@ class _RegistroState extends State<Registro> {
                       child: DropdownButton<String>(
                           value: null,
                           icon: const Icon(Icons.arrow_downward),
-                          hint: Text(
+                          hint: Container(
+                            margin: EdgeInsets.only(left: width / 8),
+                            child: Text(
                             'Comuna',
-                            style: TextStyle(color: HexColor('#698596')),
+                            style: TextStyle(color: HexColor('#698596'), fontWeight: FontWeight.w500),
+                          ),
                           ),
                           iconSize: 24,
                           elevation: 16,
@@ -252,8 +260,14 @@ class _RegistroState extends State<Registro> {
                             height: 2,
                             color: Colors.black,
                           ),
-                          onChanged: (Null) {},
-                          items: []))),
+                          onChanged: (value) {
+                            setState(() {
+                              _myActivity = value;
+                            });
+                            registration.document_type = value;
+                          },
+                          items: [
+                          ]))),
               this.cumunaDataSource.isNotEmpty
                   ? Container(
                       margin: EdgeInsets.all(25),
@@ -296,9 +310,12 @@ class _RegistroState extends State<Registro> {
                       child: DropdownButton<String>(
                           value: null,
                           icon: const Icon(Icons.arrow_downward),
-                          hint: Text(
+                          hint: Container(
+                            margin: EdgeInsets.only(left: width / 8),
+                            child: Text(
                             'Barrio',
-                            style: TextStyle(color: HexColor('#698596')),
+                            style: TextStyle(color: HexColor('#698596'), fontWeight: FontWeight.w500),
+                          ),
                           ),
                           iconSize: 24,
                           elevation: 16,
@@ -308,8 +325,14 @@ class _RegistroState extends State<Registro> {
                             height: 2,
                             color: Colors.black,
                           ),
-                          onChanged: (Null) {},
-                          items: []))),
+                          onChanged: (value) {
+                            setState(() {
+                              _myActivity = value;
+                            });
+                            registration.document_type = value;
+                          },
+                          items: [
+                          ]))),
               loadingBarrios
                   ? CircularProgressIndicator()
                   : Container(
