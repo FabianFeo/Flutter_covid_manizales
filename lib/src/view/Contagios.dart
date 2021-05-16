@@ -1,5 +1,6 @@
 import 'package:aprendiendo/src/functions/generatePolygons.dart';
 import 'package:aprendiendo/src/view/qrScan.dart';
+import 'package:date_time_picker/date_time_picker.dart' as dt;
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +20,7 @@ class _ContagiosState extends State<Contagios> with TickerProviderStateMixin {
   String nivel = 'Bajo';
   bool _sesion = false;
   TabController _tabController;
+    double _currentSliderValue = 0;
   List<TaggedPolyline> _polygons = List();
   bool chargeMap = true;
   @override
@@ -73,8 +75,7 @@ class _ContagiosState extends State<Contagios> with TickerProviderStateMixin {
                     height: height / 10,
                     width: width / 1.1,
                     margin: EdgeInsets.only(top: height / 30),
-                    padding: EdgeInsets.symmetric(
-                        horizontal: width / 40, vertical: height / 30),
+                    
                     child: Center(
                       child: Row(
                         children: [
@@ -107,7 +108,7 @@ class _ContagiosState extends State<Contagios> with TickerProviderStateMixin {
                           options: new MapOptions(
                             interactive: false,
                             center: new LatLng(5.067, -75.489),
-                            zoom: 12.0,
+                            zoom: width/31,
                             plugins: [
                               TappablePolylineMapPlugin(),
                             ],
@@ -122,6 +123,19 @@ class _ContagiosState extends State<Contagios> with TickerProviderStateMixin {
                           ],
                         ),
                       ),
+                       Slider(
+                value: _currentSliderValue,
+                min: 0,
+                max: 14,
+                divisions: 14,
+                label: getLabelSlider(),
+                onChanged: (double value) {
+                  setState(() {
+                    _currentSliderValue = value;
+                  });
+                },
+              ),
+              Container(width: width,height: height/10,)
               ],
             ),
           ),
@@ -136,6 +150,11 @@ class _ContagiosState extends State<Contagios> with TickerProviderStateMixin {
         chargeMap = false;
       });
     });
+  }
+  getLabelSlider() {
+    DateTime dateTime = DateTime.now();
+    dateTime = dateTime.subtract(Duration(days: _currentSliderValue.toInt()));
+    return dt.DateFormat('dd/MM').format(dateTime);
   }
 }
 
@@ -160,23 +179,23 @@ class ColorSelector extends CustomPainter {
 
     canvas.drawRRect(
       RRect.fromRectAndRadius(
-          Rect.fromLTWH(20, -15, 80, 35), Radius.circular(50)),
+          Rect.fromLTWH(0, -15, 80, 35), Radius.circular(50)),
       paint,
     );
     canvas.drawRRect(
       RRect.fromRectAndRadius(
-          Rect.fromLTWH(140, -15, 80, 35), Radius.circular(50)),
+          Rect.fromLTWH(120, -15, 80, 35), Radius.circular(50)),
       paint2,
     );
     canvas.drawRRect(
       RRect.fromRectAndRadius(
-          Rect.fromLTWH(260, -15, 80, 35), Radius.circular(50)),
+          Rect.fromLTWH(240, -15, 80, 35), Radius.circular(50)),
       paint3,
     );
-    canvas.drawLine(Offset(100, 0), Offset(120, 0), paint);
-    canvas.drawLine(Offset(120, 0), Offset(140, 0), paint2);
-    canvas.drawLine(Offset(220, 0), Offset(240, 0), paint2);
-    canvas.drawLine(Offset(240, 0), Offset(260, 0), paint3);
+    canvas.drawLine(Offset(80, 0), Offset(100, 0), paint);
+    canvas.drawLine(Offset(100, 0), Offset(120, 0), paint2);
+    canvas.drawLine(Offset(200, 0), Offset(220, 0), paint2);
+    canvas.drawLine(Offset(220, 0), Offset(240, 0), paint3);
     TextSpan span =
         new TextSpan(style: new TextStyle(color: Colors.white), text: 'Bajo');
     TextPainter tp = new TextPainter(
@@ -184,7 +203,7 @@ class ColorSelector extends CustomPainter {
         textAlign: TextAlign.left,
         textDirection: TextDirection.ltr);
     tp.layout();
-    tp.paint(canvas, new Offset(45, -5));
+    tp.paint(canvas, new Offset(25, -5));
     TextSpan span2 =
         new TextSpan(style: new TextStyle(color: Colors.white), text: 'Medio');
     TextPainter tp2 = new TextPainter(
@@ -192,7 +211,7 @@ class ColorSelector extends CustomPainter {
         textAlign: TextAlign.left,
         textDirection: TextDirection.ltr);
     tp2.layout();
-    tp2.paint(canvas, new Offset(160, -5));
+    tp2.paint(canvas, new Offset(140, -5));
     TextSpan span3 =
         new TextSpan(style: new TextStyle(color: Colors.white), text: 'Alto');
     TextPainter tp3 = new TextPainter(
@@ -200,7 +219,7 @@ class ColorSelector extends CustomPainter {
         textAlign: TextAlign.left,
         textDirection: TextDirection.ltr);
     tp3.layout();
-    tp3.paint(canvas, new Offset(287, -5));
+    tp3.paint(canvas, new Offset(267, -5));
   }
 
   @override

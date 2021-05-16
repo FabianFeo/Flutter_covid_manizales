@@ -102,7 +102,8 @@ class _MiRedState extends State<MiRed> with TickerProviderStateMixin {
                 ),
                 Container(
                   height: 300,
-                  width: 300,
+                  width: width,
+                  color: Colors.white,
                   child: Grafo(),
                 ),
                 Container(
@@ -125,7 +126,7 @@ class _MiRedState extends State<MiRed> with TickerProviderStateMixin {
                           options: new MapOptions(
                             interactive: false,
                             center: new LatLng(5.067, -75.489),
-                            zoom: 12.0,
+                            zoom: width/31,
                             plugins: [
                               TappablePolylineMapPlugin(),
                             ],
