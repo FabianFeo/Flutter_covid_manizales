@@ -6,8 +6,9 @@ import 'package:aprendiendo/src/beaconScanner/flutter_blue_beacon.dart';
 import 'package:aprendiendo/src/functions/PreferenceToken.dart';
 import 'package:aprendiendo/src/service/locacion.service.dart';
 import 'package:aprendiendo/src/service/login.service.dart';
-import 'package:aprendiendo/src/view/Registro.dart';
-import 'package:aprendiendo/src/view/inicio.dart';
+
+import 'package:aprendiendo/src/view/index.dart';
+
 import 'package:aprendiendo/src/view/login.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -28,19 +29,20 @@ class _CargaState extends State<Carga> {
     LocactionService locactionService = LocactionService();
     locactionService.initLocatioService();
     Future.delayed(Duration(seconds: 3), () {
-      Navigator.of(context).pop();
       PreferenceToken preferenceToken = PreferenceToken();
       preferenceToken.getToken().then((value) {
         if (value != null) {
           LoginService loginService = LoginService();
           loginService.changeToken(value).then((value2) {
+            Map<String, dynamic> dta = jsonDecode(value2.body);
             preferenceToken
-                .setToken(jsonDecode(value2.body)['token'])
-                .then((value) => {
+                .setToken(dta['data']['token'])
+                .then((value3) => {
+                      Navigator.of(context).pop(),
                       Navigator.push(
                           _buildContext,
                           MaterialPageRoute(
-                              builder: (_buildContext) => Inicio()))
+                              builder: (_buildContext) => Index()))
                     })
                 .catchError((error) => {
                       Navigator.push(
@@ -48,9 +50,13 @@ class _CargaState extends State<Carga> {
                           MaterialPageRoute(
                               builder: (_buildContext) => Login()))
                     });
-          }).onError((error, stackTrace) => Navigator.push(_buildContext,
-              MaterialPageRoute(builder: (_buildContext) => Login())));
+          }).onError((error, stackTrace) {
+            Navigator.of(context).pop();
+            Navigator.push(_buildContext,
+                MaterialPageRoute(builder: (_buildContext) => Login()));
+          });
         } else {
+          Navigator.of(context).pop();
           Navigator.push(_buildContext,
               MaterialPageRoute(builder: (_buildContext) => Login()));
         }

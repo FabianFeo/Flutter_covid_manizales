@@ -26,7 +26,7 @@ class _InicioState extends State<Inicio> with TickerProviderStateMixin {
   bool _sesion = false;
   TabController _tabController;
   List<TaggedPolyline> _polygons = List();
-  double _currentSliderValue = 0;
+
   bool chargeMap = true;
   @override
   void initState() {
@@ -83,57 +83,8 @@ class _InicioState extends State<Inicio> with TickerProviderStateMixin {
                       fontFamily: 'Roboto-Light'),
                 ),
               ),
-              Divider(
-                color: HexColor('#49657A'),
-              ),
-              Container(
-                alignment: Alignment.centerLeft,
-                margin: EdgeInsets.all(30),
-                child: Text(
-                  'Tendencia del comportamiento de contagio por comunas',
-                  style: TextStyle(
-                      color: HexColor('#103E68'),
-                      fontFamily: 'Roboto-Bold',
-                      fontSize: 20),
-                ),
-              ),
-              chargeMap
-                  ? CircularProgressIndicator()
-                  : Container(
-                    color: Colors.white,
-                      height: height / 3,
-                      width: width,
-                      child: FlutterMap(
-                        options: new MapOptions(
-                          interactive: false,
-                          center: new LatLng(5.067, -75.489),
-                          zoom: 12.0,
-                          plugins: [
-                            TappablePolylineMapPlugin(),
-                          ],
-                        ),
-                        layers: [
-                          new TappablePolylineLayerOptions(
-                              polylineCulling: true,
-                              polylines: _polygons,
-                              onTap: (TaggedPolyline polyline) =>
-                                  print(polyline.tag),
-                              onMiss: () => print("No polyline tapped"))
-                        ],
-                      ),
-                    ),
-              Slider(
-                value: _currentSliderValue,
-                min: 0,
-                max: 14,
-                divisions: 14,
-                label: getLabelSlider(),
-                onChanged: (double value) {
-                  setState(() {
-                    _currentSliderValue = value;
-                  });
-                },
-              ),
+             
+             
               Divider(
                 color: HexColor('#49657A'),
               ),
@@ -177,9 +128,5 @@ class _InicioState extends State<Inicio> with TickerProviderStateMixin {
     });
   }
 
-  getLabelSlider() {
-    DateTime dateTime = DateTime.now();
-    dateTime = dateTime.subtract(Duration(days: _currentSliderValue.toInt()));
-    return DateFormat('dd/MM').format(dateTime);
-  }
+ 
 }

@@ -9,7 +9,6 @@ class Grafo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
     return Container(
       child: Container(
           child: Scaffold(
@@ -84,26 +83,23 @@ class MyPainter extends CustomPainter {
     {"weight": 1, "source": "174-032-5438x2964", "target": "(747)518-1764"},
     {"weight": 3, "source": "4219415506", "target": "906-188-5942x04580"}
   ];
-
+  Map<String, Offset> mapaSource = Map();
+   List<Offset> points = List();
   @override
   void paint(Canvas canvas, Size size) {
     Random random = new Random();
     final pointMode = ui.PointMode.points;
-    List<Offset> points = List();
-    Map<String, Offset> mapaSource = Map();
-    var initialvauex = 0;
-    var initialvauey = 0;
-    for (var i = 0; i < node.length; i++) {
-      Offset offset = Offset(random.nextDouble() * (size.height - 10) + 10,
-          random.nextDouble() * (size.width - 50) + 50);
-      points.add(offset);
-      mapaSource[node[i]['id']] = offset;
+   
+    if (mapaSource.isEmpty) {
+      for (var i = 0; i < node.length; i++) {
+        Offset offset = Offset(random.nextDouble() * (size.height - 10) + 10,
+            random.nextDouble() * (size.width - 50) + 50);
+        points.add(offset);
+        mapaSource[node[i]['id']] = offset;
+      }
     }
-    final paint = Paint()
-      ..color = Colors.black
-      ..strokeWidth = 10
-      ..strokeCap = StrokeCap.round;
-    canvas.drawPoints(pointMode, points, paint);
+
+   
 
     links.forEach((element) {
       var paint2 = Paint()
@@ -113,6 +109,11 @@ class MyPainter extends CustomPainter {
       canvas.drawLine(
           mapaSource[element['source']], mapaSource[element['target']], paint2);
     });
+     final paint = Paint()
+      ..color = Colors.black
+      ..strokeWidth = 10
+      ..strokeCap = StrokeCap.round;
+    canvas.drawPoints(pointMode, points, paint);
   }
 
   @override
