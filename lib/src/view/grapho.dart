@@ -12,7 +12,7 @@ class Grafo extends StatelessWidget {
     return Container(
       child: Container(
           child: Scaffold(
-              backgroundColor: HexColor('#D0EAE5'),
+              backgroundColor: Colors.white,
               body: Container(
                 height: 300,
                 width: 300,
