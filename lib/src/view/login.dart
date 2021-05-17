@@ -35,7 +35,7 @@ class _LoginState extends State<Login> {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      backgroundColor: HexColor('#D0EAE5'),
+      backgroundColor: HexColor('#DDE9ED'),
       body: SingleChildScrollView(
         child: Container(
           margin: EdgeInsets.only(top: height / 8),

@@ -48,7 +48,7 @@ class _RegistroState extends State<Registro> {
     double width = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      backgroundColor: HexColor('#D0EAE5'),
+      backgroundColor: HexColor('#DDE9ED'),
       appBar: NavBar(),
       body: SingleChildScrollView(
         child: Container(
