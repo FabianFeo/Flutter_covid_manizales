@@ -1,11 +1,11 @@
 import 'dart:convert';
+import 'package:date_time_picker/date_time_picker.dart' as dt;
 
 import 'package:aprendiendo/src/functions/generatePolygons.dart';
 import 'package:aprendiendo/src/view/Contagios.dart';
 import 'package:aprendiendo/src/view/qrScan.dart';
 import 'package:aprendiendo/src/widget/BottomPermisos.dart';
 import 'package:aprendiendo/src/widget/navbar.dart';
-import 'package:date_time_picker/date_time_picker.dart';
 import 'package:extended_tabs/extended_tabs.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -193,7 +193,7 @@ class ColorSelector extends CustomPainter {
         textDirection: TextDirection.ltr);
     tp.layout();
     tp.paint(canvas, new Offset(25, -5));
-    TextSpan span2 =->play 
+    TextSpan span2 =
         new TextSpan(style: new TextStyle(color: Colors.white), text: 'Medio');
     TextPainter tp2 = new TextPainter(
         text: span2,
@@ -217,3 +217,4 @@ class ColorSelector extends CustomPainter {
     return true;
   }
 }
+

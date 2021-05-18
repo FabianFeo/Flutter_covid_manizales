@@ -49,6 +49,11 @@ class LoginService {
     return 'entro';
   }
 
+ 
+  Future<void> logOut () async {
+    preferenceToken = null;
+  }
+
   Future<http.Response> changeToken(String token) async {
     http.Response response = await http.post(
         "https://covidalert.com.co/api/api-token-refresh/",

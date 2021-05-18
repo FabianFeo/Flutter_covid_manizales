@@ -1,4 +1,5 @@
 import 'package:aprendiendo/src/functions/preferenceslogin.dart';
+import 'package:aprendiendo/src/service/login.service.dart';
 import 'package:aprendiendo/src/view/Carga.dart';
 import 'package:aprendiendo/src/view/Contactos.dart';
 import 'package:aprendiendo/src/view/Contagios.dart';
@@ -272,6 +273,33 @@ class _IndexState extends State<Index> {
                           ],
                         ),
                       ),
+                       GestureDetector(
+                         onTap: () {
+                            LoginService loginService = LoginService();
+                            loginService.logOut();
+                            Navigator.push(context, MaterialPageRoute(builder:  (context) =>
+                                          Inicio()));
+                         },
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Container(
+                              margin: EdgeInsets.only(
+                                  right:
+                                      MediaQuery.of(context).size.width / 30),
+                              child: Text(
+                                'Cerrar sesion',
+                                style: TextStyle(
+                                  fontFamily: 'Roboto-Medium',
+                                  color: HexColor('#103E68'),
+                                  fontSize: 16,
+                                ),
+                              ),
+                            ),
+                            Divider(),
+                          ],
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -394,6 +422,7 @@ class _IndexState extends State<Index> {
                           label: '',
                         ),
                         BottomNavigationBarItem(
+                          
                           icon: Column(
                             children: [
                               Container(
@@ -463,6 +492,7 @@ class _IndexState extends State<Index> {
                       currentIndex: _selectedIndex,
                       selectedItemColor: HexColor('#D0EAE5'),
                       backgroundColor: HexColor('#103E68'),
+                      elevation: 1,
                       onTap: _onItemTapped,
                     ),
                   ),

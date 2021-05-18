@@ -71,22 +71,7 @@ class _ContagiosState extends State<Contagios> with TickerProviderStateMixin {
                           fontFamily: 'Roboto-Bold',
                           fontSize: 24)),
                 ),
-                Container(
-                    height: height / 10,
-                    width: width / 1.1,
-                    margin: EdgeInsets.only(top: height / 30),
-                    
-                    child: Center(
-                      child: Row(
-                        children: [
-                          Container(
-                            child: CustomPaint(
-                              painter: ColorSelector(nivel),
-                            ),
-                          ),
-                        ],
-                      ),
-                    )),
+              
                 Container(
                   alignment: Alignment.centerLeft,
                   margin: EdgeInsets.all(30),
