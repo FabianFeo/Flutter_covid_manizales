@@ -278,7 +278,7 @@ class _IndexState extends State<Index> {
                             LoginService loginService = LoginService();
                             loginService.logOut();
                             Navigator.push(context, MaterialPageRoute(builder:  (context) =>
-                                          Inicio()));
+                                          Login()));
                          },
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.end,
@@ -296,7 +296,7 @@ class _IndexState extends State<Index> {
                                 ),
                               ),
                             ),
-                            Divider(),
+                            Divider(), 
                           ],
                         ),
                       ),

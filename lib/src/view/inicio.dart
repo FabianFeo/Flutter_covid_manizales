@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:custom_switch/custom_switch.dart';
 import 'package:date_time_picker/date_time_picker.dart' as dt;
 
 import 'package:aprendiendo/src/functions/generatePolygons.dart';
@@ -60,13 +61,42 @@ class _InicioState extends State<Inicio> with TickerProviderStateMixin {
       ),
       body: SingleChildScrollView(
         child: Container(
-          margin: EdgeInsets.only(top: height / 40),
+          margin: EdgeInsets.only(top: height / 1200),
           alignment: Alignment.centerLeft,
           child: Column(
             children: [
               Container(
+                color: HexColor('#698596'),
+                child: Row(
+                  children: [
+                    Container(
+                      padding: EdgeInsets.symmetric(vertical: 30, horizontal: 10),
+                      margin: EdgeInsets.only(left: width / 13),
+                      width: width / 2,
+                      child: Text(
+                        'Control global de permisos',
+                        style: TextStyle(
+                          color: HexColor('#103E68'),
+                          fontFamily: 'Roboto-Bold',
+                          fontSize: 18),
+                      ),
+                    ),
+                    Container(
+                        margin: EdgeInsets.only(left: width / 15),
+                        width: width / 5,
+                        child: CustomSwitch(
+                          activeColor: HexColor('#103E68'),
+                          value: true,
+                          onChanged: (bool position) {
+                          },
+                        )),
+                  ],
+                ),
+              ),
+              
+              Container(
                 alignment: Alignment.centerLeft,
-                margin: EdgeInsets.only(left: width / 11),
+                margin: EdgeInsets.only(left: width / 11, top: height / 40),
                 child: Text('Inicio',
                     style: TextStyle(
                         color: HexColor('#103E68'),
@@ -74,7 +104,7 @@ class _InicioState extends State<Inicio> with TickerProviderStateMixin {
                         fontSize: 24)),
               ),
               Container(
-                    height: height / 10,
+                    height: height / 20,
                     width: width / 1.1,
                     margin: EdgeInsets.only(top: height / 30),
                     
