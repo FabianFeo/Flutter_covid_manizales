@@ -23,6 +23,7 @@ class _ReportarVacunaState extends State<ReportarVacuna>
   TabController _tabController;
   String firstDose;
   String lastDose;
+  String _myActivity;
 
   @override
   void initState() {
@@ -83,6 +84,68 @@ class _ReportarVacunaState extends State<ReportarVacuna>
                     fontSize: 16),
               ),
             ),
+            Container(
+                  margin: EdgeInsets.only(top: height / 25),
+                  width: width / 1.2,
+                  height: height / 13,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(50.0),
+                    color: HexColor('#DDE9ED'),
+                    border: Border.all(color: Colors.grey, width: 1),
+                  ),
+                  child: DropdownButtonHideUnderline(
+                      child: DropdownButton<String>(
+                          value: _myActivity,
+                          icon: Container(
+                            margin: EdgeInsets.only(right: width / 20),
+                            child: const Icon(Icons.arrow_downward)),
+                          hint: Container(
+                            margin: EdgeInsets.only(left: width / 20),
+                            child: Text(
+                              'Marca de Vacuna',
+                              style: TextStyle(
+                                  color: HexColor('#698596'),
+                                  fontWeight: FontWeight.w500),
+                            ),
+                          ),
+                          iconSize: 24,
+                          elevation: 16,
+                          style:
+                              const TextStyle(color: Colors.blue, fontSize: 20),
+                          underline: Container(
+                            height: 2,
+                            color: Colors.black,
+                          ),
+                          onChanged: (value) {
+                            setState(() {
+                              _myActivity = value;
+                            });
+                            
+                          },
+                          items: [
+                        DropdownMenuItem(
+                          child: Container(
+                            margin: EdgeInsets.only(left: width / 8),
+                            child: Text('Pfiser'),
+                          ),
+                          value: 'Pfiser',
+                        ),
+                        DropdownMenuItem(
+                          child: Container(
+                            margin: EdgeInsets.only(left: width / 8),
+                            child: Text('AstraZeneca'),
+                          ),
+                          value: 'AstraZeneca',
+                        ),
+                        DropdownMenuItem(
+                          child: Container(
+                            margin: EdgeInsets.only(left: width / 8),
+                            child: Text('Janssen'),
+                          ),
+                          value: 'Janssen',
+                        ),
+                      ]))),
+           
              Container(
                 margin: EdgeInsets.all(25),
                 child: DateTimePicker(                  
@@ -108,7 +171,7 @@ class _ReportarVacunaState extends State<ReportarVacuna>
                 margin: EdgeInsets.all(25),
                 child: DateTimePicker(                  
                   initialValue: '',
-                  firstDate: DateTime(1920),
+                  firstDate: DateTime(2021),
                   lastDate: DateTime(2100),
                   dateLabelText: 'Fecha segunda dosis',
                   onChanged: (val) {

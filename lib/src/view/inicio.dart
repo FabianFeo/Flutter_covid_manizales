@@ -66,7 +66,7 @@ class _InicioState extends State<Inicio> with TickerProviderStateMixin {
           child: Column(
             children: [
               Container(
-                color: HexColor('#698596'),
+                color: HexColor('#F6FBFA'),
                 child: Row(
                   children: [
                     Container(

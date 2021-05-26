@@ -24,6 +24,7 @@ class _ReportarContagioState extends State<ReportarContagio>
   String ContagionDate;
   String testsDate;
   int selectedRadio;
+  bool isVisible = false;
 
   @override
   void initState() {
@@ -40,6 +41,7 @@ class _ReportarContagioState extends State<ReportarContagio>
   setSelectedRadio(int val) {
     setState(() {
       selectedRadio = val;
+      isVisible = selectedRadio == 1;
     });
   }
 
@@ -102,27 +104,6 @@ class _ReportarContagioState extends State<ReportarContagio>
                 initialValue: '',
                 firstDate: DateTime(1920),
                 lastDate: DateTime(2100),
-                dateLabelText: 'Fecha de contagio',
-                onChanged: (val) {
-                  print(val);
-                  ContagionDate = val;
-                },
-                validator: (val) {
-                  print(val);
-                  return null;
-                },
-                onSaved: (val) {
-                  print(val);
-                  ContagionDate = val;
-                },
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.all(25),
-              child: DateTimePicker(
-                initialValue: '',
-                firstDate: DateTime(1920),
-                lastDate: DateTime(2100),
                 dateLabelText: 'Selecciona el día del test',
                 onChanged: (val) {
                   print(val);
@@ -138,27 +119,6 @@ class _ReportarContagioState extends State<ReportarContagio>
                 },
               ),
             ),
-            Container(
-              margin: EdgeInsets.all(25),
-              child: DateTimePicker(
-                initialValue: '',
-                firstDate: DateTime(1920),
-                lastDate: DateTime(2100),
-                dateLabelText: 'Indicanos cuando iniciaron los sintomas',
-                onChanged: (val) {
-                  print(val);
-                  ContagionDate = val;
-                },
-                validator: (val) {
-                  print(val);
-                  return null;
-                },
-                onSaved: (val) {
-                  print(val);
-                  ContagionDate = val;
-                },
-              ),
-            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
@@ -166,7 +126,7 @@ class _ReportarContagioState extends State<ReportarContagio>
                   value: 1,
                   groupValue: selectedRadio,
                   activeColor: HexColor('#103E68'),
-                  onChanged: (val) {
+                  onChanged: (val)  {
                     print("Radio $val");
                     "Sintomatico";
                     setSelectedRadio(val);
@@ -185,6 +145,30 @@ class _ReportarContagioState extends State<ReportarContagio>
                 ),
                 Text('Asintomatico')
               ],
+            ),
+            Visibility(
+              visible: isVisible,
+              child: Container(
+                margin: EdgeInsets.all(25),
+                child: DateTimePicker(
+                  initialValue: '',
+                  firstDate: DateTime(1920),
+                  lastDate: DateTime(2100),
+                  dateLabelText: 'Indicanos cuando iniciaron los sintomas',
+                  onChanged: (val) {
+                    print(val);
+                    ContagionDate = val;
+                  },
+                  validator: (val) {
+                    print(val);
+                    return null;
+                  },
+                  onSaved: (val) {
+                    print(val);
+                    ContagionDate = val;
+                  },
+                ),
+              ),
             ),
             Container(
                 child: Center(
@@ -219,7 +203,7 @@ class _ReportarContagioState extends State<ReportarContagio>
                         "Reportar",
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                            color:Colors.white,
+                            color: Colors.white,
                             fontFamily: 'Roboto-Medium',
                             fontSize: 20),
                       ),

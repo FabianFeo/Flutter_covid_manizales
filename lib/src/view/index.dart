@@ -30,6 +30,7 @@ class _IndexState extends State<Index> {
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   List<Widget> _widgetOptions;
+  LoginService loginService = LoginService();
 
   List<bool> estados;
   @override
@@ -273,7 +274,9 @@ class _IndexState extends State<Index> {
                           ],
                         ),
                       ),
-                       GestureDetector(
+                       Visibility(
+                         visible: true,
+                         child: GestureDetector(
                          onTap: () {
                             LoginService loginService = LoginService();
                             loginService.logOut();
@@ -282,7 +285,7 @@ class _IndexState extends State<Index> {
                          },
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
+                          children:<Widget> [
                             Container(
                               margin: EdgeInsets.only(
                                   right:
@@ -299,7 +302,7 @@ class _IndexState extends State<Index> {
                             Divider(), 
                           ],
                         ),
-                      ),
+                      ),)
                     ],
                   ),
                 ),
