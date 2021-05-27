@@ -52,7 +52,7 @@ class _RegistroState extends State<Registro> {
       appBar: NavBar(),
       body: SingleChildScrollView(
         child: Container(
-          margin: EdgeInsets.only(top: height / 8),
+          margin: EdgeInsets.only(top: height / 25),
           alignment: Alignment.centerLeft,
           child: Column(
             children: [
@@ -135,8 +135,7 @@ class _RegistroState extends State<Registro> {
                 focusNode: FocusNode(),
                 fontFamily: 'Roboto-Light', //Text Fontfamily
                 fontWeight: FontWeight.w500,
-
-                margin: EdgeInsets.all(30),
+                margin: EdgeInsets.only(top: height / 25, left: width / 12, right: width / 12),
                 cornerRadius: BorderRadius.all(Radius.circular(50)),
                 duration: Duration(milliseconds: 300),
                 inputType: TextInputType.number, //REQUIRED
@@ -153,7 +152,7 @@ class _RegistroState extends State<Registro> {
                 },
               ),
               Container(
-                margin: EdgeInsets.only(right: width / 2.5),
+                margin: EdgeInsets.only(right: width / 3, top:  height / 25),
                 child: Text(
                   'Fecha de Nacimiento',
                   style: TextStyle(
@@ -162,26 +161,44 @@ class _RegistroState extends State<Registro> {
                       fontSize: 18),
                 ),
               ),
-              Container(
-                margin: EdgeInsets.all(25),
-                child: DateTimePicker(
-                  initialValue: '',
-                  firstDate: DateTime(1920),
-                  lastDate: DateTime(2100),
-                  dateLabelText: 'DD/MM/AAAA',
-                  onChanged: (val) {
-                    print(val);
-                    registration.birth_date = val;
-                  },
-                  validator: (val) {
-                    print(val);
-                    return null;
-                  },
-                  onSaved: (val) {
-                    print(val);
-                    registration.birth_date = val;
-                  },
+              Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(50.0),
+                  side: BorderSide(color: Colors.grey),
                 ),
+                margin: EdgeInsets.all(30),
+                child: Center(
+                    child: GestureDetector(
+                        onTap: () async {
+                          final DateTime picked = await showDatePicker(
+                              context: context,
+                              firstDate: DateTime(1900),
+                              initialDate: DateTime.now(),
+                              lastDate: DateTime(2100));
+                          if (picked != null) {
+                            final DateFormat formatter =
+                                DateFormat('yyyy-MM-dd');
+                            final String formatted = formatter.format(picked);
+                            setState(() {
+                              registration.birth_date = formatted;
+                            });
+                          }
+                        },
+                        child: Container(
+                          child: Center(
+                            child: Text(
+                              registration.birth_date == null
+                                  ? 'Fecha de Nacimiento'
+                                  : registration.birth_date,
+                              style: TextStyle(
+                                  color: HexColor('#698596'),
+                                  fontSize: height / 42,
+                                  fontWeight: FontWeight.w500),
+                            ),
+                          ),
+                          height: 60,
+                          width: width,
+                        ))),
               ),
               BeautyTextfield(
                 width: double.maxFinite, //REQUIRED
@@ -197,7 +214,7 @@ class _RegistroState extends State<Registro> {
                 fontFamily: 'Laca Regular', //Text Fontfamily
                 fontWeight: FontWeight.w500,
 
-                margin: EdgeInsets.all(30),
+                margin: EdgeInsets.only(top: height / 150, left: width / 12, right: width / 12),
                 cornerRadius: BorderRadius.all(Radius.circular(50)),
                 duration: Duration(milliseconds: 300),
                 inputType: TextInputType.phone, //REQUIRED
@@ -358,6 +375,7 @@ class _RegistroState extends State<Registro> {
                         }
                       },
                       child: Container(
+                          margin: EdgeInsets.only(top: height / 25),
                           alignment: Alignment.center,
                           child: Card(
                               shape: RoundedRectangleBorder(
