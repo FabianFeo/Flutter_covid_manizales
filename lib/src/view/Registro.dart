@@ -396,47 +396,48 @@ class _RegistroState extends State<Registro> {
                                       ),
                                     ),
                                   )))))),
-              Container(
-                margin: EdgeInsets.symmetric(
-                  vertical: 35,
-                  horizontal: 80,
-                ),
-                child: Row(
-                  children: [
-                    Text(
-                      '¿Ya estás registrado?',
-                      style:
-                          TextStyle(color: HexColor('#49657A'), fontSize: 15),
-                    ),
-                    GestureDetector(
-                        onTap: () => Navigator.push(
+             
+               Container(
+                margin: EdgeInsets.only(top: height / 25),
+                child: GestureDetector(
+                   onTap: () => Navigator.push(
                               context,
                               MaterialPageRoute(builder: (context) => Login()),
                             ),
-                        child: Text(
-                          'Inicia Sesión',
-                          style: TextStyle(
-                              color: HexColor('#49657A'),
-                              fontSize: 15,
-                              decoration: TextDecoration.underline),
-                        )),
-                  ],
-                ),
-              ),
-              Container(
-                margin: EdgeInsets.only(
-                  right: width / 25,
-                ),
-                child: GestureDetector(
+                    child: Center(
                   child: Text(
-                    'Continuar sin registrarme',
+                    '¿Ya estás registrado? Inicia Sesión',
                     style: TextStyle(
                         color: HexColor('#49657A'),
-                        fontSize: 18,
-                        fontFamily: 'Laca Black',
+                        fontSize: 14,
+                        fontFamily: 'Roboto-Light',
                         decoration: TextDecoration.underline),
                   ),
-                ),
+                )),
+              ), 
+             Container(
+                margin: EdgeInsets.only(top: height / 25),
+                child: GestureDetector(
+                    onTap: () {
+                      _preferenceLogin
+                          .typeLogin(false)
+                          .then((value) => {Navigator.of(context).pop(),
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => Index(),
+                              ))});
+                    },
+                    child: Center(
+                      child: Text(
+                        'continuar sin registrarme',
+                        style: TextStyle(
+                          color: HexColor('#103E68'),
+                          fontSize: 18,
+                          fontFamily: 'Raca Bold',
+                        ),
+                      ),
+                    )),
               ),
             ],
           ),
