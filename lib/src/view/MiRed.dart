@@ -1,4 +1,5 @@
 import 'package:aprendiendo/src/functions/generatePolygons.dart';
+import 'package:aprendiendo/src/view/Compartir.dart';
 import 'package:aprendiendo/src/view/Contactos.dart';
 import 'package:aprendiendo/src/view/grapho.dart';
 import 'package:aprendiendo/src/view/qrScan.dart';
@@ -161,9 +162,7 @@ class _MiRedState extends State<MiRed> with TickerProviderStateMixin {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => Contactos(
-                                        permisos: true,
-                                      )));
+                                  builder: (context) => Compartir()));
                         },
                         child: Card(
                             shape: RoundedRectangleBorder(
