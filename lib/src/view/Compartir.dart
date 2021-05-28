@@ -1,16 +1,32 @@
+import 'package:aprendiendo/src/service/contactos.service.dart';
 import 'package:beauty_textfield/beauty_textfield.dart';
 import 'package:bouncing_widget/bouncing_widget.dart';
+import 'package:contacts_service/contacts_service.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 class Compartir extends StatefulWidget {
-  Compartir({Key key}) : super(key: key);
+  Compartir({Key key, this.permisos}) : super(key: key);
+  final bool permisos;
 
   @override
   _CompartirState createState() => _CompartirState();
 }
 
 class _CompartirState extends State<Compartir> {
+  bool listado = false;
+  Widget dataContacts;
+  Iterable<Contact> data;
+  Iterable<Contact> dataFiltro;
+  Map<String, bool> mapaValue = Map();
+  ContactosService contactosService = ContactosService();
+  String filtro;
+  List<String> numeros = List();
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -43,14 +59,38 @@ class _CompartirState extends State<Compartir> {
                 placeholder: "Buscar Contactos",
                 isShadow: true,
 
-                prefixIcon: Icon(Icons.lock), //REQUIRED
-                onClickSuffix: () {
-                  print('Suffix Clicked');
-                },
+                prefixIcon: Icon(
+                  Icons.person,
+                  color: Colors.grey,
+                ), //REQUIRED
 
-                onChanged: (text) {},
+                onChanged: (text) {
+                  setState(() {
+                    filtro = text;
+                  });
+                },
               ),
             ),
+            widget.permisos
+                ? StreamBuilder<Iterable<Contact>>(
+                    stream: ContactsService.getContacts().asStream(),
+                    builder: (BuildContext context,
+                        AsyncSnapshot<Iterable<Contact>> snapshot) {
+                      data = snapshot.data;
+                      dataFiltro = data;
+                      if (snapshot.data != null && dataFiltro != null) {
+                        listaContactos();
+                      }
+                      return snapshot.data != null && dataFiltro != null
+                          ? SingleChildScrollView(
+                              child: Container(
+                              height: MediaQuery.of(context).size.height / 1.6,
+                              child: dataContacts,
+                            ))
+                          : CircularProgressIndicator();
+                    },
+                  )
+                : Container(),
             Container(
               margin: EdgeInsets.only(top: height / 7),
               height: height / 10,
@@ -84,78 +124,184 @@ class _CompartirState extends State<Compartir> {
                   )),
             ),
             Container(
-              margin: EdgeInsets.only(top: height /1.1, right: width / 2),
-                  child: Center(
-                    child: BouncingWidget(
-                        duration: Duration(milliseconds: 100),
-                        scaleFactor: 2,
-                        onPressed: () {},
-                        child: Card(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(50.0),
-                            ),
-                            color: HexColor('#103E68'),
-                            child: Container(
-                                width: width / 5,
-                                height: height / 20,
-                                child: Center(
-                                  child: Icon(Icons.skip_previous_rounded,
-                                  color: Colors.white,)
-                                )))),
-                  ),
-                ),
-                Container(
-              margin: EdgeInsets.only(top: height /1.1, right: width / 12),
-                  child: Center(
-                    child: BouncingWidget(
-                        duration: Duration(milliseconds: 100),
-                        scaleFactor: 2,
-                        onPressed: () {},
-                        child: Card(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(50.0),
-                            ),
-                            color: HexColor('#103E68'),
-                            child: Container(
-                                width: width / 5,
-                                height: height / 20,
-                                child: Center(
-                                  child: Icon(Icons.skip_next_rounded,
-                                  color: Colors.white,)
-                                )))),
-                  ),
-                ),
-                 Container(
-              margin: EdgeInsets.only(top: height /1.1, left: width / 1.9),
-                  child: Center(
-                    child: BouncingWidget(
-                        duration: Duration(milliseconds: 100),
-                        scaleFactor: 2,
-                        onPressed: () {},
-                        child: Card(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(50.0),
-                            ),
-                            color: HexColor('#103E68'),
-                            child: Container(
-                                width: width / 3,
-                                height: height / 20,
-                                child: Center(
-                                  child: Text(
-                                    "Enviar",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontFamily: 'Roboto-Medium',
-                                      fontSize: 20,
-                                    ),
-                                  ),
-                                )))),
-                  ),
-                ),
+              margin: EdgeInsets.only(top: height / 1.1, right: width / 2),
+              child: Center(
+                child: BouncingWidget(
+                    duration: Duration(milliseconds: 100),
+                    scaleFactor: 2,
+                    onPressed: () {},
+                    child: Card(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(50.0),
+                        ),
+                        color: HexColor('#103E68'),
+                        child: Container(
+                            width: width / 5,
+                            height: height / 20,
+                            child: Center(
+                                child: Icon(
+                              Icons.skip_previous_rounded,
+                              color: Colors.white,
+                            ))))),
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.only(top: height / 1.1, right: width / 12),
+              child: Center(
+                child: BouncingWidget(
+                    duration: Duration(milliseconds: 100),
+                    scaleFactor: 2,
+                    onPressed: () {},
+                    child: Card(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(50.0),
+                        ),
+                        color: HexColor('#103E68'),
+                        child: Container(
+                            width: width / 5,
+                            height: height / 20,
+                            child: Center(
+                                child: Icon(
+                              Icons.skip_next_rounded,
+                              color: Colors.white,
+                            ))))),
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.only(top: height / 1.1, left: width / 1.9),
+              child: Center(
+                child: BouncingWidget(
+                    duration: Duration(milliseconds: 100),
+                    scaleFactor: 2,
+                    onPressed: () {},
+                    child: Card(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(50.0),
+                        ),
+                        color: HexColor('#103E68'),
+                        child: Container(
+                            width: width / 3,
+                            height: height / 20,
+                            child: Center(
+                              child: Text(
+                                "Enviar",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontFamily: 'Roboto-Medium',
+                                  fontSize: 20,
+                                ),
+                              ),
+                            )))),
+              ),
+            ),
           ],
         ),
       ),
     );
+  }
+
+  listaContactos() {
+    aplicarFiltro();
+
+    List<Widget> lista = List();
+    dataFiltro.forEach((elment) {
+      if (mapaValue[elment.identifier] == null) {
+        mapaValue[elment.identifier] = false;
+      }
+
+      List<Widget> phones = List();
+      elment.displayName != null
+          ? phones.add(Text(
+              elment.displayName,
+              textAlign: TextAlign.left,
+            ))
+          : print('');
+      elment.phones != null
+          ? elment.phones.forEach((elment2) {
+              phones.add(Text(elment2.value.toString()));
+            })
+          : print('');
+
+      elment.displayName != null
+          ? lista.add(GestureDetector(
+              onLongPress: () {
+                setState(() {
+                  if (elment.phones.first.value != null) {
+                    numeros
+                        .add(elment.phones.first.value.replaceAll('+57', ''));
+                    listado = true;
+                    mapaValue[elment.identifier] = true;
+                  }
+                });
+              },
+              child: Container(
+                  child: Card(
+                      child: Row(
+                children: [
+                  Container(
+                      width: MediaQuery.of(context).size.height / 3,
+                      alignment: Alignment.topLeft,
+                      child: Column(
+                        children: [
+                          Container(
+                              child: Column(
+                            children: phones,
+                          ))
+                        ],
+                      )),
+                  Container(
+                    alignment: Alignment.topLeft,
+                    child: FloatingActionButton(
+                      onPressed: () {},
+                      child: Icon(Icons.navigation),
+                      backgroundColor: Colors.green,
+                    ),
+                  ),
+                  listado
+                      ? Container(
+                          child: Checkbox(
+                            onChanged: (e) {
+                              setState(() {
+                                if (elment.phones.first.value != null) {
+                                  if (e) {
+                                    numeros.add(elment.phones.first.value
+                                        .replaceAll('+57', ''));
+                                  } else {
+                                    numeros.remove(elment.phones.first.value
+                                        .replaceAll('+57', ''));
+                                  }
+                                  if (numeros.isEmpty) {
+                                    listado = false;
+                                  }
+
+                                  mapaValue[elment.identifier] = e;
+                                }
+                              });
+                            },
+                            value: mapaValue[elment.identifier],
+                          ),
+                        )
+                      : Container()
+                ],
+              ))),
+            ))
+          : Container();
+    });
+    dataContacts = ListView(
+      children: lista,
+    );
+  }
+
+  void aplicarFiltro() {
+    if (filtro != null && data != null) {
+      dataFiltro = data.where((i) {
+        if (i != null && i.displayName != null) {
+          return i.displayName.toUpperCase().contains(filtro.toUpperCase());
+        } else {
+          return false;
+        }
+      }).toList();
+    }
   }
 }
