@@ -14,6 +14,7 @@ class Compartir extends StatefulWidget {
 }
 
 class _CompartirState extends State<Compartir> {
+  TextEditingController searchController = new TextEditingController();
   bool listado = false;
   Widget dataContacts;
   Iterable<Contact> data;
@@ -22,6 +23,40 @@ class _CompartirState extends State<Compartir> {
   ContactosService contactosService = ContactosService();
   String filtro;
   List<String> numeros = List();
+  List<Contact> contacts = [];
+  List<Contact> contactsFilter = [];
+  @override
+  void initState() {
+    super.initState();
+    getAllContacts();
+    searchController.addListener(() {
+      filterContacts();
+    });
+  }
+
+  getAllContacts() async {
+    List<Contact> _contacts = (await ContactsService.getContacts()).toList();
+    setState(() {
+      contacts = _contacts;
+    });
+  }
+
+  filterContacts() {
+    List<Contact> _contacts = [];
+    _contacts.addAll(contacts);
+    if (searchController.text.isNotEmpty) {
+      _contacts.retainWhere((contact) {
+        String searchTerm = searchController.text.toLowerCase();
+        String contactName = contact.displayName.toLowerCase();
+        return contactName.contains(searchTerm);
+      });
+
+      setState(() {
+        contactsFilter = _contacts;
+      });
+    }
+  }
+
   @override
   void dispose() {
     super.dispose();
@@ -31,66 +66,33 @@ class _CompartirState extends State<Compartir> {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
+    bool isSearching = searchController.text.isNotEmpty;
     return Scaffold(
       backgroundColor: HexColor('#DDE9ED'),
       body: SingleChildScrollView(
         child: Stack(
           children: [
-            Container(
-              margin: EdgeInsets.only(top: height / 50),
-              child: BeautyTextfield(
-                width: double.maxFinite, //REQUIRED
-                height: 60, //REQUIRED
-                accentColor: Colors.white, // On Focus Color
-                textColor: HexColor('#698596'), //Text Color
-                backgroundColor: Colors.white, //Not Focused Color
-                textBaseline: TextBaseline.alphabetic,
-                autocorrect: false,
-                autofocus: false,
-                enabled: true, // Textfield enabled
-                focusNode: FocusNode(),
-                fontFamily: 'Roboto-Light', //Text Fontfamily
-                fontWeight: FontWeight.w500,
-                maxLines: 1,
-                margin: EdgeInsets.all(30),
-                cornerRadius: BorderRadius.all(Radius.circular(50)),
-                duration: Duration(milliseconds: 300),
-                inputType: TextInputType.phone, //REQUIRED
-                placeholder: "Buscar Contactos",
-                isShadow: true,
-
-                prefixIcon: Icon(
-                  Icons.person,
-                  color: Colors.grey,
-                ), //REQUIRED
-
-                onChanged: (text) {
-                  setState(() {
-                    filtro = text;
-                  });
-                },
-              ),
+            Center(
+              child: Container(
+                  width: width / 1.1,
+                  margin: EdgeInsets.only(top: height / 25),
+                  child: Container(
+                    child: TextField(
+                      controller: searchController,
+                      decoration: InputDecoration(
+                          labelText: 'Buscar contacto',
+                          labelStyle: TextStyle(
+                              color: HexColor('#698596'),
+                              fontSize: height / 40),
+                          border: new OutlineInputBorder(
+                              borderSide: new BorderSide(
+                                color: Colors.grey,
+                              ),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(50)))),
+                    ),
+                  )),
             ),
-            widget.permisos
-                ? StreamBuilder<Iterable<Contact>>(
-                    stream: ContactsService.getContacts().asStream(),
-                    builder: (BuildContext context,
-                        AsyncSnapshot<Iterable<Contact>> snapshot) {
-                      data = snapshot.data;
-                      dataFiltro = data;
-                      if (snapshot.data != null && dataFiltro != null) {
-                        listaContactos();
-                      }
-                      return snapshot.data != null && dataFiltro != null
-                          ? SingleChildScrollView(
-                              child: Container(
-                              height: MediaQuery.of(context).size.height / 1.6,
-                              child: dataContacts,
-                            ))
-                          : CircularProgressIndicator();
-                    },
-                  )
-                : Container(),
             Container(
               margin: EdgeInsets.only(top: height / 7),
               height: height / 10,
@@ -123,6 +125,28 @@ class _CompartirState extends State<Compartir> {
                     ),
                   )),
             ),
+            Container(
+                margin: EdgeInsets.only(top: height / 4),
+                child: SingleChildScrollView(
+                    child: Column(children: <Widget>[
+                  ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: isSearching == true ? contactsFilter.length : contacts.length,
+                    itemBuilder: (context, index) {
+                      Contact contact = isSearching == true ? contactsFilter[index] : contacts[index];
+                      return ListTile(
+                        title: Text(contact.displayName),
+                        leading: (contact.avatar != null &&
+                                contact.avatar.length > 0)
+                            ? CircleAvatar(
+                                backgroundImage: MemoryImage(contact.avatar))
+                            : CircleAvatar(
+                                child: Text(contact.initials()),
+                              ),
+                      );
+                    },
+                  ),
+                ]))),
             Container(
               margin: EdgeInsets.only(top: height / 1.1, right: width / 2),
               child: Center(
@@ -199,109 +223,5 @@ class _CompartirState extends State<Compartir> {
         ),
       ),
     );
-  }
-
-  listaContactos() {
-    aplicarFiltro();
-
-    List<Widget> lista = List();
-    dataFiltro.forEach((elment) {
-      if (mapaValue[elment.identifier] == null) {
-        mapaValue[elment.identifier] = false;
-      }
-
-      List<Widget> phones = List();
-      elment.displayName != null
-          ? phones.add(Text(
-              elment.displayName,
-              textAlign: TextAlign.left,
-            ))
-          : print('');
-      elment.phones != null
-          ? elment.phones.forEach((elment2) {
-              phones.add(Text(elment2.value.toString()));
-            })
-          : print('');
-
-      elment.displayName != null
-          ? lista.add(GestureDetector(
-              onLongPress: () {
-                setState(() {
-                  if (elment.phones.first.value != null) {
-                    numeros
-                        .add(elment.phones.first.value.replaceAll('+57', ''));
-                    listado = true;
-                    mapaValue[elment.identifier] = true;
-                  }
-                });
-              },
-              child: Container(
-                  child: Card(
-                      child: Row(
-                children: [
-                  Container(
-                      width: MediaQuery.of(context).size.height / 3,
-                      alignment: Alignment.topLeft,
-                      child: Column(
-                        children: [
-                          Container(
-                              child: Column(
-                            children: phones,
-                          ))
-                        ],
-                      )),
-                  Container(
-                    alignment: Alignment.topLeft,
-                    child: FloatingActionButton(
-                      onPressed: () {},
-                      child: Icon(Icons.navigation),
-                      backgroundColor: Colors.green,
-                    ),
-                  ),
-                  listado
-                      ? Container(
-                          child: Checkbox(
-                            onChanged: (e) {
-                              setState(() {
-                                if (elment.phones.first.value != null) {
-                                  if (e) {
-                                    numeros.add(elment.phones.first.value
-                                        .replaceAll('+57', ''));
-                                  } else {
-                                    numeros.remove(elment.phones.first.value
-                                        .replaceAll('+57', ''));
-                                  }
-                                  if (numeros.isEmpty) {
-                                    listado = false;
-                                  }
-
-                                  mapaValue[elment.identifier] = e;
-                                }
-                              });
-                            },
-                            value: mapaValue[elment.identifier],
-                          ),
-                        )
-                      : Container()
-                ],
-              ))),
-            ))
-          : Container();
-    });
-    dataContacts = ListView(
-      children: lista,
-    );
-  }
-
-  void aplicarFiltro() {
-    if (filtro != null && data != null) {
-      dataFiltro = data.where((i) {
-        if (i != null && i.displayName != null) {
-          return i.displayName.toUpperCase().contains(filtro.toUpperCase());
-        } else {
-          return false;
-        }
-      }).toList();
-    }
   }
 }
