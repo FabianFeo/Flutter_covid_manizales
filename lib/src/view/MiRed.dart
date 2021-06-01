@@ -1,5 +1,5 @@
 import 'package:aprendiendo/src/functions/generatePolygons.dart';
-import 'package:aprendiendo/src/view/Compartir.dart';
+
 import 'package:aprendiendo/src/view/Contactos.dart';
 import 'package:aprendiendo/src/view/grapho.dart';
 import 'package:aprendiendo/src/view/qrScan.dart';
