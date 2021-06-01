@@ -162,7 +162,7 @@ class _MiRedState extends State<MiRed> with TickerProviderStateMixin {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => Compartir(permisos: true,)));
+                                  builder: (context) => Contactos(permisos: true,)));
                         },
                         child: Card(
                             shape: RoundedRectangleBorder(

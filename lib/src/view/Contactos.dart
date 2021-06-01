@@ -149,7 +149,7 @@ class _ContactosState extends State<Contactos> {
           : print('');
       elment.phones != null
           ? elment.phones.forEach((elment2) {
-              phones.add(Text(elment2.value.toString()));
+             
             })
           : print('');
 
@@ -165,6 +165,8 @@ class _ContactosState extends State<Contactos> {
                   }
                 });
               },
+
+            
               child: Container(
                   child: Card(
                       child: Row(
@@ -180,6 +182,7 @@ class _ContactosState extends State<Contactos> {
                           ))
                         ],
                       )),
+                      
                   Container(
                     alignment: Alignment.topLeft,
                     child: FloatingActionButton(
