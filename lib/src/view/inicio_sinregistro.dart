@@ -7,6 +7,7 @@ import 'package:extended_tabs/extended_tabs.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class InicioSinRegistro extends StatefulWidget {
   InicioSinRegistro({Key key}) : super(key: key);
@@ -115,37 +116,56 @@ class _InicioSinRegistroState extends State<InicioSinRegistro>
                         fontFamily: 'Roboto-Bold')),
               ),
               BouncingWidget(
-                duration: Duration(milliseconds: 100),
-                scaleFactor: 1.5,
-                onPressed: () {
-                  Navigator.push(
-            context, MaterialPageRoute(builder: (context) => Contactos(permisos: true,)));
-
-                },
-                child: Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(50.0),
-                  ),
-                  color: HexColor('#103E68'),
-                  child: Container(
-                    width: width / 2,
-                    height: height / 20,
-                    child: Center(
-                      child:  Text(
-                      "Invita a tus contactos",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontFamily: 'Roboto-Medium',
-                          fontSize: 20),
+                  duration: Duration(milliseconds: 100),
+                  scaleFactor: 1.5,
+                  onPressed: () async {
+                    final PermissionStatus permissionStatus =
+                        await _getPermission();
+                    if (permissionStatus == PermissionStatus.granted) {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => Contactos(
+                                    permisos: true,
+                                  )));
+                    }
+                  },
+                  child: Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(50.0),
                     ),
-                    )
-                  ),
-                )),
+                    color: HexColor('#103E68'),
+                    child: Container(
+                        width: width / 2,
+                        height: height / 20,
+                        child: Center(
+                          child: Text(
+                            "Invita a tus contactos",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontFamily: 'Roboto-Medium',
+                                fontSize: 20),
+                          ),
+                        )),
+                  )),
             ],
           ),
         ),
       ),
     );
+  }
+
+  Future<PermissionStatus> _getPermission() async {
+    final PermissionStatus permission = await Permission.contacts.status;
+    if (permission != PermissionStatus.granted &&
+        permission != PermissionStatus.denied) {
+      final Map<Permission, PermissionStatus> permissionStatus =
+          await [Permission.contacts].request();
+      return permissionStatus[Permission.contacts] ??
+          PermissionStatus.undetermined;
+    } else {
+      return permission;
+    }
   }
 }
