@@ -15,6 +15,7 @@ import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:http/http.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Index extends StatefulWidget {
   Index({Key key}) : super(key: key);
@@ -117,7 +118,6 @@ class _IndexState extends State<Index> {
                           ],
                         ),
                       ),
-                      
                       GestureDetector(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.end,
@@ -254,6 +254,14 @@ class _IndexState extends State<Index> {
                         ),
                       ),
                       GestureDetector(
+                        onTap: () async {
+                          const url = "https://covidalert.com.co/";
+                          if (await canLaunch(url)) {
+                            await launch(url);
+                          } else
+                            // can't launch url, there is some error
+                            throw "Could not launch $url";
+                        },
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
@@ -274,35 +282,38 @@ class _IndexState extends State<Index> {
                           ],
                         ),
                       ),
-                       Visibility(
-                         visible: true,
-                         child: GestureDetector(
-                         onTap: () {
+                      Visibility(
+                        visible: true,
+                        child: GestureDetector(
+                          onTap: () {
                             LoginService loginService = LoginService();
                             loginService.logOut();
-                            Navigator.push(context, MaterialPageRoute(builder:  (context) =>
-                                          Login()));
-                         },
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children:<Widget> [
-                            Container(
-                              margin: EdgeInsets.only(
-                                  right:
-                                      MediaQuery.of(context).size.width / 30),
-                              child: Text(
-                                'Cerrar sesion',
-                                style: TextStyle(
-                                  fontFamily: 'Roboto-Medium',
-                                  color: HexColor('#103E68'),
-                                  fontSize: 16,
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Login()));
+                          },
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: <Widget>[
+                              Container(
+                                margin: EdgeInsets.only(
+                                    right:
+                                        MediaQuery.of(context).size.width / 30),
+                                child: Text(
+                                  'Cerrar sesion',
+                                  style: TextStyle(
+                                    fontFamily: 'Roboto-Medium',
+                                    color: HexColor('#103E68'),
+                                    fontSize: 16,
+                                  ),
                                 ),
                               ),
-                            ),
-                            Divider(), 
-                          ],
+                              Divider(),
+                            ],
+                          ),
                         ),
-                      ),)
+                      )
                     ],
                   ),
                 ),
@@ -425,7 +436,6 @@ class _IndexState extends State<Index> {
                           label: '',
                         ),
                         BottomNavigationBarItem(
-                          
                           icon: Column(
                             children: [
                               Container(
