@@ -13,6 +13,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_tappable_polyline/flutter_map_tappable_polyline.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:latlong/latlong.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class MiRed extends StatefulWidget {
   MiRed({Key key}) : super(key: key);
@@ -120,14 +121,14 @@ class _MiRedState extends State<MiRed> with TickerProviderStateMixin {
                 chargeMap
                     ? CircularProgressIndicator()
                     : Container(
-                      color: Colors.white,
+                        color: Colors.white,
                         height: height / 3,
                         width: width,
                         child: FlutterMap(
                           options: new MapOptions(
                             interactive: false,
                             center: new LatLng(5.067, -75.489),
-                            zoom: width/31,
+                            zoom: width / 31,
                             plugins: [
                               TappablePolylineMapPlugin(),
                             ],
@@ -152,17 +153,22 @@ class _MiRedState extends State<MiRed> with TickerProviderStateMixin {
                           fontFamily: 'Roboto-Light',
                           fontSize: 14),
                     )),
-                    
                 Container(
                   child: Center(
                     child: BouncingWidget(
                         duration: Duration(milliseconds: 100),
                         scaleFactor: 2,
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => Contactos(permisos: true,)));
+                        onPressed: () async {
+                          final PermissionStatus permissionStatus =
+                              await _getPermission();
+                          if (permissionStatus == PermissionStatus.granted) {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Contactos(
+                                          permisos: true,
+                                        )));
+                          }
                         },
                         child: Card(
                             shape: RoundedRectangleBorder(
@@ -202,5 +208,18 @@ class _MiRedState extends State<MiRed> with TickerProviderStateMixin {
         chargeMap = false;
       });
     });
+  }
+
+  Future<PermissionStatus> _getPermission() async {
+    final PermissionStatus permission = await Permission.contacts.status;
+    if (permission != PermissionStatus.granted &&
+        permission != PermissionStatus.denied) {
+      final Map<Permission, PermissionStatus> permissionStatus =
+          await [Permission.contacts].request();
+      return permissionStatus[Permission.contacts] ??
+          PermissionStatus.undetermined;
+    } else {
+      return permission;
+    }
   }
 }
