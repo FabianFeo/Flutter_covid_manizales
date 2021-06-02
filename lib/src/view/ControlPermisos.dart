@@ -54,7 +54,7 @@ class _ControlPermisosState extends State<ControlPermisos>
         ),
         body: SingleChildScrollView(
           child: Container(
-            margin: EdgeInsets.only(top: height / 10),
+            margin: EdgeInsets.only(top: height /50),
             alignment: Alignment.centerLeft,
             child: Column(
               children: [
@@ -298,7 +298,7 @@ class _ControlPermisosState extends State<ControlPermisos>
                   alignment: Alignment.topLeft,
                   margin: EdgeInsets.symmetric(vertical: 1, horizontal: 30),
                   child: Text(
-                    'texto aqui',
+                    'Texto aqui',
                     style: TextStyle(
                       color: HexColor('#49657A'),
                       fontSize: 16,
