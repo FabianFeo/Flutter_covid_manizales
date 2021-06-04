@@ -1,4 +1,7 @@
+import 'dart:async';
 import 'dart:convert';
+import 'package:aprendiendo/src/functions/preferenceUser.dart';
+import 'package:aprendiendo/src/service/risk.service.dart';
 import 'package:custom_switch/custom_switch.dart';
 import 'package:date_time_picker/date_time_picker.dart' as dt;
 
@@ -28,6 +31,7 @@ class _InicioState extends State<Inicio> with TickerProviderStateMixin {
   String nivel = 'Bajo';
   bool _sesion = false;
   TabController _tabController;
+  RiskService riskService;
   List<TaggedPolyline> _polygons = List();
 
   bool chargeMap = true;
@@ -35,6 +39,9 @@ class _InicioState extends State<Inicio> with TickerProviderStateMixin {
   void initState() {
     _tabController = new TabController(length: 3, vsync: this);
     genPolygon(context);
+    timerRisk();
+    riskService = RiskService();
+    user();
     super.initState();
   }
 
@@ -70,15 +77,16 @@ class _InicioState extends State<Inicio> with TickerProviderStateMixin {
                 child: Row(
                   children: [
                     Container(
-                      padding: EdgeInsets.symmetric(vertical: 30, horizontal: 10),
+                      padding:
+                          EdgeInsets.symmetric(vertical: 30, horizontal: 10),
                       margin: EdgeInsets.only(left: width / 13),
                       width: width / 2,
                       child: Text(
                         'Control global de permisos',
                         style: TextStyle(
-                          color: HexColor('#103E68'),
-                          fontFamily: 'Roboto-Bold',
-                          fontSize: 18),
+                            color: HexColor('#103E68'),
+                            fontFamily: 'Roboto-Bold',
+                            fontSize: 18),
                       ),
                     ),
                     Container(
@@ -87,13 +95,11 @@ class _InicioState extends State<Inicio> with TickerProviderStateMixin {
                         child: CustomSwitch(
                           activeColor: HexColor('#103E68'),
                           value: true,
-                          onChanged: (bool position) {
-                          },
+                          onChanged: (bool position) {},
                         )),
                   ],
                 ),
               ),
-              
               Container(
                 alignment: Alignment.centerLeft,
                 margin: EdgeInsets.only(left: width / 11, top: height / 40),
@@ -104,22 +110,20 @@ class _InicioState extends State<Inicio> with TickerProviderStateMixin {
                         fontSize: 24)),
               ),
               Container(
-                    height: height / 20,
-                    width: width / 1.1,
-                    margin: EdgeInsets.only(top: height / 30),
-                    
-                    child: Center(
-                      child: Row(
-                        children: [
-                          Container(
-                            child: CustomPaint(
-                              painter: ColorSelector(nivel),
-                            ),
+                  height: height / 20,
+                  width: width / 1.1,
+                  margin: EdgeInsets.only(top: height / 30),
+                  child: Center(
+                    child: Row(
+                      children: [
+                        Container(
+                          child: CustomPaint(
+                            painter: ColorSelector(nivel),
                           ),
-                        ],
-                      ),
-                    )),
-              
+                        ),
+                      ],
+                    ),
+                  )),
               Container(
                 alignment: Alignment.centerLeft,
                 margin: EdgeInsets.all(30),
@@ -131,8 +135,6 @@ class _InicioState extends State<Inicio> with TickerProviderStateMixin {
                       fontFamily: 'Roboto-Light'),
                 ),
               ),
-             
-             
               Divider(
                 color: HexColor('#49657A'),
               ),
@@ -174,6 +176,41 @@ class _InicioState extends State<Inicio> with TickerProviderStateMixin {
         chargeMap = false;
       });
     });
+  }
+
+  timerRisk() {
+    Timer.periodic(Duration(seconds: 50), (timer) async {
+      await this.riskService.risk().then((value) => {
+        setRisk(value)
+        });
+    });
+  }
+
+  setRisk(Map<String, dynamic> value) {
+    
+    setState(() {
+      switch (int.parse(value['status'].toString())) {
+        case 1:
+          this.nivel = "Bajo";
+          break;
+        case 2:
+          this.nivel = "Medio";
+          break;
+        case 3:
+          this.nivel = "Alto";
+          break;
+        default:
+          this.nivel = "Medio";
+          break;
+      }
+    });
+  }
+
+  void user() {
+    PreferenceUser preferenceUser = PreferenceUser();
+    preferenceUser
+        .getUser()
+        .then((value) => {setRisk(json.decode(value)['risk_status'])});
   }
 }
 
@@ -247,4 +284,3 @@ class ColorSelector extends CustomPainter {
     return true;
   }
 }
-

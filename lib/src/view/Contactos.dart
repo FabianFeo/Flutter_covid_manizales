@@ -119,7 +119,7 @@ class _ContactosState extends State<Contactos> {
                                     timeInSecForIosWeb: 1)
                               }),
                       child: Container(
-                        margin: EdgeInsets.only(left: width / 20),
+                        margin: EdgeInsets.only(left: width / 20, top: height / 50),
                         child: Row(
                           children: [
                             Card(

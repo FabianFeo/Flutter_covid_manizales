@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:aprendiendo/src/beaconScanner/beacon.dart';
 import 'package:aprendiendo/src/beaconScanner/flutter_blue_beacon.dart';
 import 'package:aprendiendo/src/functions/PreferenceToken.dart';
+import 'package:aprendiendo/src/service/beacon.service.dart';
 import 'package:aprendiendo/src/service/locacion.service.dart';
 import 'package:aprendiendo/src/service/login.service.dart';
 
@@ -23,9 +24,12 @@ class Carga extends StatefulWidget {
 }
 
 class _CargaState extends State<Carga> {
+  BeaconService beaconService=BeaconService();
+
   BuildContext _buildContext;
   @override
   void initState() {
+    _startScan();
     LocactionService locactionService = LocactionService();
     locactionService.initLocatioService();
     Future.delayed(Duration(seconds: 3), () {
@@ -106,10 +110,12 @@ class _CargaState extends State<Carga> {
     FlutterBlue.instance.isScanning.listen((value) {
       if (!value) {
         print(listaRssiBeacons);
+         this.beaconService.beaconPush(listaRssiBeacons);
         FlutterBlue.instance.startScan(timeout: Duration(seconds: 20));
         listaRssiBeacons.clear();
       }
     });
+   
     //((Beacon beacon) {
 
     setState(() {
