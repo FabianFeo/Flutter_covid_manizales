@@ -82,16 +82,18 @@ class _CargaState extends State<Carga> {
       });
       beacons3.forEach((beacons2) {
         beacons2.forEach((beacon) {
-          if (listaRssiBeacons[beacon.id] == null) {
-            listaRssiBeacons[beacon.id] = new List();
-            List list = listaRssiBeacons[beacon.id];
+          try {
+            EddystoneUID beaconPivot =beacon;
+          if (listaRssiBeacons[beaconPivot.beaconId] == null) {
+            listaRssiBeacons[beaconPivot.beaconId] = new List();
+            List list = listaRssiBeacons[beaconPivot.beaconId];
             list.add(beacon.rssi);
-            listaRssiBeacons[beacon.id] = list;
+            listaRssiBeacons[beaconPivot.beaconId] = list;
             print('entro');
           } else {
-            List list = listaRssiBeacons[beacon.id];
+            List list = listaRssiBeacons[beaconPivot.beaconId];
             list.add(beacon.rssi);
-            listaRssiBeacons[beacon.id] = list;
+            listaRssiBeacons[beaconPivot.beaconId] = list;
             print('entro');
           }
 
@@ -102,8 +104,11 @@ class _CargaState extends State<Carga> {
               'serviceData: ${beacon.scanResult.advertisementData.serviceData}');
 
           setState(() {
-            beacons[beacon.id] = beacon;
+            beacons[beaconPivot.beaconId] = beacon;
           });
+          } catch (e) {
+          }
+          
         });
       });
     });
