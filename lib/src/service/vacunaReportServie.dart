@@ -13,7 +13,7 @@ class VacunaReportService {
     PreferenceUser preferenceUser = PreferenceUser();
     String token = await preferenceToken.getToken();
     http.Response response =
-        await http.post('https://covidalert.com.co/api/report/vaccine/', body: {
+        await http.post('http://labs.covidalert.com.co/api/report/vaccine/', body: {
       "vaccine_creator": "CureVac",
       "date_first_dose": firstDose,
       "date_last_dose": lastDosis

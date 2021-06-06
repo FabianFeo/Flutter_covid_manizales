@@ -12,7 +12,7 @@ class RegistroService {
   PreferenceUser preferenceUser = PreferenceUser();
   Future<String> register(Registration registration) async {
     http.Response response = await http.post(
-        'https://covidalert.com.co/api/rest-auth/registration/',
+        'http://labs.covidalert.com.co/api/rest-auth/registration/',
         body: {
           "document_type": registration.document_type,
           "document_number": registration.document_number,

@@ -6,26 +6,29 @@ import 'package:aprendiendo/src/functions/preferenceUser.dart';
 import 'package:http/http.dart' as http;
 
 class BeaconService {
-  beaconPush(Map data) {
-    data.forEach((key, value) async {
-      PreferenceToken preferenceToken = PreferenceToken();
+  Future<void> beaconPush(Map data) async {
+    List<Map> lista = List();
+    await data.forEach((key, value) async {
       PreferenceUser preferenceUser = PreferenceUser();
       String idUser =
           json.decode(await preferenceUser.getUser())['id'].toString();
-      String token = await preferenceToken.getToken();
-      http.Response response = await http.post(
-          'https://covidalert.com.co/api/iot/beacon-session-tracking/',
-          body: {
-            "_from": DateTime.now().toIso8601String(),
-            "beacon_id": key,
-            "rssi": json.encode(value),
-            "until": DateTime.now().toIso8601String(),
-            "device": idUser
-          },
-          headers: {
-            'Authorization': 'JWT ${token}'
-          });
-      return response;
+
+      lista.add(
+        {
+          "_from": DateTime.now().toIso8601String(),
+          "beacon_id": key,
+          "rssi": json.encode(value),
+          "until": DateTime.now().toIso8601String(),
+          "device": idUser
+        },
+      );
     });
+    PreferenceToken preferenceToken = PreferenceToken();
+    String token = await preferenceToken.getToken();
+    http.Response response = await http.post(
+        'http://labs.covidalert.com.co/api/iot/beacon-session-tracking/',
+        body: lista,
+        headers: {'Authorization': 'JWT ${token}'});
+    return response;
   }
 }

@@ -1,4 +1,8 @@
+import 'dart:async';
+import 'dart:convert';
+
 import 'package:aprendiendo/src/functions/generatePolygons.dart';
+import 'package:aprendiendo/src/functions/preferencesLocation.dart';
 
 import 'package:aprendiendo/src/view/Contactos.dart';
 import 'package:aprendiendo/src/view/grapho.dart';
@@ -25,6 +29,7 @@ class MiRed extends StatefulWidget {
 class _MiRedState extends State<MiRed> with TickerProviderStateMixin {
   bool _sesion = false;
   TabController _tabController;
+  PreferencesLocation preferencesLocation = PreferencesLocation();
   @override
   void initState() {
     _tabController = new TabController(length: 3, vsync: this);
@@ -206,6 +211,23 @@ class _MiRedState extends State<MiRed> with TickerProviderStateMixin {
       setState(() {
         this._polygons = lista;
         chargeMap = false;
+      });
+    });
+  }
+
+  getPoliline() {
+    Timer.periodic(Duration(seconds: 30), (timer) async {
+      await preferencesLocation.getLocation().then((value) {
+        List<LatLng> lista = List();
+        value.forEach((element) {
+          Map mapa = json.decode(element);
+          lista.add(LatLng(mapa['latitud'], mapa['longitud']));
+        });
+        TaggedPolyline poligon =
+            new TaggedPolyline(points: lista, color: Colors.red);
+        setState(() {
+          this._polygons.add(poligon);
+        });
       });
     });
   }
