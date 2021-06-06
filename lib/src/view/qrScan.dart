@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:aprendiendo/src/service/qr.service.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
@@ -52,9 +53,9 @@ class _QrScanState extends State<QrScan> {
   void _onQRViewCreated(QRViewController controller) {
     this.controller = controller;
     controller.scannedDataStream.listen((scanData) {
-      setState(() {
-        result = scanData;
-      });
+      QrService qrService=QrService();
+      qrService.pushData(scanData).then((value) => {Navigator.of(context).pop()});
+     
     });
   }
 
