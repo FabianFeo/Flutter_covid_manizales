@@ -170,7 +170,7 @@ class _ContactosState extends State<Contactos> {
 
       elment.displayName != null
           ? lista.add(GestureDetector(
-              onLongPress: () {
+              onTap: () {
                 setState(() {
                   if (elment.phones.first.value != null) {
                     numeros
