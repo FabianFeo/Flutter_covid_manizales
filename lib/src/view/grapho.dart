@@ -103,7 +103,7 @@ class MyPainter extends CustomPainter {
 
     links.forEach((element) {
       var paint2 = Paint()
-        ..color = Colors.blue
+        ..color = HexColor('#103E68')
         ..strokeWidth = 3
         ..strokeCap = StrokeCap.round;
       canvas.drawLine(

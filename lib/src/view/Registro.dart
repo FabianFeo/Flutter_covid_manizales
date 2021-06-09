@@ -139,7 +139,7 @@ class _RegistroState extends State<Registro> {
                 cornerRadius: BorderRadius.all(Radius.circular(50)),
                 duration: Duration(milliseconds: 300),
                 inputType: TextInputType.number, //REQUIRED
-                placeholder: "Número de documento",
+                placeholder: "Número Documento",
                 isShadow: true,
                 obscureText: false,
                 prefixIcon: Icon(
