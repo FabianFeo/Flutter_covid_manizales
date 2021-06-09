@@ -1,5 +1,4 @@
 import 'package:aprendiendo/src/service/contactos.service.dart';
-import 'package:aprendiendo/src/view/ConcatosFuertes.dart';
 import 'package:beauty_textfield/beauty_textfield.dart';
 import 'package:bouncing_widget/bouncing_widget.dart';
 import 'package:contacts_service/contacts_service.dart';
@@ -7,18 +6,18 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hexcolor/hexcolor.dart';
 
-class Contactos extends StatefulWidget {
-  Contactos({Key key, this.permisos}) : super(key: key);
+class ContactosFuertes extends StatefulWidget {
+  ContactosFuertes({Key key, this.listaContactos ,this.permisos}) : super(key: key);
   final bool permisos;
+  final List<Contact> listaContactos;
   @override
-  _ContactosState createState() => _ContactosState();
+  _ContactosFuertesState createState() => _ContactosFuertesState();
 }
 
-class _ContactosState extends State<Contactos> {
+class _ContactosFuertesState extends State<ContactosFuertes> {
   bool listado = false;
   Widget dataContacts;
   Iterable<Contact> data;
-  List<Contact> seleccionados = List();
   Iterable<Contact> dataFiltro;
   Map<String, bool> mapaValue = Map();
   ContactosService contactosService = ContactosService();
@@ -75,13 +74,13 @@ class _ContactosState extends State<Contactos> {
                   Container(
                     height: height / 10,
                     width: width / 1,
-                    color: HexColor('#698596'),
+                    color: HexColor('#72AB82'),
                     child: Container(
                         margin: EdgeInsets.only(
                             right: width / 20, left: width / 20),
                         child: Center(
                           child: Text(
-                            'Selecciona los contactos que consideres deben usar Covidalert Manizales.',
+                            'De los contactos que seleccionaste. Elige aquellos con quienes convives o te encuentras frecuentemente.',
                             textAlign: TextAlign.left,
                             style: TextStyle(
                                 fontSize: height / 50, color: Colors.white),
@@ -89,16 +88,15 @@ class _ContactosState extends State<Contactos> {
                         )),
                   ),
                   widget.permisos
-                      ? StreamBuilder<Iterable<Contact>>(
-                          stream: ContactsService.getContacts().asStream(),
+                      ? StreamBuilder<List<Contact>>(
                           builder: (BuildContext context,
-                              AsyncSnapshot<Iterable<Contact>> snapshot) {
-                            data = snapshot.data;
+                              AsyncSnapshot<List<Contact>> snapshot) {
+                            data = widget.listaContactos;
                             dataFiltro = data;
-                            if (snapshot.data != null && dataFiltro != null) {
+                            if (dataFiltro != null) {
                               listaContactos();
                             }
-                            return snapshot.data != null && dataFiltro != null
+                            return dataFiltro != null
                                 ? SingleChildScrollView(
                                     child: Container(
                                     margin: EdgeInsets.only(
@@ -137,7 +135,7 @@ class _ContactosState extends State<Contactos> {
                                         MediaQuery.of(context).size.height / 22,
                                     child: Center(
                                       child: Text(
-                                        "Siguiente",
+                                        "Anterior",
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                           color: Colors.white,
@@ -147,14 +145,32 @@ class _ContactosState extends State<Contactos> {
                                         ),
                                       ),
                                     ))),
-                                    onPressed: () async {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(builder: (context) => ContactosFuertes(
-                                          permisos: true,
-                                          listaContactos: seleccionados,
-                                        ), 
-                            ),);},)
+                              onPressed: () async{
+                                Navigator.pop(context);
+                              },
+                            ),
+                            Card(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(50.0),
+                                ),
+                                color: HexColor('#103E68'),
+                                child: Container(
+                                    width:
+                                        MediaQuery.of(context).size.width / 2.5,
+                                    height:
+                                        MediaQuery.of(context).size.height / 22,
+                                    child: Center(
+                                      child: Text(
+                                        "Enviar",
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 18,
+                                          fontFamily: 'Roboto-Medium',
+                                        ),
+                                      ),
+                                    ))),
                           ],
                         ),
                       ))
@@ -188,7 +204,6 @@ class _ContactosState extends State<Contactos> {
                         .add(elment.phones.first.value.replaceAll('+57', ''));
                     listado = true;
                     mapaValue[elment.identifier] = true;
-                    seleccionados.add(elment);
                   }
                 });
               },
@@ -217,15 +232,12 @@ class _ContactosState extends State<Contactos> {
                                   if (e) {
                                     numeros.add(elment.phones.first.value
                                         .replaceAll('+57', ''));
-                                    seleccionados.add(elment);
                                   } else {
                                     numeros.remove(elment.phones.first.value
                                         .replaceAll('+57', ''));
-                                    seleccionados.removeWhere((element) => element.identifier == elment.identifier);
                                   }
                                   if (numeros.isEmpty) {
                                     listado = false;
-                                    seleccionados.clear();
                                   }
 
                                   mapaValue[elment.identifier] = e;
