@@ -294,7 +294,7 @@ class _RegistroState extends State<Registro> {
                       child: DropdownButtonHideUnderline(
                           child: DropdownButton<String>(
                               value: _myActivity3,
-                              icon: Icon(Icons.arrow_downward),
+                              icon: const Icon(Icons.arrow_downward),
                               hint: Container(
                                 margin: EdgeInsets.only(left: width / 8),
                                 child: Text(
@@ -392,7 +392,7 @@ class _RegistroState extends State<Registro> {
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontFamily: 'Roboto-Medium',
-                                        fontSize: height / 40,
+                                        fontSize: 16,
                                       ),
                                     ),
                                   )))))),

@@ -32,7 +32,7 @@ class _ContactosState extends State<Contactos> {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
-        backgroundColor: Colors.white,
+       backgroundColor: HexColor('#DDE9ED'),
         body: SingleChildScrollView(
             child: Container(
                 margin: EdgeInsets.only(
@@ -134,7 +134,7 @@ class _ContactosState extends State<Contactos> {
                                         MediaQuery.of(context).size.height / 22,
                                     child: Center(
                                       child: Text(
-                                        "Enviar invitacion",
+                                        "Siguiente",
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                           color: Colors.white,

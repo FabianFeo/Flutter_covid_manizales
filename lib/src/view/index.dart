@@ -10,6 +10,8 @@ import 'package:aprendiendo/src/view/Vacuna.dart';
 import 'package:aprendiendo/src/view/inicio.dart';
 import 'package:aprendiendo/src/view/inicio_sinregistro.dart';
 import 'package:aprendiendo/src/view/login.dart';
+import 'package:aprendiendo/src/view/preguntas.dart';
+import 'package:aprendiendo/src/view/privacidad.dart';
 import 'package:aprendiendo/src/widget/navbar.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -141,6 +143,11 @@ class _IndexState extends State<Index> {
                         ),
                       ),
                       GestureDetector(
+                        onTap:  () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Privacidad()));},
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
@@ -162,6 +169,11 @@ class _IndexState extends State<Index> {
                         ),
                       ),
                       GestureDetector(
+                         onTap:  () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Preguntas()));},
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [

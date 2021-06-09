@@ -124,6 +124,17 @@ class _InicioState extends State<Inicio> with TickerProviderStateMixin {
                       ],
                     ),
                   )),
+                  Container(
+                alignment: Alignment.centerLeft,
+                margin: EdgeInsets.all(30),
+                child: Text(
+                  'Según nuestro sistema, tu probabilidad de exposición a un contagio es alta.',
+                  style: TextStyle(
+                      color: HexColor('#49657A'),
+                      fontSize: 16,
+                      fontFamily: 'Roboto-Light'),
+                ),
+              ),
               Container(
                 alignment: Alignment.centerLeft,
                 margin: EdgeInsets.all(30),

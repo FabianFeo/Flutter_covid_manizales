@@ -152,7 +152,7 @@ class _MiRedState extends State<MiRed> with TickerProviderStateMixin {
                     alignment: Alignment.centerLeft,
                     margin: EdgeInsets.all(30),
                     child: Text(
-                      '*Solo puedes visualizar la información de tus contactos que también usan COVIDALERT app. Invita a otros a usarla.',
+                      'Para mejorar la precisión de las alertas que envía Covidalert, invita a otros contactos a usarla.',
                       style: TextStyle(
                           color: HexColor('#49657A'),
                           fontFamily: 'Roboto-Light',
@@ -190,7 +190,7 @@ class _MiRedState extends State<MiRed> with TickerProviderStateMixin {
                                     style: TextStyle(
                                       color: Colors.white,
                                       fontFamily: 'Roboto-Medium',
-                                      fontSize: 20,
+                                      fontSize: 16,
                                     ),
                                   ),
                                 )))),
