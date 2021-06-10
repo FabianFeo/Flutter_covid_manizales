@@ -23,8 +23,13 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+    
+
 dependency_overrides:
   intl: 0.17.0
+
+  
+
   flutter_localizations:
     sdk: flutter
 

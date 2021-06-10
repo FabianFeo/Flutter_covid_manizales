@@ -11,10 +11,10 @@ class CambioIdioma {
 
   String get emptyList {
     if (localName == 'en') {
-      return "english language";
+      return "estacion";
     }
     if (localName == 'es') {
-      return "idioma español";
+      return "Estación";
     } else {
       return "unknown lang $localName";
     }
