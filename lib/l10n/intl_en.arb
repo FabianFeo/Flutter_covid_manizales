@@ -1,9 +1,25 @@
 {
-    "simpleText":"Register",
-    "@textWithPlaceHolder":{
+    "simpleText": "Register",
+    "@textWithPlaceHolder": {
         "placeholders": {
-            "comuna": { },
+            "comuna": {
+                "comuna": [
+                    "Atardeceres",
+                    "Ciudadela del norte",
+                    "Comuna doce",
+                    "Cumanday",
+                    "Ecoturistico Cerro oro",
+                    "Estacion",
+                    "La fuente",
+                    "La Macarena",
+                    "Otro(Villamaria)",
+                    "Palogrande",
+                    "San Jose",
+                    "Tesorito",
+                    "Universitaria"
+                ]
+            },
             "barrio": {}
         }
-    } 
+    }
 }

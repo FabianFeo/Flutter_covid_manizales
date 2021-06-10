@@ -26,7 +26,7 @@ class BeaconService {
     PreferenceToken preferenceToken = PreferenceToken();
     String token = await preferenceToken.getToken();
     http.Response response = await http.post(
-        'http://labs.covidalert.com.co/api/iot/beacon-session-tracking/',
+        'https://covidalert.com.co/api/iot/beacon-session-tracking/',
         body: lista,
         headers: {'Authorization': 'JWT ${token}'});
     return response;

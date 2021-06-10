@@ -15,7 +15,7 @@ class RiskService {
         json.decode(await preferenceUser.getUser())['id'].toString();
     String token = await preferenceToken.getToken();
     Map<String, dynamic> response = json.decode(json.decode((await http.get(
-            'http://labs.covidalert.com.co/api/core/users/' +
+            'https://covidalert.com.co/api/core/users/' +
                 idUser +
                 '/risk-status',
             headers: {'Authorization': 'JWT ${token}'}))
