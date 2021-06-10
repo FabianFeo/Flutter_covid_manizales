@@ -126,16 +126,9 @@ class _ReportarVacunaState extends State<ReportarVacuna>
                         DropdownMenuItem(
                           child: Container(
                             margin: EdgeInsets.only(left: width / 8),
-                            child: Text('Pfiser'),
+                            child: Text('BioNTech, Pfizer'),
                           ),
-                          value: 'Pfiser',
-                        ),
-                        DropdownMenuItem(
-                          child: Container(
-                            margin: EdgeInsets.only(left: width / 8),
-                            child: Text('AstraZeneca'),
-                          ),
-                          value: 'AstraZeneca',
+                          value: ' BioNTech, Pfizer',
                         ),
                         DropdownMenuItem(
                           child: Container(
@@ -143,6 +136,27 @@ class _ReportarVacunaState extends State<ReportarVacuna>
                             child: Text('Janssen'),
                           ),
                           value: 'Janssen',
+                        ),
+                        DropdownMenuItem(
+                          child: Container(
+                            margin: EdgeInsets.only(left: width / 8),
+                            child: Text('Oxford, AstraZeneca'),
+                          ),
+                          value: 'Oxford, AstraZeneca',
+                        ),
+                        DropdownMenuItem(
+                          child: Container(
+                            margin: EdgeInsets.only(left: width / 8),
+                            child: Text('Moderna'),
+                          ),
+                          value: 'Moderna',
+                        ),
+                        DropdownMenuItem(
+                          child: Container(
+                            margin: EdgeInsets.only(left: width / 8),
+                            child: Text('Sinovac'),
+                          ),
+                          value: 'Sinovac',
                         ),
                       ]))),
            
