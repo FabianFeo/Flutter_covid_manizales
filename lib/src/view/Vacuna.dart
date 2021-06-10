@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:aprendiendo/src/service/vacunaReportServie.dart';
 import 'package:aprendiendo/src/view/qrScan.dart';
 import 'package:aprendiendo/src/widget/BottomPermisos.dart';
@@ -25,6 +27,11 @@ class _ReportarVacunaState extends State<ReportarVacuna>
   String lastDose;
   String _myActivity;
 
+  final String data =
+      "[{'id': '1', 'info', 'nombrevacuna'}, {'id': '2', 'info', 'dosisvacuna'},]";
+  List<String> _vacuna = [];
+  String dropdownValue;
+
   @override
   void initState() {
     _tabController = new TabController(length: 3, vsync: this);
@@ -33,6 +40,13 @@ class _ReportarVacunaState extends State<ReportarVacuna>
 
   @override
   Widget build(BuildContext context) {
+    var json = JsonDecoder().convert(data);
+    _vacuna = (json).map<Vacuna>((data) {
+     return Vacuna.fromJson(data);
+    }).tolist();
+    var id;
+    dropdownValue = _vacuna[0];
+
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
@@ -82,6 +96,20 @@ class _ReportarVacunaState extends State<ReportarVacuna>
                     color: HexColor('#49657A'),
                     fontFamily: 'Roboto-Light',
                     fontSize: 16),
+              ),
+            ),
+            Container(
+              child: DropdownButton<String>(
+                value: dropdownValue,
+                onChanged: (String newvalue) {
+                  setState(() {
+                    dropdownValue = newvalue;
+                  });
+                },
+                items: _vacuna.map((Vacuna data) {
+                  return DropdownMenuItem<String>(
+                      value: data.info, child: Text(data.info));
+                }).toList(),
               ),
             ),
             Container(
@@ -238,6 +266,20 @@ class _ReportarVacunaState extends State<ReportarVacuna>
           ]),
         ),
       ),
+    );
+  }
+}
+
+class Vacuna {
+  String id;
+  String info;
+
+  Vacuna({this.id, this.info});
+
+  factory Vacuna.fromJson(Map<String, dynamic> json) {
+    return Vacuna(
+      id: json['id'],
+      info: json['info'],
     );
   }
 }
