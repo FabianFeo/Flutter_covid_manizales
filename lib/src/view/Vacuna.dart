@@ -9,6 +9,7 @@ import 'package:date_time_picker/date_time_picker.dart';
 import 'package:extended_tabs/extended_tabs.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hexcolor/hexcolor.dart';
 
@@ -26,29 +27,30 @@ class _ReportarVacunaState extends State<ReportarVacuna>
   String firstDose;
   String lastDose;
   String _myActivity;
-
-  final String data =
-      "[{'id': '1', 'info', 'nombrevacuna'}, {'id': '2', 'info', 'dosisvacuna'},]";
-  List<String> _vacuna = [];
+  List<Map> vacunas = [
+    {"nombrevacuna": "BioNTech", "numerodosis": 2},
+    {"nombrevacuna": "Pfizer", "numerodosis": 2},
+    {"nombrevacuna": "Janssen", "numerodosis": 1},
+    {"nombrevacuna": "Oxford", "numerodosis": 2},
+    {"nombrevacuna": "AstraZeneca", "numerodosis": 2},
+    {"nombrevacuna": "Moderna", "numerodosis": 2},
+    {"nombrevacuna": "Sinovac", "numerodosis": 2}
+  ];
+  List<DropdownMenuItem<String>> listaVacunas = [];
   String dropdownValue;
-
+  bool dosDosis = false;
   @override
   void initState() {
     _tabController = new TabController(length: 3, vsync: this);
     super.initState();
+    createVacunas();
   }
 
+  double width;
   @override
   Widget build(BuildContext context) {
-    var json = JsonDecoder().convert(data);
-    _vacuna = (json).map<Vacuna>((data) {
-     return Vacuna.fromJson(data);
-    }).tolist();
-    var id;
-    dropdownValue = _vacuna[0];
-
     double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
+    width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: HexColor('#DDE9ED'),
       floatingActionButton: Container(
@@ -99,20 +101,6 @@ class _ReportarVacunaState extends State<ReportarVacuna>
               ),
             ),
             Container(
-              child: DropdownButton<String>(
-                value: dropdownValue,
-                onChanged: (String newvalue) {
-                  setState(() {
-                    dropdownValue = newvalue;
-                  });
-                },
-                items: _vacuna.map((Vacuna data) {
-                  return DropdownMenuItem<String>(
-                      value: data.info, child: Text(data.info));
-                }).toList(),
-              ),
-            ),
-            Container(
                 margin: EdgeInsets.only(top: height / 25),
                 width: width / 1.2,
                 height: height / 13,
@@ -145,47 +133,16 @@ class _ReportarVacunaState extends State<ReportarVacuna>
                           color: Colors.black,
                         ),
                         onChanged: (value) {
+                          buscarNumeroDosis(value);
                           setState(() {
                             _myActivity = value;
                           });
                         },
-                        items: [
-                      DropdownMenuItem(
-                        child: Container(
-                          margin: EdgeInsets.only(left: width / 8),
-                          child: Text('BioNTech, Pfizer'),
-                        ),
-                        value: ' BioNTech, Pfizer',
-                      ),
-                      DropdownMenuItem(
-                        child: Container(
-                          margin: EdgeInsets.only(left: width / 8),
-                          child: Text('Janssen'),
-                        ),
-                        value: 'Janssen',
-                      ),
-                      DropdownMenuItem(
-                        child: Container(
-                          margin: EdgeInsets.only(left: width / 8),
-                          child: Text('Oxford, AstraZeneca'),
-                        ),
-                        value: 'Oxford, AstraZeneca',
-                      ),
-                      DropdownMenuItem(
-                        child: Container(
-                          margin: EdgeInsets.only(left: width / 8),
-                          child: Text('Moderna'),
-                        ),
-                        value: 'Moderna',
-                      ),
-                      DropdownMenuItem(
-                        child: Container(
-                          margin: EdgeInsets.only(left: width / 8),
-                          child: Text('Sinovac'),
-                        ),
-                        value: 'Sinovac',
-                      ),
-                    ]))),
+                        items:
+                            listaVacunas /*this.vacunas.map((e) {
+                          return 
+                        }).toList()*/
+                        ))),
             Container(
               margin: EdgeInsets.all(25),
               child: DateTimePicker(
@@ -207,27 +164,29 @@ class _ReportarVacunaState extends State<ReportarVacuna>
                 },
               ),
             ),
-            Container(
-              margin: EdgeInsets.all(25),
-              child: DateTimePicker(
-                initialValue: '',
-                firstDate: DateTime(2021),
-                lastDate: DateTime(2100),
-                dateLabelText: 'Fecha segunda dosis',
-                onChanged: (val) {
-                  print(val);
-                  lastDose = val;
-                },
-                validator: (val) {
-                  print(val);
-                  return null;
-                },
-                onSaved: (val) {
-                  print(val);
-                  lastDose = val;
-                },
-              ),
-            ),
+            this.dosDosis
+                ? Container(
+                    margin: EdgeInsets.all(25),
+                    child: DateTimePicker(
+                      initialValue: '',
+                      firstDate: DateTime(2021),
+                      lastDate: DateTime(2100),
+                      dateLabelText: 'Fecha segunda dosis',
+                      onChanged: (val) {
+                        print(val);
+                        lastDose = val;
+                      },
+                      validator: (val) {
+                        print(val);
+                        return null;
+                      },
+                      onSaved: (val) {
+                        print(val);
+                        lastDose = val;
+                      },
+                    ),
+                  )
+                : Container(),
             BouncingWidget(
                 duration: Duration(milliseconds: 100),
                 scaleFactor: 1.5,
@@ -268,6 +227,33 @@ class _ReportarVacunaState extends State<ReportarVacuna>
       ),
     );
   }
+
+  void createVacunas() {
+    this.vacunas.forEach((element) {
+      setState(() {
+        this.listaVacunas.add(DropdownMenuItem(
+              child: Container(
+                child: Text(element['nombrevacuna']),
+              ),
+              value: element['nombrevacuna'],
+            ));
+      });
+    });
+  }
+
+  void buscarNumeroDosis(String value) {
+    Map mapa =
+        this.vacunas.firstWhere((element) => element['nombrevacuna'] == value);
+    if (mapa['numerodosis'] == 2) {
+      setState(() {
+        this.dosDosis = true;
+      });
+    } else {
+      setState(() {
+        this.dosDosis = false;
+      });
+    }
+  }
 }
 
 class Vacuna {
@@ -278,8 +264,8 @@ class Vacuna {
 
   factory Vacuna.fromJson(Map<String, dynamic> json) {
     return Vacuna(
-      id: json['id'],
-      info: json['info'],
+      id: json["nombrevacuna"],
+      info: json["dosisvacuna"],
     );
   }
 }
