@@ -30,6 +30,7 @@ dependency_overrides:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
+  flutter_cupertino_localizations: ^1.0.1
   cupertino_icons: ^1.0.0
   beauty_textfield: ^0.0.1
   bouncing_widget: ^1.2.0
@@ -123,7 +124,7 @@ flutter:
   - assets/Imagenes_assetspng/íconos/vacuna_off.png
   - assets/Imagenes_assetspng/qr/qr.png
   - assets/Imagenes_assetspng/logos/Logo.png
-
+  
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

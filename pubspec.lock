@@ -216,6 +216,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.1"
+  flutter_cupertino_localizations:
+    dependency: "direct overridden"
+    description:
+      name: flutter_cupertino_localizations
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.1"
   flutter_image:
     dependency: transitive
     description:
