@@ -1,8 +1,8 @@
 {
-    "simpleText":"San Jose",
+    "simpleText":"Register",
     "@textWithPlaceHolder":{
         "placeholders": {
-            "comuna": {},
+            "comuna": { },
             "barrio": {}
         }
     } 

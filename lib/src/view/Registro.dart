@@ -1,3 +1,4 @@
+import 'package:aprendiendo/generated/l10n.dart';
 import 'package:aprendiendo/src/functions/preferenceslogin.dart';
 import 'package:aprendiendo/src/model/registration.model.dart';
 import 'package:aprendiendo/src/service/barrio.service.dart';
@@ -58,7 +59,7 @@ class _RegistroState extends State<Registro> {
             children: [
               Container(
                   margin: EdgeInsets.only(right: width / 1.6),
-                  child: Text('Registro',
+                  child: Text(S.of(context).simpleText,
                       style: TextStyle(
                           color: HexColor('#103E68'),
                           fontFamily: 'Roboto-Bold',
@@ -470,12 +471,8 @@ class _RegistroState extends State<Registro> {
   }
 
   void loadComunaData() async {
-/*    CambioIdioma localizations =
-        Localizations.of<CambioIdioma>(context, CambioIdioma);
-  */
     List<dynamic> data = List();
     await comunaService.getComuna().then((List<dynamic> dataService) {
-      //   localizations.emptyList;
       dataService.forEach((element) => {
             data.add({
               "display": element['name'],
