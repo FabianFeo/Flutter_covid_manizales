@@ -1,0 +1,9 @@
+{
+    "simpleText":"San Jose",
+    "@textWithPlaceHolder":{
+        "placeholders": {
+            "comuna": {},
+            "barrio": {}
+        }
+    } 
+}

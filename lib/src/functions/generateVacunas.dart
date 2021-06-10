@@ -10,7 +10,8 @@ class GeneratePolygons {
         json.decode(await rootBundle.loadString("assets/jsons/vacunas.json"));
     List<dynamic> data = jsonVacunas['nombrevacuna']['numerodosis'];
     data.forEach((element) {
-      lista.add(data);
+      List<dynamic> point = element["geometry"]["coordinates"];
+      lista.add(point);
     });
     return lista;
   }

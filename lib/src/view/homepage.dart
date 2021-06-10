@@ -1,5 +1,5 @@
+import 'package:aprendiendo/generated/l10n.dart';
 import 'package:aprendiendo/src/view/AnimacionCarga.dart';
-import 'package:aprendiendo/src/view/CambioIdioma.dart';
 import 'package:aprendiendo/src/view/login.dart';
 import 'package:aprendiendo/src/view/index.dart';
 import 'package:aprendiendo/src/view/prueba.dart';
@@ -15,9 +15,9 @@ class Homepage extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(fontFamily: 'laca'),
       home: Animacion(),
-      supportedLocales: [Locale('en'), Locale('es')],
+      supportedLocales: S.delegate.supportedLocales,
       localizationsDelegates: [
-        CambioIdioma.delegate,
+        S.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,

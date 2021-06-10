@@ -3,7 +3,6 @@ import 'package:aprendiendo/src/model/registration.model.dart';
 import 'package:aprendiendo/src/service/barrio.service.dart';
 import 'package:aprendiendo/src/service/comuna.service.dart';
 import 'package:aprendiendo/src/service/register.service.dart';
-import 'package:aprendiendo/src/view/CambioIdioma.dart';
 import 'package:aprendiendo/src/view/index.dart';
 import 'package:aprendiendo/src/view/login.dart';
 import 'package:aprendiendo/src/widget/navbar.dart';
