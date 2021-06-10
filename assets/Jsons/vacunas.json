@@ -1,0 +1,30 @@
+[
+{
+  "nombrevacuna": "BioNTech",
+  "numerodosis": 2
+},
+{
+  "nombrevacuna": "Pfizer",
+  "numerodosis": 2
+},
+{
+  "nombrevacuna": "Janssen",
+  "numerodosis": 1
+},
+{
+  "nombrevacuna": "Oxford",
+  "numerodosis": 2
+},
+{
+  "nombrevacuna": "AstraZeneca",
+  "numerodosis": 2
+},
+{
+  "nombrevacuna": "Moderna",
+  "numerodosis": 2
+},
+{
+  "nombrevacuna": "Sinovac",
+  "numerodosis": 2
+}
+]
