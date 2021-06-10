@@ -62,7 +62,7 @@ class _RegistroState extends State<Registro> {
                       style: TextStyle(
                           color: HexColor('#103E68'),
                           fontFamily: 'Roboto-Bold',
-                          fontSize: 24))),
+                          fontSize: 20))),
               Container(
                   margin: EdgeInsets.only(top: height / 25),
                   width: width / 1.2,
@@ -135,7 +135,8 @@ class _RegistroState extends State<Registro> {
                 focusNode: FocusNode(),
                 fontFamily: 'Roboto-Light', //Text Fontfamily
                 fontWeight: FontWeight.w500,
-                margin: EdgeInsets.only(top: height / 25, left: width / 12, right: width / 12),
+                margin: EdgeInsets.only(
+                    top: height / 25, left: width / 12, right: width / 12),
                 cornerRadius: BorderRadius.all(Radius.circular(50)),
                 duration: Duration(milliseconds: 300),
                 inputType: TextInputType.number, //REQUIRED
@@ -152,7 +153,7 @@ class _RegistroState extends State<Registro> {
                 },
               ),
               Container(
-                margin: EdgeInsets.only(right: width / 3, top:  height / 25),
+                margin: EdgeInsets.only(right: width / 3, top: height / 25),
                 child: Text(
                   'Fecha de Nacimiento',
                   style: TextStyle(
@@ -192,7 +193,7 @@ class _RegistroState extends State<Registro> {
                                   : registration.birth_date,
                               style: TextStyle(
                                   color: HexColor('#698596'),
-                                  fontSize: height / 42,
+                                  fontSize: height / 40,
                                   fontWeight: FontWeight.w500),
                             ),
                           ),
@@ -214,7 +215,8 @@ class _RegistroState extends State<Registro> {
                 fontFamily: 'Laca Regular', //Text Fontfamily
                 fontWeight: FontWeight.w500,
 
-                margin: EdgeInsets.only(top: height / 150, left: width / 12, right: width / 12),
+                margin: EdgeInsets.only(
+                    top: height / 150, left: width / 12, right: width / 12),
                 cornerRadius: BorderRadius.all(Radius.circular(50)),
                 duration: Duration(milliseconds: 300),
                 inputType: TextInputType.phone, //REQUIRED
@@ -396,37 +398,36 @@ class _RegistroState extends State<Registro> {
                                       ),
                                     ),
                                   )))))),
-             
-               Container(
+              Container(
                 margin: EdgeInsets.only(top: height / 25),
                 child: GestureDetector(
-                   onTap: () => Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => Login()),
-                            ),
+                    onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => Login()),
+                        ),
                     child: Center(
-                  child: Text(
-                    '¿Ya estás registrado? Inicia Sesión',
-                    style: TextStyle(
-                        color: HexColor('#49657A'),
-                        fontSize: 14,
-                        fontFamily: 'Roboto-Light',
-                        decoration: TextDecoration.underline),
-                  ),
-                )),
-              ), 
-             Container(
+                      child: Text(
+                        '¿Ya estás registrado? Inicia Sesión',
+                        style: TextStyle(
+                            color: HexColor('#49657A'),
+                            fontSize: 14,
+                            fontFamily: 'Roboto-Light',
+                            decoration: TextDecoration.underline),
+                      ),
+                    )),
+              ),
+              Container(
                 margin: EdgeInsets.only(top: height / 25),
                 child: GestureDetector(
                     onTap: () {
-                      _preferenceLogin
-                          .typeLogin(false)
-                          .then((value) => {Navigator.of(context).pop(),
+                      _preferenceLogin.typeLogin(false).then((value) => {
+                            Navigator.of(context).pop(),
                             Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => Index(),
-                              ))});
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => Index(),
+                                ))
+                          });
                     },
                     child: Center(
                       child: Text(
