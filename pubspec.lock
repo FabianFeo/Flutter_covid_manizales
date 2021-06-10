@@ -30,14 +30,14 @@ packages:
     source: hosted
     version: "2.5.0"
   beacon_broadcast:
-    dependency: "direct main"
+    dependency: "direct overridden"
     description:
       name: beacon_broadcast
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.2.3"
   beauty_textfield:
-    dependency: "direct main"
+    dependency: "direct overridden"
     description:
       name: beauty_textfield
       url: "https://pub.dartlang.org"
@@ -51,7 +51,7 @@ packages:
     source: hosted
     version: "2.1.0"
   bouncing_widget:
-    dependency: "direct main"
+    dependency: "direct overridden"
     description:
       name: bouncing_widget
       url: "https://pub.dartlang.org"
@@ -100,7 +100,7 @@ packages:
     source: hosted
     version: "1.1.6"
   contacts_service:
-    dependency: "direct main"
+    dependency: "direct overridden"
     description:
       name: contacts_service
       url: "https://pub.dartlang.org"
@@ -121,42 +121,42 @@ packages:
     source: hosted
     version: "2.1.5"
   cupertino_icons:
-    dependency: "direct main"
+    dependency: "direct overridden"
     description:
       name: cupertino_icons
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0"
   custom_switch:
-    dependency: "direct main"
+    dependency: "direct overridden"
     description:
       name: custom_switch
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.0.1"
   date_time_picker:
-    dependency: "direct main"
+    dependency: "direct overridden"
     description:
       name: date_time_picker
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.1"
   direct_select:
-    dependency: "direct main"
+    dependency: "direct overridden"
     description:
       name: direct_select
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.0"
   dropdown_formfield:
-    dependency: "direct main"
+    dependency: "direct overridden"
     description:
       name: dropdown_formfield
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.3"
   extended_tabs:
-    dependency: "direct main"
+    dependency: "direct overridden"
     description:
       name: extended_tabs
       url: "https://pub.dartlang.org"
@@ -196,7 +196,7 @@ packages:
     source: sdk
     version: "0.0.0"
   flutter_blue:
-    dependency: "direct main"
+    dependency: "direct overridden"
     description:
       name: flutter_blue
       url: "https://pub.dartlang.org"
@@ -224,7 +224,7 @@ packages:
     source: hosted
     version: "3.0.0"
   flutter_local_notifications:
-    dependency: "direct main"
+    dependency: "direct overridden"
     description:
       name: flutter_local_notifications
       url: "https://pub.dartlang.org"
@@ -237,22 +237,27 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.0+1"
+  flutter_localizations:
+    dependency: "direct overridden"
+    description: flutter
+    source: sdk
+    version: "0.0.0"
   flutter_map:
-    dependency: "direct main"
+    dependency: "direct overridden"
     description:
       name: flutter_map
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.10.1+1"
   flutter_map_tappable_polyline:
-    dependency: "direct main"
+    dependency: "direct overridden"
     description:
       name: flutter_map_tappable_polyline
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.2.0"
   flutter_native_splash:
-    dependency: "direct main"
+    dependency: "direct overridden"
     description:
       name: flutter_native_splash
       url: "https://pub.dartlang.org"
@@ -264,7 +269,7 @@ packages:
     source: sdk
     version: "0.0.0"
   flutter_verification_code:
-    dependency: "direct main"
+    dependency: "direct overridden"
     description:
       name: flutter_verification_code
       url: "https://pub.dartlang.org"
@@ -276,21 +281,21 @@ packages:
     source: sdk
     version: "0.0.0"
   fluttertoast:
-    dependency: "direct main"
+    dependency: "direct overridden"
     description:
       name: fluttertoast
       url: "https://pub.dartlang.org"
     source: hosted
     version: "7.1.6"
   gender_picker:
-    dependency: "direct main"
+    dependency: "direct overridden"
     description:
       name: gender_picker
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.4"
   geolocator:
-    dependency: "direct main"
+    dependency: "direct overridden"
     description:
       name: geolocator
       url: "https://pub.dartlang.org"
@@ -311,14 +316,14 @@ packages:
     source: hosted
     version: "1.0.1"
   hexcolor:
-    dependency: "direct main"
+    dependency: "direct overridden"
     description:
       name: hexcolor
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.0"
   http:
-    dependency: "direct main"
+    dependency: "direct overridden"
     description:
       name: http
       url: "https://pub.dartlang.org"
@@ -339,12 +344,12 @@ packages:
     source: hosted
     version: "2.1.19"
   intl:
-    dependency: transitive
+    dependency: "direct overridden"
     description:
       name: intl
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.16.1"
+    version: "0.17.0"
   js:
     dependency: transitive
     description:
@@ -353,7 +358,7 @@ packages:
     source: hosted
     version: "0.6.3"
   latlng:
-    dependency: "direct main"
+    dependency: "direct overridden"
     description:
       name: latlng
       url: "https://pub.dartlang.org"
@@ -401,6 +406,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.1"
+  nested:
+    dependency: transitive
+    description:
+      name: nested
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0"
   octo_image:
     dependency: transitive
     description:
@@ -458,7 +470,7 @@ packages:
     source: hosted
     version: "1.9.2"
   permission_handler:
-    dependency: "direct main"
+    dependency: "direct overridden"
     description:
       name: permission_handler
       url: "https://pub.dartlang.org"
@@ -479,7 +491,7 @@ packages:
     source: hosted
     version: "3.1.0"
   pin_code_fields:
-    dependency: "direct main"
+    dependency: "direct overridden"
     description:
       name: pin_code_fields
       url: "https://pub.dartlang.org"
@@ -527,8 +539,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.1"
+  provider:
+    dependency: "direct overridden"
+    description:
+      name: provider
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "5.0.0"
   qr_code_scanner:
-    dependency: "direct main"
+    dependency: "direct overridden"
     description:
       name: qr_code_scanner
       url: "https://pub.dartlang.org"
@@ -542,14 +561,14 @@ packages:
     source: hosted
     version: "2.1.5"
   rxdart:
-    dependency: "direct main"
+    dependency: "direct overridden"
     description:
       name: rxdart
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.24.1"
   shared_preferences:
-    dependency: "direct main"
+    dependency: "direct overridden"
     description:
       name: shared_preferences
       url: "https://pub.dartlang.org"
@@ -694,7 +713,7 @@ packages:
     source: hosted
     version: "0.2.4"
   url_launcher:
-    dependency: "direct main"
+    dependency: "direct overridden"
     description:
       name: url_launcher
       url: "https://pub.dartlang.org"
@@ -736,7 +755,7 @@ packages:
     source: hosted
     version: "2.0.0"
   uuid:
-    dependency: "direct main"
+    dependency: "direct overridden"
     description:
       name: uuid
       url: "https://pub.dartlang.org"
