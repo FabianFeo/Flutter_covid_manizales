@@ -143,11 +143,12 @@ class _IndexState extends State<Index> {
                         ),
                       ),
                       GestureDetector(
-                        onTap:  () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => Privacidad()));},
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Privacidad()));
+                        },
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
@@ -169,11 +170,12 @@ class _IndexState extends State<Index> {
                         ),
                       ),
                       GestureDetector(
-                         onTap:  () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => Preguntas()));},
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Preguntas()));
+                        },
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
@@ -343,6 +345,7 @@ class _IndexState extends State<Index> {
                       canvasColor: HexColor('#103E68'),
                     ),
                     child: BottomNavigationBar(
+                      type: BottomNavigationBarType.fixed,
                       showUnselectedLabels: true,
                       unselectedItemColor: HexColor('#698596'),
                       selectedIconTheme:
@@ -517,7 +520,7 @@ class _IndexState extends State<Index> {
                       currentIndex: _selectedIndex,
                       selectedItemColor: HexColor('#D0EAE5'),
                       backgroundColor: HexColor('#103E68'),
-                      elevation: 1,
+                      elevation: 0,
                       onTap: _onItemTapped,
                     ),
                   ),
