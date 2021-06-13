@@ -103,14 +103,14 @@ class MyPainter extends CustomPainter {
 
     links.forEach((element) {
       var paint2 = Paint()
-        ..color = HexColor('#103E68')
+        ..color = HexColor('#698596')
         ..strokeWidth = 3
         ..strokeCap = StrokeCap.round;
       canvas.drawLine(
           mapaSource[element['source']], mapaSource[element['target']], paint2);
     });
      final paint = Paint()
-      ..color = Colors.black
+      ..color = HexColor('#103E68')
       ..strokeWidth = 10
       ..strokeCap = StrokeCap.round;
     canvas.drawPoints(pointMode, points, paint);
