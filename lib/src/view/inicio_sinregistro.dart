@@ -145,7 +145,7 @@ class _InicioSinRegistroState extends State<InicioSinRegistro>
                             style: TextStyle(
                                 color: Colors.white,
                                 fontFamily: 'Roboto-Medium',
-                                fontSize: 16),
+                                fontSize: 18),
                           ),
                         )),
                   )),

@@ -386,8 +386,8 @@ class _RegistroState extends State<Registro> {
                               ),
                               color: HexColor('#103E68'),
                               child: Container(
-                                  width: width / 2.5,
-                                  height: height / 22,
+                                  width: width / 2,
+                                  height: height / 20,
                                   child: Center(
                                     child: Text(
                                       "Registrarme",
@@ -395,7 +395,7 @@ class _RegistroState extends State<Registro> {
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontFamily: 'Roboto-Medium',
-                                        fontSize: 16,
+                                        fontSize: 20,
                                       ),
                                     ),
                                   )))))),

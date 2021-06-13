@@ -190,7 +190,7 @@ class _MiRedState extends State<MiRed> with TickerProviderStateMixin {
                                     style: TextStyle(
                                       color: Colors.white,
                                       fontFamily: 'Roboto-Medium',
-                                      fontSize: 16,
+                                      fontSize: 20,
                                     ),
                                   ),
                                 )))),
