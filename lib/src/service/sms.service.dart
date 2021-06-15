@@ -13,7 +13,7 @@ class SmsService {
         json.decode(await preferenceUser.getUser())['id'].toString();
     String token = await preferenceToken.getToken();
     Map<String, dynamic> response = json.decode(json.decode((await http.post(
-            'https://covidalert.com.co/api/core/users/' +
+            'https://labs.covidalert.com.co/api/core/users/' +
                 idUser +
                 '/test-notifications',
             headers: {'Authorization': 'JWT ${token}'},
@@ -28,7 +28,7 @@ class SmsService {
         json.decode(await preferenceUser.getUser())['id'].toString();
     String token = await preferenceToken.getToken();
     Map<String, dynamic> response = json.decode(json.decode((await http.post(
-            'https://covidalert.com.co/api/core/users/' +
+            'https://labs.covidalert.com.co/api/core/users/' +
                 idUser +
                 '/test-notifications',
             headers: {
