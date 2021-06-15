@@ -16,22 +16,13 @@ class LoginService {
     if (otp == "Unregistered user") {
       return null;
     } else {
-      smsService.pushService('Covidalert', 'Tu codigo de seguridad es: ${otp}');
-      // nt.Notification notification = nt.Notification(context);
-      // notification.initNotification();
-      // notification.onDidReceiveLocalNotification(
-      //   0,
-      //   'Codigo de seguridad',
-      //   'Tu codigo de seguridad es: ${otp}',
-      //   'Tu codigo de seguridad es: ${otp}',
-      // );
-      return 'codigoEnviado';
+      return 'codigo Enviado';
     }
   }
 
   Future<String> _loginRequest(String phoneNumber) async {
     http.Response response = await http.post(
-        "https://covidalert.com.co/api/core/login/",
+        "https://labs.covidalert.com.co/api/core/login/",
         body: {"phone_number": phoneNumber});
     Map<String, dynamic> body = jsonDecode(response.body);
     if (body['data'].toString() == "Unregistered user") {
@@ -42,7 +33,7 @@ class LoginService {
 
   Future<String> loginOtp(String phoneNumber, String otp) async {
     http.Response response = await http.post(
-        "https://covidalert.com.co/api/core/login/otp/",
+        "https://labs.covidalert.com.co/api/core/login/otp/",
         body: {"phone_number": phoneNumber, "OTP": otp});
     Map<String, dynamic> body = jsonDecode(response.body);
     Map<String, dynamic> data = body['data'];
@@ -57,7 +48,7 @@ class LoginService {
 
   Future<http.Response> changeToken(String token) async {
     http.Response response = await http.post(
-        "https://covidalert.com.co/api/api-token-refresh/",
+        "https://labs.covidalert.com.co/api/api-token-refresh/",
         body: {'token': token});
     return response;
   }

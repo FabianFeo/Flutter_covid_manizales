@@ -13,8 +13,8 @@ class CovidReportService {
     PreferenceToken preferenceToken = PreferenceToken();
     PreferenceUser preferenceUser = PreferenceUser();
     String token = await preferenceToken.getToken();
-    http.Response response =
-        await http.post('https://covidalert.com.co/api/report/covid/', body: {
+    http.Response response = await http
+        .post('https://labs.covidalert.com.co/api/report/covid/', body: {
       "date_test": date_test,
       "is_symptomatic": is_symptomatic,
       "date_symptom": date_symptom
