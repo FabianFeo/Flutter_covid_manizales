@@ -243,5 +243,4 @@ class _MiRedState extends State<MiRed> with TickerProviderStateMixin {
     } else {
       return permission;
     }
-  }
-}
+  }}

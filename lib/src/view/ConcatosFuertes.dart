@@ -74,7 +74,7 @@ class _ContactosFuertesState extends State<ContactosFuertes> {
                   Container(
                     height: height / 10,
                     width: width / 1,
-                    color: HexColor('#72AB82'),
+                    color: HexColor('#49657A'),
                     child: Container(
                         margin: EdgeInsets.only(
                             right: width / 20, left: width / 20),
