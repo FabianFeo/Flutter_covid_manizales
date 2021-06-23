@@ -20,7 +20,7 @@ class _ContagiosState extends State<Contagios> with TickerProviderStateMixin {
   String nivel = 'Bajo';
   bool _sesion = false;
   TabController _tabController;
-    double _currentSliderValue = 0;
+  double _currentSliderValue = 0;
   List<TaggedPolyline> _polygons = List();
   bool chargeMap = true;
   @override
@@ -65,13 +65,12 @@ class _ContagiosState extends State<Contagios> with TickerProviderStateMixin {
                 Container(
                   alignment: Alignment.centerLeft,
                   margin: EdgeInsets.only(left: width / 11),
-                  child: Text('Barrios y días',
+                  child: Text('Comunas y días',
                       style: TextStyle(
                           color: HexColor('#103E68'),
                           fontFamily: 'Roboto-Bold',
                           fontSize: 24)),
                 ),
-              
                 Container(
                   alignment: Alignment.centerLeft,
                   margin: EdgeInsets.all(30),
@@ -86,14 +85,14 @@ class _ContagiosState extends State<Contagios> with TickerProviderStateMixin {
                 chargeMap
                     ? CircularProgressIndicator()
                     : Container(
-                      color: Colors.white,
+                        color: Colors.white,
                         height: height / 3,
                         width: width,
                         child: FlutterMap(
                           options: new MapOptions(
                             interactive: false,
                             center: new LatLng(5.067, -75.489),
-                            zoom: width/31,
+                            zoom: width / 31,
                             plugins: [
                               TappablePolylineMapPlugin(),
                             ],
@@ -108,19 +107,22 @@ class _ContagiosState extends State<Contagios> with TickerProviderStateMixin {
                           ],
                         ),
                       ),
-                       Slider(
-                value: _currentSliderValue,
-                min: 0,
-                max: 14,
-                divisions: 14,
-                label: getLabelSlider(),
-                onChanged: (double value) {
-                  setState(() {
-                    _currentSliderValue = value;
-                  });
-                },
-              ),
-              Container(width: width,height: height/10,)
+                Slider(
+                  value: _currentSliderValue,
+                  min: 0,
+                  max: 14,
+                  divisions: 14,
+                  label: getLabelSlider(),
+                  onChanged: (double value) {
+                    setState(() {
+                      _currentSliderValue = value;
+                    });
+                  },
+                ),
+                Container(
+                  width: width,
+                  height: height / 10,
+                )
               ],
             ),
           ),
@@ -136,6 +138,7 @@ class _ContagiosState extends State<Contagios> with TickerProviderStateMixin {
       });
     });
   }
+
   getLabelSlider() {
     DateTime dateTime = DateTime.now();
     dateTime = dateTime.subtract(Duration(days: _currentSliderValue.toInt()));

@@ -34,7 +34,7 @@ class _ContactosState extends State<Contactos> {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
-       backgroundColor: HexColor('#DDE9ED'),
+        backgroundColor: HexColor('#DDE9ED'),
         body: SingleChildScrollView(
             child: Container(
                 margin: EdgeInsets.only(
@@ -65,7 +65,7 @@ class _ContactosState extends State<Contactos> {
                       Icons.person,
                       color: Colors.grey,
                     ), //REQUIRED
-
+                    onTap: () {},
                     onChanged: (text) {
                       setState(() {
                         filtro = text;
@@ -121,40 +121,46 @@ class _ContactosState extends State<Contactos> {
                                     timeInSecForIosWeb: 1)
                               }),
                       child: Container(
-                        margin: EdgeInsets.only(left: width / 20, top: height / 50),
+                        margin:
+                            EdgeInsets.only(left: width / 20, top: height / 50),
                         child: Row(
                           children: [
-                            BouncingWidget(child: 
-                            Card(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(50.0),
-                                ),
-                                color: HexColor('#103E68'),
-                                child: Container(
-                                    width:
-                                        MediaQuery.of(context).size.width / 2.5,
-                                    height:
-                                        MediaQuery.of(context).size.height / 22,
-                                    child: Center(
-                                      child: Text(
-                                        "Siguiente",
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 18,
-                                          fontFamily: 'Roboto-Medium',
+                            BouncingWidget(
+                              child: Card(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(50.0),
+                                  ),
+                                  color: HexColor('#103E68'),
+                                  child: Container(
+                                      width: MediaQuery.of(context).size.width /
+                                          2.5,
+                                      height:
+                                          MediaQuery.of(context).size.height /
+                                              22,
+                                      child: Center(
+                                        child: Text(
+                                          "Siguiente",
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 18,
+                                            fontFamily: 'Roboto-Medium',
+                                          ),
                                         ),
-                                      ),
-                                    ))),
-                                    onPressed: () async {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(builder: (context) => ContactosFuertes(
-                                          permisos: true,
-                                          listaContactos: seleccionados,
-                                        ), 
-                            ),);},)
+                                      ))),
+                              onPressed: () async {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => ContactosFuertes(
+                                      permisos: true,
+                                      listaContactos: seleccionados,
+                                    ),
+                                  ),
+                                );
+                              },
+                            )
                           ],
                         ),
                       ))
@@ -221,7 +227,9 @@ class _ContactosState extends State<Contactos> {
                                   } else {
                                     numeros.remove(elment.phones.first.value
                                         .replaceAll('+57', ''));
-                                    seleccionados.removeWhere((element) => element.identifier == elment.identifier);
+                                    seleccionados.removeWhere((element) =>
+                                        element.identifier ==
+                                        elment.identifier);
                                   }
                                   if (numeros.isEmpty) {
                                     listado = false;

@@ -147,34 +147,33 @@ class _LoginState extends State<Login> {
               Container(
                 margin: EdgeInsets.only(top: height / 25),
                 child: GestureDetector(
-                  onTap: () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => Registro()),
-                            ),
+                    onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => Registro()),
+                        ),
                     child: Center(
-                  child: Text(
-                    '¿No tienes cuenta?Regístrate',
-                    style: TextStyle(
-                        color: HexColor('#49657A'),
-                        fontSize: 14,
-                        fontFamily: 'Roboto-Light',
-                        decoration: TextDecoration.underline),
-                  ),
-                )),
-              ),              
+                      child: Text(
+                        '¿No tienes cuenta? Regístrate',
+                        style: TextStyle(
+                            color: HexColor('#49657A'),
+                            fontSize: 14,
+                            fontFamily: 'Roboto-Light',
+                            decoration: TextDecoration.underline),
+                      ),
+                    )),
+              ),
               Container(
                 margin: EdgeInsets.only(top: height / 25),
                 child: GestureDetector(
                     onTap: () {
-                      _preferenceLogin
-                          .typeLogin(false)
-                          .then((value) => {Navigator.of(context).pop(),
+                      _preferenceLogin.typeLogin(false).then((value) => {
+                            Navigator.of(context).pop(),
                             Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => Index(),
-                              ))});
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => Index(),
+                                ))
+                          });
                     },
                     child: Center(
                       child: Text(
