@@ -28,7 +28,7 @@ class LoginService {
     if (body['data'].toString() == "Unregistered user") {
       return body['data'].toString();
     }
-    return body['data']['OTP'].toString();
+    return body['status'].toString();
   }
 
   Future<String> loginOtp(String phoneNumber, String otp) async {
