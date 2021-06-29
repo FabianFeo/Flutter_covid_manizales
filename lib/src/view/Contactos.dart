@@ -3,6 +3,7 @@ import 'package:aprendiendo/src/view/ConcatosFuertes.dart';
 import 'package:beauty_textfield/beauty_textfield.dart';
 import 'package:bouncing_widget/bouncing_widget.dart';
 import 'package:contacts_service/contacts_service.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -34,7 +35,7 @@ class _ContactosState extends State<Contactos> {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
-        backgroundColor: HexColor('#DDE9ED'),
+        backgroundColor: Colors.white,
         body: SingleChildScrollView(
             child: Container(
                 margin: EdgeInsets.only(
@@ -186,67 +187,46 @@ class _ContactosState extends State<Contactos> {
       elment.phones != null ? elment.phones.forEach((elment2) {}) : print('');
 
       elment.displayName != null
-          ? lista.add(GestureDetector(
-              onTap: () {
-                setState(() {
-                  if (elment.phones.first.value != null) {
-                    numeros
-                        .add(elment.phones.first.value.replaceAll('+57', ''));
-                    listado = true;
-                    mapaValue[elment.identifier] = true;
-                    seleccionados.add(elment);
-                  }
-                });
-              },
-              child: Container(
-                  child: Card(
-                      child: Row(
-                children: [
-                  Container(
-                      height: MediaQuery.of(context).size.height / 19,
-                      width: MediaQuery.of(context).size.height / 3,
-                      alignment: Alignment.topLeft,
-                      child: Column(
-                        children: [
-                          Container(
-                              child: Column(
-                            children: phones,
-                          ))
-                        ],
-                      )),
-                  listado
-                      ? Container(
-                          child: Checkbox(
-                            onChanged: (e) {
-                              setState(() {
-                                if (elment.phones.first.value != null) {
-                                  if (e) {
-                                    numeros.add(elment.phones.first.value
-                                        .replaceAll('+57', ''));
-                                    seleccionados.add(elment);
-                                  } else {
-                                    numeros.remove(elment.phones.first.value
-                                        .replaceAll('+57', ''));
-                                    seleccionados.removeWhere((element) =>
-                                        element.identifier ==
-                                        elment.identifier);
-                                  }
-                                  if (numeros.isEmpty) {
-                                    listado = false;
-                                    seleccionados.clear();
-                                  }
-
-                                  mapaValue[elment.identifier] = e;
-                                }
-                              });
-                            },
-                            value: mapaValue[elment.identifier],
-                          ),
-                        )
-                      : Container()
-                ],
-              ))),
-            ))
+          ? lista.add(
+              GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      if (elment.phones.first.value != null) {
+                        listado = true;
+                        mapaValue[elment.identifier] =
+                            !mapaValue[elment.identifier];
+                        if (mapaValue[elment.identifier]) {
+                          numeros.add(
+                              elment.phones.first.value.replaceAll('+57', ''));
+                          seleccionados.add(elment);
+                        } else {
+                          numeros.remove(
+                              elment.phones.first.value.replaceAll('+57', ''));
+                          seleccionados.removeWhere((element) =>
+                              element.identifier == elment.identifier);
+                        }
+                      }
+                    });
+                  },
+                  child: Container(
+                      child: Card(
+                    color: mapaValue[elment.identifier]
+                        ? HexColor('#DDE9ED')
+                        : Colors.white,
+                    child: Container(
+                        height: MediaQuery.of(context).size.height / 19,
+                        width: MediaQuery.of(context).size.width / 3,
+                        alignment: Alignment.topLeft,
+                        child: Column(
+                          children: [
+                            Container(
+                                child: Column(
+                              children: phones,
+                            ))
+                          ],
+                        )),
+                  ))),
+            )
           : Container();
     });
     dataContacts = ListView(

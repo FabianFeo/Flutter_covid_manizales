@@ -7,7 +7,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 class ContactosFuertes extends StatefulWidget {
-  ContactosFuertes({Key key, this.listaContactos ,this.permisos}) : super(key: key);
+  ContactosFuertes({Key key, this.listaContactos, this.permisos})
+      : super(key: key);
   final bool permisos;
   final List<Contact> listaContactos;
   @override
@@ -33,7 +34,7 @@ class _ContactosFuertesState extends State<ContactosFuertes> {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
-       backgroundColor: HexColor('#DDE9ED'),
+        backgroundColor: Colors.white,
         body: SingleChildScrollView(
             child: Container(
                 margin: EdgeInsets.only(
@@ -74,7 +75,7 @@ class _ContactosFuertesState extends State<ContactosFuertes> {
                   Container(
                     height: height / 10,
                     width: width / 1,
-                    color: HexColor('#49657A'),
+                    color: HexColor('#20A9A1'),
                     child: Container(
                         margin: EdgeInsets.only(
                             right: width / 20, left: width / 20),
@@ -119,33 +120,35 @@ class _ContactosFuertesState extends State<ContactosFuertes> {
                                     timeInSecForIosWeb: 1)
                               }),
                       child: Container(
-                        margin: EdgeInsets.only(left: width / 20, top: height / 50),
+                        margin:
+                            EdgeInsets.only(left: width / 20, top: height / 50),
                         child: Row(
                           children: [
-                            BouncingWidget(child: 
-                            Card(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(50.0),
-                                ),
-                                color: HexColor('#103E68'),
-                                child: Container(
-                                    width:
-                                        MediaQuery.of(context).size.width / 2.5,
-                                    height:
-                                        MediaQuery.of(context).size.height / 22,
-                                    child: Center(
-                                      child: Text(
-                                        "Anterior",
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 18,
-                                          fontFamily: 'Roboto-Medium',
+                            BouncingWidget(
+                              child: Card(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(50.0),
+                                  ),
+                                  color: HexColor('#103E68'),
+                                  child: Container(
+                                      width: MediaQuery.of(context).size.width /
+                                          2.5,
+                                      height:
+                                          MediaQuery.of(context).size.height /
+                                              22,
+                                      child: Center(
+                                        child: Text(
+                                          "Anterior",
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 18,
+                                            fontFamily: 'Roboto-Medium',
+                                          ),
                                         ),
-                                      ),
-                                    ))),
-                              onPressed: () async{
+                                      ))),
+                              onPressed: () async {
                                 Navigator.pop(context);
                               },
                             ),
@@ -200,15 +203,21 @@ class _ContactosFuertesState extends State<ContactosFuertes> {
               onTap: () {
                 setState(() {
                   if (elment.phones.first.value != null) {
-                    numeros
-                        .add(elment.phones.first.value.replaceAll('+57', ''));
-                    listado = true;
-                    mapaValue[elment.identifier] = true;
+                    mapaValue[elment.identifier] =
+                        !mapaValue[elment.identifier];
+                    if (mapaValue[elment.identifier]) {
+                      numeros
+                          .add(elment.phones.first.value.replaceAll('+57', ''));
+                    } else {
+                      numeros.remove(
+                          elment.phones.first.value.replaceAll('+57', ''));
+                    }
                   }
                 });
               },
               child: Container(
                   child: Card(
+                    color: mapaValue[elment.identifier]?HexColor('#DDE9ED'):Colors.white,
                       child: Row(
                 children: [
                   Container(
@@ -223,31 +232,7 @@ class _ContactosFuertesState extends State<ContactosFuertes> {
                           ))
                         ],
                       )),
-                  listado
-                      ? Container(
-                          child: Checkbox(
-                            onChanged: (e) {
-                              setState(() {
-                                if (elment.phones.first.value != null) {
-                                  if (e) {
-                                    numeros.add(elment.phones.first.value
-                                        .replaceAll('+57', ''));
-                                  } else {
-                                    numeros.remove(elment.phones.first.value
-                                        .replaceAll('+57', ''));
-                                  }
-                                  if (numeros.isEmpty) {
-                                    listado = false;
-                                  }
-
-                                  mapaValue[elment.identifier] = e;
-                                }
-                              });
-                            },
-                            value: mapaValue[elment.identifier],
-                          ),
-                        )
-                      : Container()
+                 
                 ],
               ))),
             ))
