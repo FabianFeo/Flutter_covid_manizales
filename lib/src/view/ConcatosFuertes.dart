@@ -7,8 +7,9 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 class ContactosFuertes extends StatefulWidget {
-  ContactosFuertes({Key key, this.listaContactos, this.permisos})
+  ContactosFuertes({Key key, this.listaContactos, this.permisos, this.numeros})
       : super(key: key);
+  final List<String> numeros;
   final bool permisos;
   final List<Contact> listaContactos;
   @override
@@ -149,7 +150,19 @@ class _ContactosFuertesState extends State<ContactosFuertes> {
                                         ),
                                       ))),
                               onPressed: () async {
-                                Navigator.pop(context);
+                                ContactosService contactosService =
+                                    ContactosService();
+
+                                contactosService
+                                    .postContactos(widget.numeros)
+                                    .then((value) => {
+                                          contactosService
+                                              .postContactosFuerte(numeros)
+                                              .then((value) => {
+                                                    Navigator.pop(context),
+                                                    Navigator.pop(context)
+                                                  })
+                                        });
                               },
                             ),
                             Card(
@@ -217,24 +230,25 @@ class _ContactosFuertesState extends State<ContactosFuertes> {
               },
               child: Container(
                   child: Card(
-                    color: mapaValue[elment.identifier]?HexColor('#DDE9ED'):Colors.white,
+                      color: mapaValue[elment.identifier]
+                          ? HexColor('#DDE9ED')
+                          : Colors.white,
                       child: Row(
-                children: [
-                  Container(
-                      height: MediaQuery.of(context).size.height / 19,
-                      width: MediaQuery.of(context).size.height / 3,
-                      alignment: Alignment.topLeft,
-                      child: Column(
                         children: [
                           Container(
+                              height: MediaQuery.of(context).size.height / 19,
+                              width: MediaQuery.of(context).size.height / 3,
+                              alignment: Alignment.topLeft,
                               child: Column(
-                            children: phones,
-                          ))
+                                children: [
+                                  Container(
+                                      child: Column(
+                                    children: phones,
+                                  ))
+                                ],
+                              )),
                         ],
-                      )),
-                 
-                ],
-              ))),
+                      ))),
             ))
           : Container();
     });

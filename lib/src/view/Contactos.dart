@@ -156,6 +156,7 @@ class _ContactosState extends State<Contactos> {
                                   MaterialPageRoute(
                                     builder: (context) => ContactosFuertes(
                                       permisos: true,
+                                      numeros:numeros,
                                       listaContactos: seleccionados,
                                     ),
                                   ),

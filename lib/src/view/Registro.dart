@@ -154,16 +154,7 @@ class _RegistroState extends State<Registro> {
                   registration.document_number = text;
                 },
               ),
-              Container(
-                margin: EdgeInsets.only(right: width / 3, top: height / 25),
-                child: Text(
-                  'Fecha de Nacimiento',
-                  style: TextStyle(
-                      fontFamily: 'Roboto-Medium',
-                      color: HexColor('#49657A'),
-                      fontSize: 18),
-                ),
-              ),
+              
               Card(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(50.0),
@@ -300,6 +291,7 @@ class _RegistroState extends State<Registro> {
                               value: _myActivity3,
                               icon: const Icon(Icons.arrow_downward),
                               hint: Container(
+                                padding: EdgeInsets.only( right: width / 5),
                                 margin: EdgeInsets.only(left: width / 8),
                                 child: Text(
                                   'Barrio',
@@ -327,6 +319,7 @@ class _RegistroState extends State<Registro> {
                                   .map<DropdownMenuItem<String>>(
                                       (e) => DropdownMenuItem(
                                             child: Container(
+                                              padding:EdgeInsets.only( left: width / 9),
                                               child: Text(e['display']),
                                             ),
                                             value: e['value'],
