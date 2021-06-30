@@ -7,6 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:pagination/pagination.dart';
 
 class Contactos extends StatefulWidget {
   Contactos({Key key, this.permisos}) : super(key: key);
@@ -156,7 +157,7 @@ class _ContactosState extends State<Contactos> {
                                   MaterialPageRoute(
                                     builder: (context) => ContactosFuertes(
                                       permisos: true,
-                                      numeros:numeros,
+                                      numeros: numeros,
                                       listaContactos: seleccionados,
                                     ),
                                   ),
