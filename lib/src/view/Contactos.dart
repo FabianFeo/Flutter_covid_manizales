@@ -7,7 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:pagination/pagination.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 class Contactos extends StatefulWidget {
   Contactos({Key key, this.permisos}) : super(key: key);

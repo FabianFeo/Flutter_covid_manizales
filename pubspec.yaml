@@ -63,7 +63,8 @@ dependency_overrides:
   geolocator: ^6.2.0
   pin_code_fields: ^6.1.0
   url_launcher: ^6.0.5
-  pagination: ^0.1.0
+  infinite_scroll_pagination: ^3.0.1+1
+
 
 dev_dependencies:
   flutter_test:
