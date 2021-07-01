@@ -122,18 +122,19 @@ class _CodigoSeguridadState extends State<CodigoSeguridad> {
                   },
                   child: Card(
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15.0),
+                        borderRadius: BorderRadius.circular(50.0),
                       ),
                       color: HexColor('#103E68'),
                       child: Container(
                         width: width / 2,
+                        height: height / 20,
                         child: Text(
                           "Verificar",
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             color: Colors.white,
                             fontFamily: 'Roboto-Medium',
-                            fontSize: 30,
+                            fontSize: 20,
                           ),
                         ),
                       ))),

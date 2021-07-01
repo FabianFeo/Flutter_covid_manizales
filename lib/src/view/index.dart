@@ -85,7 +85,7 @@ class _IndexState extends State<Index> {
               padding:
                   EdgeInsets.only(top: MediaQuery.of(context).size.height / 9),
               margin: EdgeInsets.only(
-                  bottom: MediaQuery.of(context).size.height / 3.8),
+                  bottom: MediaQuery.of(context).size.height / 2.3),
               width: MediaQuery.of(context).size.width / 1.6,
               height: MediaQuery.of(context).size.height,
               child: Drawer(
@@ -106,7 +106,7 @@ class _IndexState extends State<Index> {
                             Container(
                               margin: EdgeInsets.only(
                                   right:
-                                      MediaQuery.of(context).size.width / 30),
+                                      MediaQuery.of(context).size.width / 30, top:MediaQuery.of(context).size.height / 80, ),
                               child: Text(
                                 'Control de permisos',
                                 style: TextStyle(
