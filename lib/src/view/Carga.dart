@@ -29,7 +29,7 @@ class _CargaState extends State<Carga> {
   BuildContext _buildContext;
   @override
   void initState() {
-    _startScan();
+    //_startScan();
     LocactionService locactionService = LocactionService();
     locactionService.initLocatioService();
     Future.delayed(Duration(seconds: 3), () {
