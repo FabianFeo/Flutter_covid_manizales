@@ -288,11 +288,11 @@ class _RegistroState extends State<Registro> {
                       ),
                       child: DropdownButtonHideUnderline(
                           child: DropdownButton<String>(
-                              value: _myActivity3,
+                             value: _myActivity3,
                               icon: const Icon(Icons.arrow_downward),
                               hint: Container(
                                 padding: EdgeInsets.only( right: width / 5),
-                                margin: EdgeInsets.only(left: width / 8),
+                                margin: EdgeInsets.only(left: width / 8.5),
                                 child: Text(
                                   'Barrio',
                                   style: TextStyle(
