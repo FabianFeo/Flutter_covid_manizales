@@ -1,11 +1,17 @@
 import 'dart:io';
 
+import 'package:aprendiendo/src/beaconBroadcast/BeanBroascast.dart';
+import 'package:aprendiendo/src/functions/preferenceslogin.dart';
+import 'package:aprendiendo/src/service/login.service.dart';
+import 'package:aprendiendo/src/view/CodigoSeguridad.dart';
 import 'package:aprendiendo/src/view/Registro.dart';
 import 'package:aprendiendo/src/view/index.dart';
 import 'package:aprendiendo/src/view/inicio.dart';
 import 'package:beauty_textfield/beauty_textfield.dart';
 import 'package:bouncing_widget/bouncing_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:hexcolor/hexcolor.dart';
 
 class Login extends StatefulWidget {
   Login({Key key}) : super(key: key);
@@ -16,10 +22,20 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   @override
+  void initState() {
+    super.initState();
+    BeaconBroadcastSrvice beaconBroadcastSrvice = BeaconBroadcastSrvice();
+    beaconBroadcastSrvice.beaconBroadcast();
+  }
+
+  PreferenceLogin _preferenceLogin = new PreferenceLogin();
+  String phonenumber = "";
+  @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
+      backgroundColor: HexColor('#DDE9ED'),
       body: SingleChildScrollView(
         child: Container(
           margin: EdgeInsets.only(top: height / 8),
@@ -27,171 +43,148 @@ class _LoginState extends State<Login> {
           child: Column(
             children: [
               Container(
-                margin: EdgeInsets.only(right: width / 2.3),
+                margin: EdgeInsets.only(right: width / 3),
+                padding: EdgeInsets.only(top: height / 8),
                 child: Text(
-                  'I N I C I O  D E  S E S Í O N',
-                  style:
-                      TextStyle(color: Colors.grey, fontFamily: 'Laca Light'),
+                  'Inicio de sesión',
+                  style: TextStyle(
+                    color: HexColor('#103E68'),
+                    fontFamily: 'Roboto-Bold',
+                    fontSize: 24,
+                  ),
                 ),
               ),
               BeautyTextfield(
                 width: double.maxFinite, //REQUIRED
                 height: 60, //REQUIRED
                 accentColor: Colors.white, // On Focus Color
-                textColor: Colors.grey, //Text Color
+                textColor: HexColor('#698596'), //Text Color
                 backgroundColor: Colors.white, //Not Focused Color
                 textBaseline: TextBaseline.alphabetic,
                 autocorrect: false,
                 autofocus: false,
                 enabled: true, // Textfield enabled
                 focusNode: FocusNode(),
-                fontFamily: 'Laca Regular', //Text Fontfamily
-                fontWeight: FontWeight.w500,
-
-                margin: EdgeInsets.all(30),
-                cornerRadius: BorderRadius.all(Radius.circular(0)),
-                duration: Duration(milliseconds: 300),
-                inputType: TextInputType.text, //REQUIRED
-                placeholder: "Usuario",
-                isShadow: true,
-                obscureText: false,
-                prefixIcon: Icon(
-                  Icons.person,
-                  color: Colors.grey,
-                ), //REQUIRED
-                onClickSuffix: () {
-                  print('Suffix Clicked');
-                },
-                onTap: () {
-                  print('Click');
-                },
-                onChanged: (text) {
-                  print(text);
-                },
-                onSubmitted: (data) {
-                  print(data.length);
-                },
-              ),
-              BeautyTextfield(
-                width: double.maxFinite, //REQUIRED
-                height: 60, //REQUIRED
-                accentColor: Colors.white, // On Focus Color
-                textColor: Colors.grey, //Text Color
-                backgroundColor: Colors.white, //Not Focused Color
-                textBaseline: TextBaseline.alphabetic,
-                autocorrect: false,
-                autofocus: false,
-                enabled: true, // Textfield enabled
-                focusNode: FocusNode(),
-                fontFamily: 'Laca Regular', //Text Fontfamily
+                fontFamily: 'Roboto-Light', //Text Fontfamily
                 fontWeight: FontWeight.w500,
                 maxLines: 1,
                 margin: EdgeInsets.all(30),
-                cornerRadius: BorderRadius.all(Radius.circular(0)),
+                cornerRadius: BorderRadius.all(Radius.circular(50)),
                 duration: Duration(milliseconds: 300),
-                inputType: TextInputType.text, //REQUIRED
-                placeholder: "Contraseña",
+                inputType: TextInputType.phone, //REQUIRED
+                placeholder: "Número de Teléfono",
                 isShadow: true,
-                obscureText: true,
+
                 prefixIcon: Icon(Icons.lock), //REQUIRED
                 onClickSuffix: () {
                   print('Suffix Clicked');
                 },
-                onTap: () {
-                  print('Click');
-                },
+
                 onChanged: (text) {
-                  print(text);
-                },
-                onSubmitted: (data) {
-                  print(data.length);
+                  phonenumber = text;
                 },
               ),
               BouncingWidget(
                   duration: Duration(milliseconds: 100),
                   scaleFactor: 1.5,
                   onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => Index(),
-                        ));
+                    LoginService loginService = LoginService();
+                    loginService.login(phonenumber, context).then((value) {
+                      if (value == null) {
+                        Fluttertoast.showToast(
+                            msg: "Usuario no registrad@",
+                            toastLength: Toast.LENGTH_SHORT,
+                            gravity: ToastGravity.CENTER,
+                            timeInSecForIosWeb: 1);
+                      } else {
+                        _preferenceLogin.typeLogin(true).then((value) {
+                          Navigator.of(context).pop();
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => CodigoSeguridad(
+                                  phoneNumber: phonenumber,
+                                ),
+                              ));
+                        });
+                      }
+                    });
                   },
                   child: Card(
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15.0),
+                        borderRadius: BorderRadius.circular(50.0),
                       ),
-                      color: Colors.grey,
+                      color: HexColor('#103E68'),
                       child: Container(
-                        width: width / 1.5,
-                        child: Text(
-                          "Ingresar",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 30,
-                          ),
-                        ),
-                      ))),
+                          width: width / 2.5,
+                          height: height / 15,
+                          child: Center(
+                            child: Text(
+                              "Ingresar",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18,
+                                fontFamily: 'Roboto-Medium',
+                              ),
+                            ),
+                          )))),
               Container(
-                margin: EdgeInsets.symmetric(vertical: 10),
+                margin: EdgeInsets.only(top: height / 20),
                 child: GestureDetector(
+                    child: Center(
                   child: Text(
                     '¿Olvidaste tu contraseña?',
                     style: TextStyle(
-                        color: Colors.grey,
+                        color: HexColor('#49657A'),
                         fontSize: 14,
+                        fontFamily: 'Roboto-Light',
                         decoration: TextDecoration.underline),
                   ),
-                ),
+                )),
               ),
               Container(
-                margin: EdgeInsets.symmetric(
-                  vertical: 35,
-                  horizontal: height/8,
-                ),
-                child: Row(
-                  children: [
-                    Text(
-                      '¿No tienes cuenta?',
-                      style: TextStyle(color: Colors.grey, fontSize: 15),
-                    ),
-                    GestureDetector(
-                        onTap: () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => Registro()),
-                            ),
-                        child: Text(
-                          'Regístrate',
-                          style: TextStyle(
-                              color: Colors.grey,
-                              fontSize: 15,
-                              decoration: TextDecoration.underline),
-                        )),
-                  ],
-                ),
-              ),
-              Container(
-                margin: EdgeInsets.symmetric(vertical: 20),
+                margin: EdgeInsets.only(top: height / 25),
                 child: GestureDetector(
-                  onTap: (){
-                     Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => Index(),
-                        ));
-                  },
-                  child: Text(
-                    'continuar sin registrarme',
-                    style: TextStyle(
-                        color: Colors.grey,
-                        fontSize: 18,
-                        fontFamily: 'Laca Black',
-                        decoration: TextDecoration.underline),
-                  ),
-                ),
+                    onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => Registro()),
+                        ),
+                    child: Center(
+                      child: Text(
+                        '¿No tienes cuenta? Regístrate',
+                        style: TextStyle(
+                            color: HexColor('#49657A'),
+                            fontSize: 14,
+                            fontFamily: 'Roboto-Light',
+                            decoration: TextDecoration.underline),
+                      ),
+                    )),
+              ),
+              Container(
+                margin: EdgeInsets.only(top: height / 25),
+                child: GestureDetector(
+                    onTap: () {
+                      _preferenceLogin.typeLogin(false).then((value) => {
+                            Navigator.of(context).pop(),
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => Index(),
+                                ))
+                          });
+                    },
+                    child: Center(
+                      child: Text(
+                        'continuar sin registrarme',
+                        style: TextStyle(
+                          color: HexColor('#103E68'),
+                          fontSize: 18,
+                          fontFamily: 'Raca Bold',
+                        ),
+                      ),
+                    )),
               ),
             ],
           ),

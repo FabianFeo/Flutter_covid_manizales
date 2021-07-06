@@ -1,7 +1,11 @@
+import 'package:aprendiendo/generated/l10n.dart';
+import 'package:aprendiendo/src/view/AnimacionCarga.dart';
 import 'package:aprendiendo/src/view/login.dart';
 import 'package:aprendiendo/src/view/index.dart';
 import 'package:aprendiendo/src/view/prueba.dart';
 import 'package:flutter/material.dart';
+import 'Carga.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 class Homepage extends StatelessWidget {
   const Homepage({Key key}) : super(key: key);
@@ -10,7 +14,14 @@ class Homepage extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(fontFamily: 'laca'),
-      home: Login(),
+      home: Animacion(),
+      supportedLocales: S.delegate.supportedLocales,
+      localizationsDelegates: [
+        S.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
     );
   }
 }
