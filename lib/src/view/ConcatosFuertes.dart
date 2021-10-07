@@ -112,13 +112,36 @@ class _ContactosFuertesState extends State<ContactosFuertes> {
                         )
                       : Container(),
                   GestureDetector(
-                      onTap: () =>
-                          contactosService.postContactos(numeros).then((e) => {
-                                Fluttertoast.showToast(
-                                    msg: 'Datos Completados ',
-                                    toastLength: Toast.LENGTH_SHORT,
-                                    gravity: ToastGravity.CENTER,
-                                    timeInSecForIosWeb: 1)
+                      onTap: () => contactosService
+                          .postContactos(widget.numeros)
+                          .then((value) => {
+                                contactosService
+                                    .postContactosFuerte(numeros)
+                                    .then((String value) => {
+                                          if (value.isNotEmpty)
+                                            {
+                                              Fluttertoast.showToast(
+                                                      msg: 'Datos Completados ',
+                                                      toastLength:
+                                                          Toast.LENGTH_SHORT,
+                                                      gravity:
+                                                          ToastGravity.CENTER,
+                                                      timeInSecForIosWeb: 1)
+                                                  .then((value) => {
+                                                        Navigator.pop(context),
+                                                        Navigator.pop(context)
+                                                      })
+                                            }
+                                          else
+                                            {
+                                              Fluttertoast.showToast(
+                                                  msg: 'Error',
+                                                  toastLength:
+                                                      Toast.LENGTH_SHORT,
+                                                  gravity: ToastGravity.CENTER,
+                                                  timeInSecForIosWeb: 1)
+                                            }
+                                        })
                               }),
                       child: Container(
                         margin:
@@ -152,17 +175,6 @@ class _ContactosFuertesState extends State<ContactosFuertes> {
                               onPressed: () async {
                                 ContactosService contactosService =
                                     ContactosService();
-
-                                contactosService
-                                    .postContactos(widget.numeros)
-                                    .then((value) => {
-                                          contactosService
-                                              .postContactosFuerte(numeros)
-                                              .then((value) => {
-                                                    Navigator.pop(context),
-                                                    Navigator.pop(context)
-                                                  })
-                                        });
                               },
                             ),
                             Card(

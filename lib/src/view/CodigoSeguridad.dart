@@ -110,7 +110,7 @@ class _CodigoSeguridadState extends State<CodigoSeguridad> {
                     } else {
                       LoginService loginService = LoginService();
                       loginService
-                          .loginOtp(widget.phoneNumber, securityCode)
+                          .loginOtp(widget.phoneNumber, securityCode,context)
                           .then((value) {
                         if (value != null) {
                           Navigator.of(context).pop();

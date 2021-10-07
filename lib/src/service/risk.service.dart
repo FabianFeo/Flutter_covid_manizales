@@ -14,12 +14,17 @@ class RiskService {
     String idUser =
         json.decode(await preferenceUser.getUser())['id'].toString();
     String token = await preferenceToken.getToken();
-    Map<String, dynamic> response = json.decode(json.decode((await http.get(
-            'https://labs.covidalert.com.co/api/core/users/' +
-                idUser +
-                '/risk-status',
-            headers: {'Authorization': 'JWT ${token}'}))
-        .body)['data']);
+    Map<String, dynamic> response = Map();
+    await http.get(
+        'https://labs.covidalert.com.co/api/core/users/' +
+            idUser +
+            '/risk-status',
+        headers: {
+          'Authorization': 'JWT ${token}'
+        }).then((value) => {
+          response = json.decode(value.body)
+          });
+
     return response;
   }
 

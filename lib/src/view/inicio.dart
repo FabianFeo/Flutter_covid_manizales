@@ -200,7 +200,7 @@ class _InicioState extends State<Inicio> with TickerProviderStateMixin {
   setRisk(Map<String, dynamic> value) {
     
     setState(() {
-      switch (int.parse(value['status'].toString())) {
+      switch (int.parse(value['data']['status'].toString())) {
         case 1:
           this.nivel = "Bajo";
           break;

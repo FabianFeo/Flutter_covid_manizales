@@ -21,6 +21,7 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  bool activateLogin = false;
   @override
   void initState() {
     super.initState();
@@ -81,6 +82,9 @@ class _LoginState extends State<Login> {
                 },
 
                 onChanged: (text) {
+                  setState(() {
+                    activateLogin = true;
+                  });
                   phonenumber = text;
                 },
               ),
@@ -88,27 +92,31 @@ class _LoginState extends State<Login> {
                   duration: Duration(milliseconds: 100),
                   scaleFactor: 1.5,
                   onPressed: () {
-                    LoginService loginService = LoginService();
-                    loginService.login(phonenumber, context).then((value) {
-                      if (value == null) {
-                        Fluttertoast.showToast(
-                            msg: "Usuario no registrad@",
-                            toastLength: Toast.LENGTH_SHORT,
-                            gravity: ToastGravity.CENTER,
-                            timeInSecForIosWeb: 1);
-                      } else {
-                        _preferenceLogin.typeLogin(true).then((value) {
-                          Navigator.of(context).pop();
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => CodigoSeguridad(
-                                  phoneNumber: phonenumber,
-                                ),
-                              ));
-                        });
-                      }
-                    });
+                    if (phonenumber.isNotEmpty &&activateLogin) {
+                      activateLogin=false;
+                      LoginService loginService = LoginService();
+                      loginService.login(phonenumber, context).then((value) {
+                        if (value == null) {
+                          Fluttertoast.showToast(
+                              msg: "Usuario no registrad@",
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.CENTER,
+                              timeInSecForIosWeb: 1);
+                              activateLogin=true;
+                        } else {
+                          _preferenceLogin.typeLogin(true).then((value) {
+                            Navigator.of(context).pop();
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => CodigoSeguridad(
+                                    phoneNumber: phonenumber,
+                                  ),
+                                ));
+                          });
+                        }
+                      });
+                    }
                   },
                   child: Card(
                       shape: RoundedRectangleBorder(

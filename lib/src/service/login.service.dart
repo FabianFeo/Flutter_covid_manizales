@@ -4,6 +4,7 @@ import 'package:aprendiendo/src/functions/LocalNotification.dart' as nt;
 import 'package:aprendiendo/src/functions/PreferenceToken.dart';
 import 'package:aprendiendo/src/functions/preferenceUser.dart';
 import 'package:aprendiendo/src/service/sms.service.dart';
+import 'package:aprendiendo/src/view/login.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -31,15 +32,24 @@ class LoginService {
     return body['status'].toString();
   }
 
-  Future<String> loginOtp(String phoneNumber, String otp) async {
+  Future<String> loginOtp(String phoneNumber, String otp,BuildContext context) async {
     http.Response response = await http.post(
         "https://labs.covidalert.com.co/api/core/login/otp/",
         body: {"phone_number": phoneNumber, "OTP": otp});
     Map<String, dynamic> body = jsonDecode(response.body);
-    Map<String, dynamic> data = body['data'];
+    try {
+       Map<String, dynamic> data = body['data'];
     preferenceToken.setToken(data['token']);
     preferenceUser.setUser(json.encode(data['user']));
     return 'entro';
+    } catch (e) {
+       Navigator.of(context).pop();
+        Navigator.push(context,
+                              MaterialPageRoute(builder: (context) => Login()));
+    }
+   
+
+   
   }
 
   Future<void> logOut() async {
